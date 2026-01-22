@@ -1,0 +1,146 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap');
+
+:root {
+    --primary-color: #00d4ff; /* Azul neón */
+    --secondary-color: #7b2cbf; /* Violeta */
+    --bg-dark: #120E2B;
+    --text-light: #ffffff;
+    --text-gray: #b3b3b3;
+    --glass-bg: rgba(255, 255, 255, 0.05);
+    --glass-border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Poppins', sans-serif;
+}
+
+body {
+    background: radial-gradient(circle at top left, #24114B, #120E2B 60%);
+    color: var(--text-light);
+    min-height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    /* Para que el scroll funcione si el contenido es largo */
+    overflow-x: hidden; 
+}
+
+/* --- Contenedores Glass --- */
+.container-center {
+    width: 100%;
+    max-width: 420px;
+    padding: 20px;
+}
+
+.glass-card {
+    background: var(--glass-bg);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    border: var(--glass-border);
+    border-radius: 20px;
+    padding: 40px;
+    box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.5);
+    text-align: center;
+}
+
+/* --- Inputs y Formularios --- */
+.form-group { margin-bottom: 20px; text-align: left; }
+
+.input-wrapper {
+    position: relative;
+    background: rgba(0, 0, 0, 0.3);
+    border-radius: 10px;
+    border: 1px solid transparent;
+    transition: 0.3s;
+}
+
+.input-wrapper:focus-within {
+    border-color: var(--primary-color);
+    box-shadow: 0 0 10px rgba(0, 212, 255, 0.2);
+}
+
+.input-wrapper i {
+    position: absolute;
+    left: 15px;
+    top: 50%;
+    transform: translateY(-50%);
+    color: var(--primary-color);
+}
+
+.input-wrapper input {
+    width: 100%;
+    background: transparent;
+    border: none;
+    padding: 15px 15px 15px 45px;
+    color: white;
+    outline: none;
+}
+
+/* --- Botones --- */
+.btn-primary {
+    width: 100%;
+    padding: 15px;
+    background: linear-gradient(90deg, var(--primary-color), var(--secondary-color));
+    border: none;
+    border-radius: 10px;
+    color: white;
+    font-weight: bold;
+    cursor: pointer;
+    transition: transform 0.2s;
+    margin-top: 10px;
+}
+
+.btn-primary:hover {
+    transform: scale(1.02);
+    box-shadow: 0 0 20px rgba(0, 212, 255, 0.4);
+}
+
+/* --- Dashboard Grid --- */
+.dashboard-container {
+    max-width: 1200px;
+    width: 100%;
+    padding: 40px;
+}
+
+.grid-temas {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 25px;
+    margin-top: 30px;
+}
+
+.tema-card {
+    background: rgba(255, 255, 255, 0.03);
+    border: var(--glass-border);
+    border-radius: 20px;
+    padding: 30px;
+    transition: 0.3s;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+.tema-card:hover {
+    transform: translateY(-5px);
+    background: rgba(255, 255, 255, 0.08);
+    border-color: var(--primary-color);
+}
+
+.btn-tema {
+    display: inline-block;
+    padding: 10px 25px;
+    border: 1px solid var(--primary-color);
+    border-radius: 50px;
+    color: var(--primary-color);
+    text-decoration: none;
+    margin-top: 20px;
+    transition: 0.3s;
+}
+
+.btn-tema:hover {
+    background: var(--primary-color);
+    color: #000;
+}

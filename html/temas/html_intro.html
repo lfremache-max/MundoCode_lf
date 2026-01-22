@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MundoCODE - HTML</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <link rel="stylesheet" href="../../Css/style.css">
+    <link rel="stylesheet" href="../../Css/quiz_style.css">
+</head>
+<body>
+    
+    <nav style="position: fixed; top: 0; left: 0; width: 100%; padding: 20px; background: rgba(18,14,43,0.9); z-index: 100; border-bottom: 1px solid rgba(255,255,255,0.1);">
+        <a href="../contenidos.html" style="color: white; text-decoration: none; font-weight: bold;">
+            <i class="fas fa-arrow-left"></i> Volver a Cursos
+        </a>
+    </nav>
+
+    <div class="quiz-page-container">
+        <div class="glass-card" style="text-align: left; margin-bottom: 30px;">
+            <h1 style="color: #e34c26; margin-bottom: 10px;">Introducción a HTML</h1>
+            <p><strong>HTML (HyperText Markup Language)</strong> es el bloque de construcción más básico de la Web.</p>
+            <br>
+            <h3>Estructura básica</h3>
+            <p style="color: #ccc; margin-top: 10px;">Toda página HTML comienza con una estructura de árbol:</p>
+            <pre style="background: rgba(0,0,0,0.3); padding: 15px; border-radius: 10px; margin: 15px 0; color: #00d4ff;">
+&lt;!DOCTYPE html&gt;
+&lt;html&gt;
+  &lt;head&gt;
+    &lt;title&gt;Título&lt;/title&gt;
+  &lt;/head&gt;
+  &lt;body&gt;
+    &lt;h1&gt;Hola Mundo&lt;/h1&gt;
+  &lt;/body&gt;
+&lt;/html&gt;</pre>
+        </div>
+
+        <div class="glass-card">
+            <h2 style="margin-bottom: 20px;"><i class="fas fa-brain"></i> Quiz Rápido</h2>
+            <div id="quiz-container"></div>
+            <button id="submit-quiz" class="btn-primary" style="max-width: 250px; margin-top: 20px;">Verificar Respuestas</button>
+            <div id="quiz-result" style="margin-top: 20px; display: none;"></div>
+        </div>
+    </div>
+
+    <script src="../../js/quiz.js"></script>
+
+ <script>
+        const preguntasHTML = [
+            {
+                pregunta: "¿Qué significa HTML?",
+                opciones: ["HyperText Machine Language", "HyperText Markup Language", "Home Tool Markup Language"],
+                correcta: 1,
+                explicacion: "Es un lenguaje de marcado de hipertexto."
+            },
+            {
+                pregunta: "¿Qué etiqueta usamos para el título más grande?",
+                opciones: ["&lt;head&gt;", "&lt;h6&gt;", "&lt;h1&gt;"],
+                correcta: 2,
+                explicacion: "&lt;h1&gt; representa el encabezado de primer nivel."
+            },
+            {
+                pregunta: "¿Cuál es el elemento contenedor de todo el contenido visible?",
+                opciones: ["&lt;body&gt;", "&lt;html&gt;", "&lt;head&gt;"],
+                correcta: 0,
+                explicacion: "Todo lo que el usuario ve está dentro del body."
+            },
+            {
+                pregunta: "¿Qué etiqueta se usa para crear un salto de línea?",
+                opciones: ["&lt;br&gt;", "&lt;lb&gt;", "&lt;break&gt;"],
+                correcta: 0,
+                explicacion: "&lt;br&gt; (Break) crea un salto de línea simple."
+            },
+            {
+                pregunta: "¿Cuál es la etiqueta correcta para una lista NO ordenada?",
+                opciones: ["&lt;ol&gt;", "&lt;ul&gt;", "&lt;list&gt;"],
+                correcta: 1,
+                explicacion: "&lt;ul&gt; significa Unordered List (lista con viñetas)."
+            },
+            {
+                pregunta: "¿Qué atributo se usa para poner la URL de una imagen?",
+                opciones: ["href", "link", "src"],
+                correcta: 2,
+                explicacion: "src (source) indica la fuente de la imagen."
+            },
+            {
+                pregunta: "¿Qué etiqueta define un hipervínculo?",
+                opciones: ["&lt;link&gt;", "&lt;a&gt;", "&lt;href&gt;"],
+                correcta: 1,
+                explicacion: "La etiqueta &lt;a&gt; (anchor) se usa para enlaces."
+            },
+            {
+                pregunta: "¿Cuál es el carácter correcto para indicar el cierre de una etiqueta?",
+                opciones: ["/", "\\", "."],
+                correcta: 0,
+                explicacion: "Las etiquetas de cierre empiezan con barra diagonal, ej: &lt;/p&gt;."
+            },
+            {
+                pregunta: "¿Qué atributo del input define qué tipo de datos se introducirán?",
+                opciones: ["name", "placeholder", "type"],
+                correcta: 2,
+                explicacion: "El atributo type define si es texto, password, email, etc."
+            },
+            {
+                pregunta: "¿Cuál es la versión actual del estándar HTML?",
+                opciones: ["HTML4", "HTMLX", "HTML5"],
+                correcta: 2,
+                explicacion: "HTML5 es la versión estándar actual."
+            }
+        ];
+        // Iniciar el quiz
+        document.addEventListener('DOMContentLoaded', () => {
+            cargarQuiz(preguntasHTML);
+        });
+    </script>
+</body>
+</html>

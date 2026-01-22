@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MundoCODE - CSS</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <link rel="stylesheet" href="../../Css/style.css">
+    <link rel="stylesheet" href="../../Css/quiz_style.css">
+</head>
+<body>
+    
+    <nav style="position: fixed; top: 0; left: 0; width: 100%; padding: 20px; background: rgba(18,14,43,0.95); z-index: 100; border-bottom: 1px solid rgba(255,255,255,0.1); display: flex; align-items: center;">
+        <a href="../contenidos.html" style="color: white; text-decoration: none; font-weight: bold; font-size: 1.1rem;">
+            <i class="fas fa-arrow-left"></i> Volver a Cursos
+        </a>
+    </nav>
+
+    <div class="quiz-page-container">
+        <div class="glass-card" style="text-align: left; margin-bottom: 30px;">
+            <div style="display: flex; align-items: center; gap: 15px; margin-bottom: 20px;">
+                <i class="fab fa-css3-alt" style="font-size: 3rem; color: #264de4;"></i>
+                <h1 style="color: #264de4; margin: 0;">Introducción a CSS</h1>
+            </div>
+            
+            <p><strong>CSS (Cascading Style Sheets)</strong> es el lenguaje que usamos para dar estilo a un documento HTML. Describe cómo se deben mostrar los elementos.</p>
+            <br>
+            <h3>Sintaxis Básica</h3>
+            <p style="color: #ccc; margin-top: 10px;">Una regla CSS consiste en un selector y un bloque de declaración:</p>
+            <pre style="background: rgba(0,0,0,0.3); padding: 15px; border-radius: 10px; margin: 15px 0; color: #00d4ff; font-family: monospace;">
+h1 {
+  color: blue;
+  font-size: 12px;
+}</pre>
+            <ul style="margin-left: 20px; margin-top: 10px; line-height: 1.6;">
+                <li><strong>Selector:</strong> Apunta al elemento HTML que quieres estilizar (ej. <code>h1</code>).</li>
+                <li><strong>Propiedad:</strong> Lo que quieres cambiar (ej. <code>color</code>).</li>
+                <li><strong>Valor:</strong> El ajuste específico (ej. <code>blue</code>).</li>
+            </ul>
+        </div>
+
+        <div class="glass-card">
+            <h2 style="margin-bottom: 20px;"><i class="fas fa-brain"></i> Quiz de Conocimiento</h2>
+            <div id="quiz-container"></div>
+            <button id="submit-quiz" class="btn-primary" style="max-width: 250px; margin-top: 20px;">Verificar Respuestas</button>
+            <div id="quiz-result" style="margin-top: 20px; display: none;"></div>
+        </div>
+    </div>
+
+    <script src="../../js/quiz.js"></script>
+
+    <script>
+        const preguntasCSS = [
+            {
+                pregunta: "¿Qué significa CSS?",
+                opciones: ["Creative Style Sheets", "Cascading Style Sheets", "Computer Style Sheets"],
+                correcta: 1,
+                explicacion: "Significa Hojas de Estilo en Cascada."
+            },
+            {
+                pregunta: "¿Qué propiedad cambia el color de fondo?",
+                opciones: ["color", "bgcolor", "background-color"],
+                correcta: 2,
+                explicacion: "background-color es la propiedad correcta."
+            },
+            {
+                pregunta: "¿Cómo seleccionas un elemento con id 'demo'?",
+                opciones: ["#demo", ".demo", "demo"],
+                correcta: 0,
+                explicacion: "Los IDs se seleccionan con el símbolo de numeral (#)."
+            },
+            {
+                pregunta: "¿Cómo seleccionas elementos con la clase 'test'?",
+                opciones: ["#test", ".test", "*test"],
+                correcta: 1,
+                explicacion: "Las clases se seleccionan con un punto (.)."
+            },
+            {
+                pregunta: "¿Cuál es la sintaxis correcta para referirse a una hoja de estilo externa?",
+                opciones: ["&lt;style src='estilo.css'&gt;", "&lt;link rel='stylesheet' href='estilo.css'&gt;", "&lt;stylesheet&gt;estilo.css&lt;/stylesheet&gt;"],
+                correcta: 1,
+                explicacion: "Se usa la etiqueta &lt;link&gt; dentro del &lt;head&gt;."
+            },
+            {
+                pregunta: "¿Qué propiedad controla el tamaño del texto?",
+                opciones: ["text-size", "font-style", "font-size"],
+                correcta: 2,
+                explicacion: "font-size define el tamaño de la fuente."
+            },
+            {
+                pregunta: "¿Cómo haces que cada palabra empiece con mayúscula?",
+                opciones: ["text-transform: capitalize", "text-style: capitalize", "transform: uppercase"],
+                correcta: 0,
+                explicacion: "text-transform: capitalize pone en mayúscula la primera letra de cada palabra."
+            },
+            {
+                pregunta: "¿Qué propiedad se usa para cambiar el color del texto?",
+                opciones: ["font-color", "text-color", "color"],
+                correcta: 2,
+                explicacion: "Simplemente 'color' define el color del texto."
+            },
+            {
+                pregunta: "¿Qué propiedad sirve para crear espacio DENTRO de los bordes?",
+                opciones: ["margin", "padding", "spacing"],
+                correcta: 1,
+                explicacion: "Padding es el relleno interno; Margin es el espacio externo."
+            },
+            {
+                pregunta: "¿Cómo se comenta en CSS?",
+                opciones: ["// comentario", "&lt;!-- comentario --&gt;", "/* comentario */"],
+                correcta: 2,
+                explicacion: "Los comentarios en CSS van entre /* y */."
+            }
+        ];
+
+        document.addEventListener('DOMContentLoaded', () => {
+            cargarQuiz(preguntasCSS);
+        });
+    </script>
+</body>
+</html>
