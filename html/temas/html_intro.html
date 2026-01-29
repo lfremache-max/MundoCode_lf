@@ -2,116 +2,50 @@
 <html lang="es">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>MundoCODE - HTML</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
     <link rel="stylesheet" href="../../Css/style.css">
     <link rel="stylesheet" href="../../Css/quiz_style.css">
 </head>
-<body>
+<body style="background: #0b0b0e; color: white;">
     
-    <nav style="position: fixed; top: 0; left: 0; width: 100%; padding: 20px; background: rgba(18,14,43,0.9); z-index: 100; border-bottom: 1px solid rgba(255,255,255,0.1);">
+    <nav style="padding: 20px; background: rgba(11,11,14,0.95);">
         <a href="../contenidos.html" style="color: white; text-decoration: none; font-weight: bold;">
             <i class="fas fa-arrow-left"></i> Volver a Cursos
         </a>
     </nav>
 
-    <div class="quiz-page-container">
-        <div class="glass-card" style="text-align: left; margin-bottom: 30px;">
-            <h1 style="color: #e34c26; margin-bottom: 10px;">Introducción a HTML</h1>
-            <p><strong>HTML (HyperText Markup Language)</strong> es el bloque de construcción más básico de la Web.</p>
-            <br>
-            <h3>Estructura básica</h3>
-            <p style="color: #ccc; margin-top: 10px;">Toda página HTML comienza con una estructura de árbol:</p>
-            <pre style="background: rgba(0,0,0,0.3); padding: 15px; border-radius: 10px; margin: 15px 0; color: #00d4ff;">
-&lt;!DOCTYPE html&gt;
-&lt;html&gt;
-  &lt;head&gt;
-    &lt;title&gt;Título&lt;/title&gt;
-  &lt;/head&gt;
-  &lt;body&gt;
-    &lt;h1&gt;Hola Mundo&lt;/h1&gt;
-  &lt;/body&gt;
-&lt;/html&gt;</pre>
+    <div class="quiz-page-container" style="max-width: 800px; margin: 50px auto; padding: 20px;">
+        
+        <div style="text-align: center; margin-bottom: 40px;">
+            <i class="fab fa-html5" style="font-size: 4rem; color: #e34c26;"></i>
+            <h1 style="color: #e34c26;">HTML5 Expert</h1>
+            <p>La estructura fundamental de toda página web.</p>
         </div>
 
-        <div class="glass-card">
-            <h2 style="margin-bottom: 20px;"><i class="fas fa-brain"></i> Quiz Rápido</h2>
-            <div id="quiz-container"></div>
-            <button id="submit-quiz" class="btn-primary" style="max-width: 250px; margin-top: 20px;">Verificar Respuestas</button>
-            <div id="quiz-result" style="margin-top: 20px; display: none;"></div>
-        </div>
+        <div id="quiz-container"></div>
+        <div id="quiz-result" style="display: none; margin-top: 30px;"></div>
+
     </div>
 
+    <script src="../../js/sounds.js"></script>
     <script src="../../js/quiz.js"></script>
-
- <script>
+    
+    <script>
         const preguntasHTML = [
-            {
-                pregunta: "¿Qué significa HTML?",
-                opciones: ["HyperText Machine Language", "HyperText Markup Language", "Home Tool Markup Language"],
-                correcta: 1,
-                explicacion: "Es un lenguaje de marcado de hipertexto."
-            },
-            {
-                pregunta: "¿Qué etiqueta usamos para el título más grande?",
-                opciones: ["&lt;head&gt;", "&lt;h6&gt;", "&lt;h1&gt;"],
-                correcta: 2,
-                explicacion: "&lt;h1&gt; representa el encabezado de primer nivel."
-            },
-            {
-                pregunta: "¿Cuál es el elemento contenedor de todo el contenido visible?",
-                opciones: ["&lt;body&gt;", "&lt;html&gt;", "&lt;head&gt;"],
-                correcta: 0,
-                explicacion: "Todo lo que el usuario ve está dentro del body."
-            },
-            {
-                pregunta: "¿Qué etiqueta se usa para crear un salto de línea?",
-                opciones: ["&lt;br&gt;", "&lt;lb&gt;", "&lt;break&gt;"],
-                correcta: 0,
-                explicacion: "&lt;br&gt; (Break) crea un salto de línea simple."
-            },
-            {
-                pregunta: "¿Cuál es la etiqueta correcta para una lista NO ordenada?",
-                opciones: ["&lt;ol&gt;", "&lt;ul&gt;", "&lt;list&gt;"],
-                correcta: 1,
-                explicacion: "&lt;ul&gt; significa Unordered List (lista con viñetas)."
-            },
-            {
-                pregunta: "¿Qué atributo se usa para poner la URL de una imagen?",
-                opciones: ["href", "link", "src"],
-                correcta: 2,
-                explicacion: "src (source) indica la fuente de la imagen."
-            },
-            {
-                pregunta: "¿Qué etiqueta define un hipervínculo?",
-                opciones: ["&lt;link&gt;", "&lt;a&gt;", "&lt;href&gt;"],
-                correcta: 1,
-                explicacion: "La etiqueta &lt;a&gt; (anchor) se usa para enlaces."
-            },
-            {
-                pregunta: "¿Cuál es el carácter correcto para indicar el cierre de una etiqueta?",
-                opciones: ["/", "\\", "."],
-                correcta: 0,
-                explicacion: "Las etiquetas de cierre empiezan con barra diagonal, ej: &lt;/p&gt;."
-            },
-            {
-                pregunta: "¿Qué atributo del input define qué tipo de datos se introducirán?",
-                opciones: ["name", "placeholder", "type"],
-                correcta: 2,
-                explicacion: "El atributo type define si es texto, password, email, etc."
-            },
-            {
-                pregunta: "¿Cuál es la versión actual del estándar HTML?",
-                opciones: ["HTML4", "HTMLX", "HTML5"],
-                correcta: 2,
-                explicacion: "HTML5 es la versión estándar actual."
-            }
+            { pregunta: "¿Qué significa HTML?", opciones: ["HyperText Markup Language", "Home Tool Markup Language", "Hyperlinks and Text Markup Language"], correcta: 0, explicacion: "HTML es el lenguaje de marcado estándar para documentos diseñados para ser mostrados en un navegador web." },
+            { pregunta: "¿Cuál es el elemento correcto para el encabezado más grande?", opciones: ["head", "h1", "header"], correcta: 1, explicacion: "<h1> define el encabezado más importante." },
+            { pregunta: "¿Qué etiqueta define un salto de línea?", opciones: ["br", "lb", "break"], correcta: 0, explicacion: "<br> inserta un salto de línea simple." },
+            { pregunta: "¿Cuál es el atributo para el texto alternativo en imágenes?", opciones: ["title", "alt", "src"], correcta: 1, explicacion: "El atributo 'alt' proporciona información alternativa si la imagen no se puede cargar." },
+            { pregunta: "¿Cómo se define una lista desordenada?", opciones: ["ol", "ul", "list"], correcta: 1, explicacion: "<ul> define una lista desordenada (con viñetas)." },
+            { pregunta: "¿Qué etiqueta se usa para definir un hipervínculo?", opciones: ["link", "a", "href"], correcta: 1, explicacion: "La etiqueta <a> se utiliza para definir hipervínculos." },
+            { pregunta: "¿Cuál es la estructura básica de un documento HTML5?", opciones: ["html > head > body", "head > body > html", "body > html > head"], correcta: 0, explicacion: "La estructura correcta es <html> conteniendo <head> y <body>." },
+            { pregunta: "¿Para qué sirve la etiqueta <p>?", opciones: ["Para poner negrita", "Para un párrafo", "Para pegar"], correcta: 1, explicacion: "<p> define un párrafo de texto." },
+            { pregunta: "¿Qué atributo abre un enlace en una nueva pestaña?", opciones: ["target='_blank'", "new='tab'", "window='new'"], correcta: 0, explicacion: "target='_blank' especifica que el enlace se abrirá en una nueva pestaña." },
+            { pregunta: "¿Qué etiqueta define el título de la pestaña del navegador?", opciones: ["meta", "title", "head"], correcta: 1, explicacion: "<title> establece el nombre que aparece en la pestaña del navegador." }
         ];
-        // Iniciar el quiz
-        document.addEventListener('DOMContentLoaded', () => {
-            cargarQuiz(preguntasHTML);
-        });
+        // Cargar Quiz
+        document.addEventListener('DOMContentLoaded', () => cargarQuiz(preguntasHTML, 'html'));
     </script>
 </body>
 </html>

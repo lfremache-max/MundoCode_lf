@@ -3,49 +3,157 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>MundoCODE - Cursos</title>
+    <title>MundoCODE - Mis Cursos</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
     <link rel="stylesheet" href="../Css/style.css">
+    <style>
+        /* Estilos específicos para el estado COMPLETADO que tenías antes */
+        .btn-completado {
+            background-color: #2ed573 !important; /* Verde */
+            color: #fff !important;
+            pointer-events: none; /* No clickeable */
+            border: none !important;
+            box-shadow: 0 4px 15px rgba(46, 213, 115, 0.4);
+        }
+        
+        /* Panel del certificado bloqueado por defecto */
+        #cert-panel {
+            display: none; /* Oculto hasta terminar todo */
+            margin-top: 40px;
+            padding: 30px;
+            background: linear-gradient(45deg, #ffd700, #ffa500);
+            border-radius: 15px;
+            text-align: center;
+            color: black;
+            box-shadow: 0 0 30px rgba(255, 215, 0, 0.3);
+            animation: slideUp 0.5s ease;
+        }
+
+        @keyframes slideUp {
+            from { transform: translateY(20px); opacity: 0; }
+            to { transform: translateY(0); opacity: 1; }
+        }
+    </style>
 </head>
 <body>
+
+    <nav class="navbar">
+        <a href="principal.html" class="logo" style="text-decoration: none;">Mundo<span>CODE</span></a>
+        
+        <div style="display:flex; gap:15px; align-items:center;">
+            <button onclick="borrarProgreso()" style="background:red; color:white; border:none; padding:5px 10px; cursor:pointer; font-size:0.8rem;">
+                <i class="fas fa-trash"></i> REINICIAR PROGRESO
+            </button>
+            
+            <a href="inicio.html" class="btn-logout">
+                <i class="fas fa-sign-out-alt"></i> Cerrar Sesión
+            </a>
+        </div>
+    </nav>
+
     <div class="dashboard-container">
-        <header style="text-align: center; margin-bottom: 50px;">
-            <h1 style="font-size: 2.5rem; margin-bottom: 10px;">Mundo<span style="color: var(--primary-color);">CODE.</span></h1>
-            <p>Selecciona un tema para comenzar tu aprendizaje</p>
+        
+        <header class="dashboard-header">
+            <h2>Rutas de Aprendizaje</h2>
+            <p>Completa los 6 módulos (Nota mín: 7.0) para desbloquear tu certificado.</p>
         </header>
 
-        <div class="grid-temas">
-            <div class="tema-card">
-                <div>
-                    <i class="fab fa-html5" style="font-size: 3rem; color: #e34c26; margin-bottom: 15px;"></i>
-                    <h3>HTML</h3>
-                    <p style="color: var(--text-gray);">Aprende la estructura básica de la web. Etiquetas, formularios y semántica.</p>
-                </div>
-                <a href="temas/html_intro.html" class="btn-tema">INICIAR CURSO</a>
+        <div class="courses-grid">
+            
+            <div class="course-card">
+                <i class="fab fa-html5 course-icon"></i>
+                <h3 id="title-html">HTML5 Expert</h3>
+                <p>Domina la estructura de la web y SEO.</p>
+                <a href="temas/html_intro.html" class="btn-card" id="btn-html">EMPEZAR</a>
             </div>
 
-            <div class="tema-card">
-                <div>
-                    <i class="fab fa-css3-alt" style="font-size: 3rem; color: #264de4; margin-bottom: 15px;"></i>
-                    <h3>CSS</h3>
-                    <p style="color: var(--text-gray);">Dale estilo a tus páginas. Flexbox, Grid y diseños responsivos.</p>
-                </div>
-                <a href="temas/css_intro.html" class="btn-tema">INICIAR CURSO</a>
+            <div class="course-card">
+                <i class="fab fa-css3-alt course-icon"></i>
+                <h3 id="title-css">Maestría CSS3</h3>
+                <p>Diseño visual, Flexbox y Grid.</p>
+                <a href="temas/css_intro.html" class="btn-card" id="btn-css">EMPEZAR</a>
             </div>
 
-            <div class="tema-card">
-                <div>
-                    <i class="fab fa-js" style="font-size: 3rem; color: #f7df1e; margin-bottom: 15px;"></i>
-                    <h3>JavaScript</h3>
-                    <p style="color: var(--text-gray);">Añade interactividad y lógica. DOM, funciones y eventos.</p>
-                </div>
-                <a href="#" class="btn-tema">PRÓXIMAMENTE</a>
+            <div class="course-card">
+                <i class="fab fa-js course-icon"></i>
+                <h3 id="title-js">JavaScript</h3>
+                <p>Programación dinámica e interactividad.</p>
+                <a href="temas/js_intro.html" class="btn-card" id="btn-js">EMPEZAR</a>
             </div>
+
+            <div class="course-card">
+                <i class="fab fa-python course-icon"></i>
+                <h3 id="title-python">Python Backend</h3>
+                <p>Desarrollo servidor y análisis de datos.</p>
+                <a href="temas/python_intro.html" class="btn-card" id="btn-python">EMPEZAR</a>
+            </div>
+
+            <div class="course-card">
+                <i class="fas fa-database course-icon"></i>
+                <h3 id="title-sql">SQL Data</h3>
+                <p>Gestión y consulta de Bases de Datos.</p>
+                <a href="temas/sql_intro.html" class="btn-card" id="btn-sql">EMPEZAR</a>
+            </div>
+
+            <div class="course-card">
+                <i class="fab fa-git-alt course-icon"></i>
+                <h3 id="title-git">Git Control</h3>
+                <p>Repositorios, versiones y trabajo en equipo.</p>
+                <a href="temas/git_intro.html" class="btn-card" id="btn-git">EMPEZAR</a>
+            </div>
+
         </div>
-        
-        <div style="text-align: center; margin-top: 50px;">
-            <a href="inicio.html" style="color: var(--text-gray); text-decoration: none;">Cerrar Sesión</a>
+
+        <div id="cert-panel">
+            <i class="fas fa-trophy" style="font-size: 3rem; margin-bottom: 10px;"></i>
+            <h2>¡Felicidades! Eres Full Stack Developer</h2>
+            <p>Has aprobado todos los módulos satisfactoriamente.</p>
+            <a href="certificado.html" style="background:black; color:white; padding:10px 30px; border-radius:20px; text-decoration:none; font-weight:bold; display:inline-block; margin-top:15px;">
+                DESCARGAR CERTIFICADO
+            </a>
         </div>
+
     </div>
-</body>
+
+    <script>
+        // Función para limpiar memoria (SOLO PARA PRUEBAS)
+        function borrarProgreso() {
+            if(confirm("¿Seguro? Esto borrará tus aprobados para que pruebes desde cero.")) {
+                localStorage.clear();
+                location.reload();
+            }
+        }
+
+        document.addEventListener('DOMContentLoaded', () => {
+            // IDs de los cursos tal como los guarda el quiz
+            const cursos = ['html', 'css', 'js', 'python', 'sql', 'git'];
+            let cursosAprobados = 0;
+
+            cursos.forEach(idCurso => {
+                // Buscamos si existe la llave "curso_completado_nombre"
+                // Probamos con y sin "_intro" para asegurar compatibilidad
+                let status = localStorage.getItem('curso_completado_' + idCurso + '_intro');
+                if(!status) status = localStorage.getItem('curso_completado_' + idCurso);
+
+                if (status === 'true') {
+                    cursosAprobados++;
+                    
+                    // Cambiar botón a COMPLETADO (Verde)
+                    const btn = document.getElementById('btn-' + idCurso);
+                    if (btn) {
+                        btn.textContent = 'COMPLETADO';
+                        btn.classList.add('btn-completado');
+                        btn.innerHTML = '<i class="fas fa-check-circle"></i> COMPLETADO';
+                        btn.href = "#"; // Desactivar enlace si quieres
+                    }
+                }
+            });
+
+            // Si tienes los 6 aprobados, mostramos el panel
+            if (cursosAprobados === 6) {
+                document.getElementById('cert-panel').style.display = 'block';
+            }
+        });
+    </script>
+</body> 
 </html>

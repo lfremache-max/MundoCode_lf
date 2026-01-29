@@ -1,251 +1,242 @@
-/* --- 1. CONFIGURACIÓN BASE Y VARIABLES --- */
-@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap');
 
 :root {
-    --primary-color: #00d4ff; /* Azul neón */
-    --secondary-color: #7b2cbf; /* Violeta */
-    --bg-dark: #120E2B;
-    --text-light: #ffffff;
-    --text-gray: #b3b3b3;
-    --glass-bg: rgba(255, 255, 255, 0.05);
-    --glass-border: 1px solid rgba(255, 255, 255, 0.1);
+    --gradient-bg: linear-gradient(135deg, #00d2ff 0%, #0061ff 100%);
+    --accent-neon: #00d2ff;
+    --bg-dark: #0a0a0f;
+    --panel-dark: #121218;
+    --text-white: #ffffff;
+    --text-gray: #b0b0b0;
+    --code-bg: #050507; /* Fondo más oscuro para bloques de código */
 }
 
-* {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-    font-family: 'Poppins', sans-serif;
-    scroll-behavior: smooth; /* Para que el scroll al hacer clic sea suave */
-}
+* { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Poppins', sans-serif; }
 
 body {
-    background: radial-gradient(circle at top left, #24114B, #120E2B 60%);
-    color: var(--text-light);
+    background-color: var(--bg-dark);
     min-height: 100vh;
-    /* Quitamos el flex/center del body para que la página de cursos fluya normal */
-    overflow-x: hidden; 
+    width: 100vw;
+    color: var(--text-white);
+    overflow-y: auto; overflow-x: hidden;
 }
 
-/* --- 2. BARRA DE NAVEGACIÓN (NUEVO) --- */
-.navbar {
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    padding: 15px 50px;
+/* =========================================
+   ESTILOS GENERALES (LOGIN/REGISTRO)
+   ========================================= */
+.container-center { width: 100vw; height: 100vh; display: flex; justify-content: center; align-items: center; overflow: hidden; }
+.split-card { display: flex; width: 100%; height: 100%; background: var(--panel-dark); position: relative; }
+.half-section { flex: 1; display: flex; flex-direction: column; justify-content: center; align-items: center; padding: 0 5%; position: relative; z-index: 1; }
+.content-wrapper { width: 100%; max-width: 480px; text-align: center; }
+.form-side { background-color: var(--panel-dark); }
+.astronaut-icon { font-size: 4.5rem; color: var(--accent-neon); margin-bottom: 25px; filter: drop-shadow(0 0 20px rgba(0, 210, 255, 0.5)); }
+.form-side h1 { font-size: 3rem; font-weight: 700; margin-bottom: 10px; }
+.subtitle { font-size: 1rem; color: var(--text-gray); margin-bottom: 40px; }
+.input-wrapper { position: relative; margin-bottom: 25px; background: rgba(255, 255, 255, 0.03); border-radius: 10px; border: 1px solid rgba(255, 255, 255, 0.1); display: flex; align-items: center; padding: 15px 20px; transition: 0.3s; }
+.input-wrapper:focus-within { border-color: var(--accent-neon); box-shadow: 0 0 15px rgba(0, 210, 255, 0.2); background: rgba(0, 0, 0, 0.2); }
+.input-wrapper i { color: var(--text-gray); margin-right: 15px; }
+.input-wrapper:focus-within i { color: var(--accent-neon); }
+input { background: transparent; border: none; outline: none; color: var(--text-white); width: 100%; font-size: 1rem; }
+.btn-primary { width: 100%; padding: 18px; border: none; border-radius: 10px; background: var(--gradient-bg); color: white; font-weight: 700; font-size: 1.1rem; cursor: pointer; margin-top: 10px; box-shadow: 0 5px 20px rgba(0, 210, 255, 0.3); transition: 0.3s; display: flex; justify-content: center; align-items: center; }
+.btn-primary:hover { transform: translateY(-3px); box-shadow: 0 10px 30px rgba(0, 210, 255, 0.5); }
+.forgot-pass { display: block; margin-top: 25px; color: var(--text-gray); text-decoration: none; font-size: 0.9rem; }
+.overlay-side { background: var(--gradient-bg); color: white; z-index: 10; box-shadow: -40px 0 120px rgba(0, 210, 255, 0.6); border-left: 1px solid rgba(255, 255, 255, 0.2); }
+.overlay-flipped { box-shadow: 40px 0 120px rgba(0, 210, 255, 0.6); border-left: none; border-right: 1px solid rgba(255, 255, 255, 0.2); }
+.overlay-side h1 { font-size: 3.5rem; font-weight: 800; margin-bottom: 25px; text-shadow: 0 5px 15px rgba(0,0,0,0.2); }
+.overlay-side p { font-size: 1.2rem; margin-bottom: 40px; line-height: 1.6; opacity: 0.95; }
+.btn-ghost { padding: 15px 50px; border: 2px solid white; border-radius: 50px; background: transparent; color: white; font-weight: 700; text-decoration: none; transition: 0.3s; font-size: 1rem; display: inline-block; }
+.btn-ghost:hover { background: white; color: #0061ff; box-shadow: 0 0 30px rgba(255,255,255,0.4); }
+
+/* =========================================
+   NAVBAR Y DASHBOARD
+   ========================================= */
+.navbar { display: flex; justify-content: space-between; align-items: center; padding: 20px 5%; background: var(--panel-dark); position: sticky; top: 0; z-index: 100; border-bottom: 1px solid rgba(0, 210, 255, 0.1); box-shadow: 0 4px 20px rgba(0,0,0,0.4); }
+.logo { font-size: 1.5rem; font-weight: 700; color: var(--text-white); }
+.logo span { color: var(--accent-neon); }
+.btn-logout { padding: 8px 20px; border: 1px solid rgba(255,255,255,0.2); color: var(--text-gray); border-radius: 30px; text-decoration: none; font-size: 0.9rem; transition: 0.3s; }
+.btn-logout:hover { border-color: var(--accent-neon); color: var(--accent-neon); background: rgba(0,210,255,0.1); }
+.dashboard-container { max-width: 1200px; margin: 50px auto; padding: 0 20px; padding-bottom: 100px; }
+.dashboard-header { text-align: center; margin-bottom: 60px; }
+.dashboard-header h2 { font-size: 2.5rem; margin-bottom: 10px; color: white; }
+.courses-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 30px; }
+.course-card { background: var(--panel-dark); border: 1px solid rgba(255, 255, 255, 0.05); border-radius: 15px; padding: 40px 30px; display: flex; flex-direction: column; align-items: center; justify-content: space-between; text-align: center; min-height: 350px; transition: 0.4s ease; }
+.course-card:hover { transform: translateY(-10px); border-color: var(--accent-neon); box-shadow: 0 10px 40px rgba(0, 210, 255, 0.15); }
+.course-icon { font-size: 3.5rem; margin-bottom: 20px; color: var(--text-white); transition: 0.3s; }
+.course-card:hover .course-icon { color: var(--accent-neon); filter: drop-shadow(0 0 15px rgba(0, 210, 255, 0.8)); }
+.course-card h3 { font-size: 1.5rem; margin-bottom: 15px; color: white; }
+.course-card p { color: var(--text-gray); margin-bottom: 30px; line-height: 1.6; font-size: 0.95rem; max-width: 90%; }
+.btn-card { width: 100%; max-width: 200px; padding: 12px 0; background: var(--gradient-bg); color: white; border-radius: 50px; text-decoration: none; font-weight: 600; transition: 0.3s; box-shadow: 0 5px 15px rgba(0, 210, 255, 0.2); margin-top: auto; text-align: center; }
+.btn-card:hover { transform: scale(1.05); box-shadow: 0 8px 25px rgba(0, 210, 255, 0.4); }
+.btn-disabled { background: rgba(255, 255, 255, 0.1); color: rgba(255, 255, 255, 0.3); box-shadow: none; pointer-events: none; cursor: default; }
+/* --- AGREGAR ESTO A TU CSS EN LA SECCIÓN DE NAVBAR --- */
+
+/* Contenedor de los enlaces del centro */
+.nav-links {
     display: flex;
-    justify-content: space-between;
-    align-items: center;
-    background: rgba(18, 14, 43, 0.9); /* Fondo oscuro semi-transparente */
-    backdrop-filter: blur(10px);
-    z-index: 1000;
-    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+    gap: 40px; /* Espacio entre enlaces */
 }
 
-.nav-logo {
-    font-size: 1.5rem;
-    font-weight: 700;
-    color: white;
+.nav-links a {
     text-decoration: none;
-}
-
-.nav-menu {
-    display: flex;
-    align-items: center;
-    gap: 20px;
-}
-
-.nav-link {
     color: var(--text-gray);
-    text-decoration: none;
+    font-size: 1rem;
     font-weight: 500;
     transition: 0.3s;
-}
-
-.nav-link:hover { color: var(--primary-color); }
-
-.btn-nav {
-    padding: 8px 20px;
-    border-radius: 50px;
-    text-decoration: none;
-    font-weight: 600;
-    font-size: 0.9rem;
-    transition: 0.3s;
-}
-
-.btn-login {
-    border: 1px solid var(--primary-color);
-    color: var(--primary-color);
-    margin-right: 10px;
-}
-
-.btn-login:hover { background: rgba(0, 212, 255, 0.1); }
-
-.btn-register {
-    background: linear-gradient(90deg, var(--primary-color), var(--secondary-color));
-    color: white;
-    border: none;
-}
-
-.btn-register:hover { transform: scale(1.05); box-shadow: 0 0 15px rgba(0, 212, 255, 0.4); }
-
-/* --- 3. SECCIÓN HERO / PORTADA (NUEVO) --- */
-.hero-section {
-    margin-top: 100px; /* Espacio para no quedar bajo el navbar */
-    padding: 60px 20px;
-    text-align: center;
-    max-width: 800px;
-    margin-left: auto;
-    margin-right: auto;
-}
-
-.hero-title {
-    font-size: 3.5rem;
-    line-height: 1.2;
-    margin-bottom: 20px;
-    background: linear-gradient(to right, #fff, #b3b3b3);
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
-}
-
-.hero-subtitle {
-    font-size: 1.1rem;
-    color: var(--text-gray);
-    margin-bottom: 40px;
-    line-height: 1.6;
-}
-
-/* --- 4. COMPONENTES DE UI (Tarjetas, Inputs, Botones) --- */
-.container-center {
-    width: 100%;
-    max-width: 420px;
-    padding: 20px;
-    /* Centramos el login/registro manualmente si es necesario */
-    margin: 100px auto; 
-}
-
-.glass-card {
-    background: var(--glass-bg);
-    backdrop-filter: blur(12px);
-    -webkit-backdrop-filter: blur(12px);
-    border: var(--glass-border);
-    border-radius: 20px;
-    padding: 40px;
-    box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.5);
-    text-align: center;
-}
-
-/* Inputs */
-.form-group { margin-bottom: 20px; text-align: left; }
-
-.input-wrapper {
     position: relative;
-    background: rgba(0, 0, 0, 0.3);
-    border-radius: 10px;
-    border: 1px solid transparent;
-    transition: 0.3s;
 }
 
-.input-wrapper:focus-within {
-    border-color: var(--primary-color);
-    box-shadow: 0 0 10px rgba(0, 212, 255, 0.2);
+/* Efecto hover: color blanco y brillo */
+.nav-links a:hover {
+    color: var(--accent-neon);
+    text-shadow: 0 0 10px rgba(0, 210, 255, 0.6);
 }
 
-.input-wrapper i {
+/* Clase para indicar en qué página estás */
+.nav-links a.active {
+    color: var(--text-white);
+    font-weight: 700;
+}
+.nav-links a.active::after {
+    content: '';
     position: absolute;
-    left: 15px;
-    top: 50%;
-    transform: translateY(-50%);
-    color: var(--primary-color);
-}
-
-.input-wrapper input {
+    bottom: -5px;
+    left: 0;
     width: 100%;
-    background: transparent;
-    border: none;
-    padding: 15px 15px 15px 45px;
-    color: white;
-    outline: none;
+    height: 2px;
+    background: var(--accent-neon);
+    box-shadow: 0 0 10px var(--accent-neon);
 }
 
-/* Botones Generales */
-.btn-primary {
-    width: 100%;
-    padding: 15px;
-    background: linear-gradient(90deg, var(--primary-color), var(--secondary-color));
-    border: none;
-    border-radius: 10px;
-    color: white;
-    font-weight: bold;
-    cursor: pointer;
-    transition: transform 0.2s;
-    margin-top: 10px;
-    text-decoration: none;
-    display: inline-block;
+/* Mejorar el botón de cerrar sesión para que el ícono y texto se alineen bien */
+.btn-logout {
+    display: flex;
+    align-items: center;
+    gap: 10px; /* Espacio entre el ícono y el texto */
+}
+/* =========================================
+   NUEVO: VISTA DE CLASES (SIDEBAR + CONTENIDO)
+   ========================================= */
+
+.course-layout {
+    display: flex;
+    min-height: calc(100vh - 80px); /* Resta la altura del navbar */
 }
 
-.btn-primary:hover {
-    transform: scale(1.02);
-    box-shadow: 0 0 20px rgba(0, 212, 255, 0.4);
-}
-
-/* --- 5. DASHBOARD Y CURSOS --- */
-.dashboard-container {
-    max-width: 1200px;
-    width: 100%;
-    padding: 40px;
-    margin: 0 auto;
-}
-
-.grid-temas {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-    gap: 30px;
-    margin-top: 20px;
-    margin-bottom: 60px;
-}
-
-.tema-card {
-    background: rgba(255, 255, 255, 0.03);
-    border: var(--glass-border);
-    border-radius: 20px;
-    padding: 30px;
-    transition: 0.3s;
+/* Barra Lateral de Temas */
+.sidebar {
+    width: 280px;
+    background: var(--panel-dark);
+    border-right: 1px solid rgba(255, 255, 255, 0.05);
+    padding: 30px 20px;
+    flex-shrink: 0; /* Evita que se encoja */
     display: flex;
     flex-direction: column;
-    justify-content: space-between;
-    text-align: left; /* Alineación del texto dentro de la tarjeta */
 }
 
-.tema-card:hover {
-    transform: translateY(-10px);
-    background: rgba(255, 255, 255, 0.08);
-    border-color: var(--primary-color);
-    box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+.sidebar-title {
+    color: var(--accent-neon);
+    font-size: 0.9rem;
+    text-transform: uppercase;
+    letter-spacing: 1.5px;
+    margin-bottom: 20px;
+    font-weight: 700;
 }
 
-.tema-card h3 {
-    color: white;
-    font-size: 1.5rem;
-    margin-bottom: 10px;
-}
+.topic-list { list-style: none; }
 
-.btn-tema {
-    display: block;
-    width: 100%;
-    text-align: center;
-    padding: 12px;
-    border: 1px solid var(--primary-color);
-    border-radius: 50px;
-    color: var(--primary-color);
+.topic-list li { margin-bottom: 8px; }
+
+.topic-link {
+    display: flex;
+    align-items: center;
+    padding: 12px 15px;
+    color: var(--text-gray);
     text-decoration: none;
-    margin-top: 25px;
+    border-radius: 8px;
     transition: 0.3s;
+    font-size: 0.95rem;
+}
+
+.topic-link i { margin-right: 10px; font-size: 0.8rem; }
+
+/* Efecto Hover y Activo en la lista */
+.topic-link:hover, .topic-link.active {
+    background: rgba(0, 210, 255, 0.1);
+    color: var(--text-white);
+}
+
+.topic-link.active {
+    border-left: 3px solid var(--accent-neon); /* Línea brillante a la izquierda */
     font-weight: 600;
 }
 
-.btn-tema:hover {
-    background: var(--primary-color);
-    color: #120E2B;
+/* Área Principal de Contenido */
+.main-content {
+    flex: 1;
+    padding: 50px 8%;
+    max-width: 1000px; /* Ancho máximo para lectura cómoda */
+}
+
+.main-content h1 {
+    font-size: 2.5rem;
+    margin-bottom: 20px;
+    color: white;
+}
+.main-content h1 span { color: var(--accent-neon); }
+
+.main-content p {
+    color: var(--text-gray);
+    line-height: 1.8;
+    margin-bottom: 25px;
+    font-size: 1.05rem;
+}
+
+/* CAJA DE CÓDIGO (ESTILO HACKER) */
+.code-box {
+    background: var(--code-bg);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-left: 4px solid var(--accent-neon);
+    border-radius: 8px;
+    padding: 20px;
+    margin: 30px 0;
+    font-family: 'Courier New', Courier, monospace;
+    color: #a0a0a0;
+    overflow-x: auto; /* Scroll si el código es largo */
+    box-shadow: inset 0 0 20px rgba(0,0,0,0.5);
+}
+
+.code-box .tag { color: var(--accent-neon); } /* Etiquetas HTML en cian */
+.code-box .attr { color: #ff00de; } /* Atributos en rosa cyberpunk */
+.code-box .val { color: #f1f1f1; } /* Valores en blanco */
+
+/* Botones de Navegación del Curso */
+.course-nav {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 60px;
+    padding-top: 30px;
+    border-top: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.btn-nav {
+    padding: 10px 25px;
+    border: 1px solid rgba(255,255,255,0.2);
+    border-radius: 30px;
+    color: white;
+    text-decoration: none;
+    transition: 0.3s;
+    font-size: 0.9rem;
+}
+
+.btn-nav:hover {
+    background: var(--accent-neon);
+    border-color: var(--accent-neon);
+    color: #000; /* Texto negro para contraste */
+    font-weight: 700;
+}
+
+/* Responsive para móvil */
+@media (max-width: 768px) {
+    .course-layout { flex-direction: column; }
+    .sidebar { width: 100%; border-right: none; border-bottom: 1px solid rgba(255,255,255,0.1); }
+    .main-content { padding: 30px 20px; }
 }

@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MundoCODE - Inicio</title>
+    
+    <link rel="stylesheet" href="../Css/style.css">
+
+    <style>
+        /* ESTILOS DE EMERGENCIA: Esto asegura que se vea bien SI O SI, 
+           aunque falle el archivo externo */
+        
+        * { margin: 0; padding: 0; box-sizing: border-box; font-family: sans-serif; }
+
+        body {
+            background-color: #0d0d1f; 
+            background: radial-gradient(circle at 50% 50%, #1a1a40 0%, #050510 100%);
+            color: white;
+            height: 100vh;
+            display: flex;
+            flex-direction: column;
+            overflow: hidden; /* Evita barras de desplazamiento innecesarias */
+        }
+
+        /* --- Barra de Navegación --- */
+        header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 20px 50px;
+            width: 100%;
+            z-index: 1000;
+        }
+
+        .logo {
+            font-size: 24px;
+            font-weight: 800;
+            color: #fff;
+            text-decoration: none;
+        }
+
+        .logo span { color: #00aaff; }
+
+        nav {
+            display: flex;
+            align-items: center;
+            gap: 20px;
+        }
+
+        .nav-link {
+            color: #ccc;
+            text-decoration: none;
+            font-weight: 500;
+            font-size: 16px;
+        }
+
+        .nav-link:hover { color: #fff; }
+
+        .divider {
+            height: 20px;
+            width: 1px;
+            background-color: #444;
+            margin: 0 10px;
+        }
+
+        /* --- Botones --- */
+        .btn {
+            padding: 10px 25px;
+            border-radius: 50px;
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 14px;
+            transition: transform 0.2s;
+            display: inline-block;
+        }
+
+        .btn:active { transform: scale(0.95); }
+
+        .btn-outline {
+            border: 1px solid #00aaff;
+            color: #fff;
+        }
+
+        .btn-primary {
+            background: linear-gradient(90deg, #00c6ff 0%, #7b2ff7 100%);
+            border: none;
+            color: white;
+        }
+
+        /* --- Sección Principal (Hero) --- */
+        .hero {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            padding: 0 20px;
+            width: 100%;
+        }
+
+        h1 {
+            font-size: 4rem;
+            line-height: 1.1;
+            font-weight: 700;
+            margin-bottom: 20px;
+            color: white;
+        }
+
+        .subtitle {
+            color: #a0a0b0;
+            font-size: 1.1rem;
+            max-width: 600px;
+            margin-bottom: 40px;
+            line-height: 1.5;
+        }
+
+        .btn-large {
+            padding: 15px 40px;
+            font-size: 16px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            background: linear-gradient(90deg, #00c6ff 0%, #7b2ff7 100%);
+            color: white;
+            border-radius: 8px;
+            box-shadow: 0 4px 15px rgba(123, 47, 247, 0.4);
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <a href="principal.html" class="logo">MundoCODE<span>.</span></a>
+        
+        <nav>
+            <a href="contenidos.html" class="nav-link">Cursos</a>
+            <a href="#" class="nav-link">Comunidad</a>
+            
+            <div class="divider"></div>
+            
+            <a href="registro.html" class="btn btn-outline">Iniciar Sesión</a>
+            <a href="registro.html" class="btn btn-primary">Registrarse</a>
+        </nav>
+    </header>
+
+    <main class="hero">
+        <h1>
+            Domina el código.<br>
+            Crea el futuro.
+        </h1>
+        <p class="subtitle">
+            Plataforma interactiva para aprender desarrollo web desde cero. HTML, CSS y JavaScript explicados de forma sencilla y práctica.
+        </p>
+        
+        <a href="contenidos.html" class="btn btn-large">EXPLORAR CURSOS</a>
+    </main>
+
+</body>
+</html>

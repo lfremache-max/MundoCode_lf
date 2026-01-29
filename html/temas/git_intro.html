@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>MundoCODE - Git</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <link rel="stylesheet" href="../../Css/style.css">
+    <link rel="stylesheet" href="../../Css/quiz_style.css">
+</head>
+<body style="background: #0b0b0e; color: white;">
+    
+    <nav style="padding: 20px; background: rgba(11,11,14,0.95);">
+        <a href="../contenidos.html" style="color: white; text-decoration: none; font-weight: bold;">
+            <i class="fas fa-arrow-left"></i> Volver a Cursos
+        </a>
+    </nav>
+
+    <div class="quiz-page-container" style="max-width: 800px; margin: 50px auto; padding: 20px;">
+        
+        <div style="text-align: center; margin-bottom: 40px;">
+            <i class="fab fa-git-alt" style="font-size: 4rem; color: #f05032;"></i>
+            <h1 style="color: #f05032; margin: 0;">Git & Control</h1>
+            <p>Domina el tiempo y trabaja en equipo profesionalmente.</p>
+        </div>
+
+        <div id="quiz-container"></div>
+        <div id="quiz-result" style="display: none; margin-top: 30px;"></div>
+
+    </div>
+
+    <script src="../../js/sounds.js"></script>
+    <script src="../../js/quiz.js"></script>
+
+    <script>
+        const preguntasGit = [
+            { pregunta: "¿Qué es Git?", opciones: ["Una red social", "Un sistema de control de versiones", "Un editor de texto"], correcta: 1, explicacion: "Git permite rastrear cambios en archivos y coordinar el trabajo entre programadores." },
+            { pregunta: "¿Comando para iniciar un repositorio?", opciones: ["git start", "git init", "git new"], correcta: 1, explicacion: "git init crea un nuevo repositorio de Git vacío." },
+            { pregunta: "¿Cómo guardas cambios en el historial?", opciones: ["git save", "git commit", "git store"], correcta: 1, explicacion: "git commit guarda los cambios preparados con un mensaje descriptivo." },
+            { pregunta: "¿Qué es GitHub?", opciones: ["Lo mismo que Git", "Plataforma para alojar repositorios", "Un lenguaje"], correcta: 1, explicacion: "GitHub es un servicio en la nube para alojar proyectos que usan Git." },
+            { pregunta: "¿Comando para descargar un código?", opciones: ["git clone", "git download", "git copy"], correcta: 0, explicacion: "git clone hace una copia idéntica de un repositorio remoto en tu PC." },
+            { pregunta: "¿Qué es una rama (branch)?", opciones: ["Un error", "Una línea de desarrollo paralela", "Un archivo viejo"], correcta: 1, explicacion: "Las ramas permiten trabajar en nuevas funciones sin romper el código principal." },
+            { pregunta: "¿Comando para subir cambios?", opciones: ["git upload", "git push", "git send"], correcta: 1, explicacion: "git push envía tus commits locales al repositorio remoto." },
+            { pregunta: "¿Comando para ver estado?", opciones: ["git status", "git info", "git check"], correcta: 0, explicacion: "git status muestra qué archivos se han modificado o preparado." },
+            { pregunta: "¿Qué es un 'Merge'?", opciones: ["Borrar todo", "Fusionar ramas", "Separar código"], correcta: 1, explicacion: "Merge une el historial de una rama con otra." },
+            { pregunta: "¿Archivo para ignorar cosas?", opciones: ["ignore.txt", ".gitignore", "no-git"], correcta: 1, explicacion: ".gitignore especifica qué archivos no deben ser rastreados por Git." }
+        ];
+        document.addEventListener('DOMContentLoaded', () => cargarQuiz(preguntasGit, 'git'));
+    </script>
+</body>
+</html>

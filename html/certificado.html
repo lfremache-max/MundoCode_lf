@@ -1,0 +1,209 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>Certificado MundoCODE</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <style>
+        body {
+            margin: 0;
+            padding: 20px;
+            background: #0b0b0e;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            box-sizing: border-box;
+        }
+
+        .certificate-container {
+            width: 90%;
+            max-width: 1100px;
+            background: #1a1a1a;
+            padding: 15px;
+            position: relative;
+            box-shadow: 0 0 40px rgba(0,0,0,0.8);
+            border: 2px solid #d4af37;
+        }
+
+        .border-pattern {
+            border: 3px solid #2c3e50;
+            padding: 10px;
+            height: 100%;
+        }
+
+        .inner-border {
+            border: 8px solid #d4af37;
+            padding: 50px 30px;
+            text-align: center;
+            color: #eee;
+        }
+
+        .logo {
+            font-size: 2.8rem;
+            color: #eee;
+            font-weight: bold;
+            margin-bottom: 25px;
+        }
+        .logo span { color: #d4af37; }
+
+        h1 {
+            font-size: 3.5rem;
+            color: #d4af37;
+            text-transform: uppercase;
+            margin: 15px 0;
+            font-family: serif;
+            letter-spacing: 2px;
+        }
+
+        .subtitle {
+            font-size: 1.3rem;
+            color: #ccc;
+            margin-bottom: 30px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .student-name {
+            font-size: 3rem;
+            color: #d4af37;
+            border-bottom: 3px solid #d4af37;
+            display: inline-block;
+            padding: 0 60px 10px;
+            margin: 30px 0;
+            font-family: 'Brush Script MT', cursive;
+        }
+
+        .description {
+            font-size: 1.2rem;
+            color: #ddd;
+            line-height: 1.8;
+            margin: 35px auto;
+            max-width: 800px; /* Un poco más ancho para que quepa el texto nuevo */
+        }
+
+        .badges {
+            display: flex;
+            justify-content: center;
+            gap: 25px;
+            margin: 45px 0;
+        }
+
+        .badge {
+            color: #d4af37;
+            font-size: 2.5rem;
+            filter: drop-shadow(0 0 5px rgba(212, 175, 55, 0.3));
+        }
+
+        .footer {
+            margin-top: 60px;
+            display: flex;
+            justify-content: space-around;
+            color: #ccc;
+        }
+
+        .signature {
+            text-align: center;
+        }
+        .sign-line {
+            width: 220px;
+            height: 3px;
+            background: #d4af37;
+            margin-bottom: 15px;
+        }
+        .footer p { font-size: 1.1rem; }
+
+        .actions {
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            display: flex;
+            gap: 15px;
+        }
+        .btn {
+            padding: 15px 30px;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            font-weight: bold;
+            text-decoration: none;
+            font-size: 1rem;
+            transition: 0.3s;
+        }
+        .btn-print { background: #d4af37; color: #000; box-shadow: 0 0 15px rgba(212, 175, 55, 0.3); }
+        .btn-print:hover { background: #c49f27; }
+        .btn-back { background: #333; color: #fff; border: 1px solid #555; }
+        .btn-back:hover { background: #444; }
+
+        @media print {
+            body { background: #fff; padding: 0; }
+            .certificate-container {
+                box-shadow: none;
+                width: 100%;
+                height: 100vh;
+                border: none;
+                background: #fff;
+            }
+            .inner-border { color: #000; border-color: #d4af37; }
+            .logo, .description, .footer, .subtitle { color: #333; }
+            .student-name { color: #d4af37; }
+            .actions { display: none; }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="certificate-container">
+        <div class="border-pattern">
+            <div class="inner-border">
+                <div class="logo">Mundo<span>CODE</span></div>
+                
+                <div class="subtitle">SE OTORGA EL PRESENTE</div>
+                <h1>CERTIFICADO</h1>
+                <div class="subtitle">DE FINALIZACIÓN A</div>
+
+                <div class="student-name" contenteditable="true">Escribe tu Nombre Aquí</div>
+
+                <p class="description">
+                    Por haber completado satisfactoriamente la ruta de aprendizaje <strong>Full Stack Developer</strong>,
+                    demostrando competencias sólidas en HTML5, CSS3, JavaScript, Python Backend, 
+                    <strong>Gestión de Bases de Datos SQL</strong> y <strong>Control de Versiones Git</strong>.
+                </p>
+
+                <div class="badges">
+                    <i class="fab fa-html5 badge" title="HTML5"></i>
+                    <i class="fab fa-css3-alt badge" title="CSS3"></i>
+                    <i class="fab fa-js badge" title="JavaScript"></i>
+                    <i class="fab fa-python badge" title="Python"></i>
+                    <i class="fas fa-database badge" title="SQL"></i> <i class="fab fa-git-alt badge" title="Git"></i>   </div>
+
+                <div class="footer">
+                    <div class="signature">
+                        <div class="sign-line"></div>
+                        <p>CEO MundoCODE</p>
+                    </div>
+                    <div class="signature">
+                        <p id="cert-date">Fecha: Cargando...</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="actions">
+        <a href="contenidos.html" class="btn btn-back">Volver</a>
+        <button onclick="window.print()" class="btn btn-print"><i class="fas fa-print"></i> Imprimir / Guardar PDF</button>
+    </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const dateElement = document.getElementById('cert-date');
+            const now = new Date();
+            const options = { year: 'numeric', month: 'long', day: 'numeric' };
+            dateElement.textContent = "Fecha: " + now.toLocaleDateString('es-ES', options);
+        });
+    </script>
+
+</body>
+</html>

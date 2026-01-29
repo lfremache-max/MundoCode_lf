@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>MundoCODE - SQL</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <link rel="stylesheet" href="../../Css/style.css">
+    <link rel="stylesheet" href="../../Css/quiz_style.css">
+</head>
+<body style="background: #0b0b0e; color: white;">
+    
+    <nav style="padding: 20px; background: rgba(11,11,14,0.95);">
+        <a href="../contenidos.html" style="color: white; text-decoration: none; font-weight: bold;">
+            <i class="fas fa-arrow-left"></i> Volver a Cursos
+        </a>
+    </nav>
+
+    <div class="quiz-page-container" style="max-width: 800px; margin: 50px auto; padding: 20px;">
+        
+        <div style="text-align: center; margin-bottom: 40px;">
+            <i class="fas fa-database" style="font-size: 4rem; color: #e67e22;"></i>
+            <h1 style="color: #e67e22; margin: 0;">SQL & Datos</h1>
+            <p>El lenguaje universal para hablar con bases de datos.</p>
+        </div>
+
+        <div id="quiz-container"></div>
+        <div id="quiz-result" style="display: none; margin-top: 30px;"></div>
+
+    </div>
+
+    <script src="../../js/sounds.js"></script>
+    <script src="../../js/quiz.js"></script>
+
+    <script>
+        const preguntasSQL = [
+            { pregunta: "¿Qué significa SQL?", opciones: ["Structured Query Language", "Strong Question List", "Simple Query Logic"], correcta: 0, explicacion: "SQL es el lenguaje estándar para gestionar bases de datos relacionales." },
+            { pregunta: "¿Qué comando extrae datos?", opciones: ["GET", "EXTRACT", "SELECT"], correcta: 2, explicacion: "SELECT se usa para consultar y recuperar datos de una tabla." },
+            { pregunta: "¿Cómo filtras resultados?", opciones: ["WHERE", "FILTER BY", "WHEN"], correcta: 0, explicacion: "La cláusula WHERE especifica condiciones que deben cumplir los registros." },
+            { pregunta: "¿Qué es una Primary Key?", opciones: ["La clave del wifi", "Identificador único de fila", "El primer dato insertado"], correcta: 1, explicacion: "Es un campo que identifica de forma única a cada registro en una tabla." },
+            { pregunta: "¿Comando para agregar datos?", opciones: ["ADD", "INSERT INTO", "PUSH"], correcta: 1, explicacion: "INSERT INTO se utiliza para agregar nuevas filas a una tabla." },
+            { pregunta: "¿Comando para borrar datos?", opciones: ["DELETE", "REMOVE", "ERASE"], correcta: 0, explicacion: "DELETE elimina registros existentes de una tabla." },
+            { pregunta: "¿Qué hace ORDER BY?", opciones: ["Ordena los resultados", "Pide comida", "Agrupa datos"], correcta: 0, explicacion: "Se usa para ordenar el conjunto de resultados de forma ascendente o descendente." },
+            { pregunta: "¿Qué es NULL?", opciones: ["Cero", "Vacio/Desconocido", "Error"], correcta: 1, explicacion: "NULL representa la ausencia de un valor en un campo." },
+            { pregunta: "¿Símbolo para seleccionar todo?", opciones: ["%", "ALL", "*"], correcta: 2, explicacion: "SELECT * FROM tabla selecciona todas las columnas disponibles." },
+            { pregunta: "¿Comando para modificar datos?", opciones: ["CHANGE", "MODIFY", "UPDATE"], correcta: 2, explicacion: "UPDATE se utiliza para modificar los registros existentes." }
+        ];
+        document.addEventListener('DOMContentLoaded', () => cargarQuiz(preguntasSQL, 'sql'));
+    </script>
+</body>
+</html>

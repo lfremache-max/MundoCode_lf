@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>MundoCODE - JavaScript</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <link rel="stylesheet" href="../../Css/style.css">
+    <link rel="stylesheet" href="../../Css/quiz_style.css">
+</head>
+<body style="background: #0b0b0e; color: white;">
+    
+    <nav style="padding: 20px; background: rgba(11,11,14,0.95);">
+        <a href="../contenidos.html" style="color: white; text-decoration: none; font-weight: bold;">
+            <i class="fas fa-arrow-left"></i> Volver a Cursos
+        </a>
+    </nav>
+
+    <div class="quiz-page-container" style="max-width: 800px; margin: 50px auto; padding: 20px;">
+        
+        <div style="text-align: center; margin-bottom: 40px;">
+            <i class="fab fa-js" style="font-size: 4rem; color: #f1c40f;"></i>
+            <h1 style="color: #f1c40f;">JavaScript</h1>
+            <p>Lógica de programación e interactividad web.</p>
+        </div>
+
+        <div id="quiz-container"></div>
+        <div id="quiz-result" style="display: none; margin-top: 30px;"></div>
+
+    </div>
+
+    <script src="../../js/sounds.js"></script>
+    <script src="../../js/quiz.js"></script>
+
+    <script>
+        const preguntasJS = [
+            { pregunta: "¿Dónde es el lugar correcto para insertar un script?", opciones: ["<head>", "<body>", "Ambos son correctos"], correcta: 2, explicacion: "Se pueden colocar scripts tanto en el head como al final del body." },
+            { pregunta: "¿Cómo escribes 'Hola Mundo' en una alerta?", opciones: ["msg('Hola Mundo')", "alert('Hola Mundo')", "print('Hola Mundo')"], correcta: 1, explicacion: "La función alert() muestra una ventana emergente con un mensaje." },
+            { pregunta: "¿Cómo creas una función en JS?", opciones: ["function mifuncion()", "def mifuncion()", "create mifuncion()"], correcta: 0, explicacion: "La palabra clave 'function' se usa para definir funciones en JavaScript." },
+            { pregunta: "¿Cómo se llama una función llamada 'miFuncion'?", opciones: ["call miFuncion()", "miFuncion()", "run miFuncion()"], correcta: 1, explicacion: "Se llama a la función escribiendo su nombre seguido de paréntesis." },
+            { pregunta: "¿Cómo escribes una sentencia IF?", opciones: ["if i = 5 then", "if (i == 5)", "if i == 5"], correcta: 1, explicacion: "La sintaxis correcta es if (condición) { bloque de código }." },
+            { pregunta: "¿Cómo empieza un bucle FOR?", opciones: ["for (i = 0; i <= 5)", "for (i = 0; i <= 5; i++)", "for i = 1 to 5"], correcta: 1, explicacion: "Un bucle for requiere: inicialización, condición e incremento." },
+            { pregunta: "¿Cómo se añaden comentarios de una línea?", opciones: ["'Comentario", "// Comentario", ""], correcta: 1, explicacion: "// se usa para comentarios de una sola línea en JS." },
+            { pregunta: "¿Cuál es la forma correcta de declarar un array?", opciones: ["var colors = ['red', 'green']", "var colors = (1:'red', 2:'green')", "var colors = 'red', 'green'"], correcta: 0, explicacion: "Los arrays se definen con corchetes []." },
+            { pregunta: "¿Qué evento ocurre cuando el usuario hace clic en un elemento?", opciones: ["onchange", "onclick", "onmouseclick"], correcta: 1, explicacion: "El evento onclick se dispara cuando se hace clic en el elemento." },
+            { pregunta: "¿Qué operador se usa para asignar valor?", opciones: ["-", "*", "="], correcta: 2, explicacion: "El operador = se utiliza para asignar valores a variables." }
+        ];
+        document.addEventListener('DOMContentLoaded', () => cargarQuiz(preguntasJS, 'js'));
+    </script>
+</body>
+</html>

@@ -8,37 +8,45 @@
     <link rel="stylesheet" href="../Css/style.css">
 </head>
 <body>
+
     <div class="container-center">
-        <div class="glass-card">
-            <h1>Crear Cuenta</h1>
-            <p style="color: var(--text-gray); margin-bottom: 30px;">Únete a la comunidad</p>
+        <div class="split-card">
+            
+            <div class="half-section overlay-side overlay-flipped">
+                <div class="content-wrapper">
+                    <h1>¡Vuelve!</h1>
+                    <p>Si ya tienes cuenta, inicia sesión para continuar.</p>
+                    <a href="inicio.html" class="btn-ghost">INICIAR SESIÓN</a>
+                </div>
+            </div>
 
-            <form action="inicio.html">
-                <div class="form-group">
-                    <div class="input-wrapper">
-                        <i class="fas fa-user"></i>
-                        <input type="text" placeholder="Nombre completo" required>
-                    </div>
-                </div>
-                <div class="form-group">
-                    <div class="input-wrapper">
-                        <i class="fas fa-envelope"></i>
-                        <input type="email" placeholder="Correo electrónico" required>
-                    </div>
-                </div>
-                <div class="form-group">
-                    <div class="input-wrapper">
-                        <i class="fas fa-lock"></i>
-                        <input type="password" placeholder="Contraseña (mín 6 caracteres)" required>
-                    </div>
-                </div>
-                <button class="btn-primary">REGISTRARSE</button>
-            </form>
+            <div class="half-section form-side">
+                <div class="content-wrapper">
+                    <i class="fas fa-rocket astronaut-icon"></i>
+                    <h1>Crear Cuenta</h1>
+                    <p class="subtitle">Únete a la mejor comunidad.</p>
+                    
+                    <form action="inicio.html">
+                        <div class="input-wrapper">
+                            <i class="fas fa-user"></i>
+                            <input type="text" placeholder="Nombre completo" required>
+                        </div>
+                        <div class="input-wrapper">
+                            <i class="fas fa-envelope"></i>
+                            <input type="email" placeholder="Correo electrónico" required>
+                        </div>
+                        <div class="input-wrapper">
+                            <i class="fas fa-lock"></i>
+                            <input type="password" placeholder="Contraseña" required>
+                        </div>
 
-            <p style="margin-top: 20px; font-size: 0.9rem;">
-                ¿Ya tienes cuenta? <a href="inicio.html" style="color: var(--primary-color);">Inicia Sesión</a>
-            </p>
+                        <button class="btn-primary">REGISTRARSE</button>
+                    </form>
+                </div>
+            </div>
+
         </div>
     </div>
+
 </body>
 </html>

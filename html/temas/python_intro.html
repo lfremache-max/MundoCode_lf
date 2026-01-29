@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>MundoCODE - Python</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <link rel="stylesheet" href="../../Css/style.css">
+    <link rel="stylesheet" href="../../Css/quiz_style.css">
+</head>
+<body style="background: #0b0b0e; color: white;">
+    
+    <nav style="padding: 20px; background: rgba(11,11,14,0.95);">
+        <a href="../contenidos.html" style="color: white; text-decoration: none; font-weight: bold;">
+            <i class="fas fa-arrow-left"></i> Volver a Cursos
+        </a>
+    </nav>
+
+    <div class="quiz-page-container" style="max-width: 800px; margin: 50px auto; padding: 20px;">
+        
+        <div style="text-align: center; margin-bottom: 40px;">
+            <i class="fab fa-python" style="font-size: 4rem; color: #3498db;"></i>
+            <h1 style="color: #3498db;">Python Backend</h1>
+            <p>Desarrollo robusto, IA y Ciencia de Datos.</p>
+        </div>
+
+        <div id="quiz-container"></div>
+        <div id="quiz-result" style="display: none; margin-top: 30px;"></div>
+
+    </div>
+
+    <script src="../../js/sounds.js"></script>
+    <script src="../../js/quiz.js"></script>
+
+    <script>
+        const preguntasPython = [
+            { pregunta: "¿Cómo imprimes texto en consola?", opciones: ["echo('Hola')", "print('Hola')", "console.log('Hola')"], correcta: 1, explicacion: "La función print() envía mensajes a la salida estándar." },
+            { pregunta: "¿Cómo se crean comentarios en Python?", opciones: ["// Comentario", "/* Comentario */", "# Comentario"], correcta: 2, explicacion: "El símbolo # inicia un comentario de una línea en Python." },
+            { pregunta: "¿Extensión correcta de archivos Python?", opciones: [".py", ".pt", ".python"], correcta: 0, explicacion: "Los scripts de Python tienen la extensión .py." },
+            { pregunta: "¿Cómo defines una función?", opciones: ["func miFuncion():", "def miFuncion():", "function miFuncion():"], correcta: 1, explicacion: "La palabra clave 'def' se usa para definir funciones." },
+            { pregunta: "¿Qué operador se usa para comparar igualdad?", opciones: ["=", "==", "<>"], correcta: 1, explicacion: "El operador == compara si dos valores son iguales." },
+            { pregunta: "¿Cómo inicias un bucle While?", opciones: ["while x < 5:", "while (x < 5)", "x < 5 while"], correcta: 0, explicacion: "La sintaxis es 'while condicion:', no olvides los dos puntos." },
+            { pregunta: "¿Qué es una lista en Python?", opciones: ["{1,2,3}", "[1,2,3]", "(1,2,3)"], correcta: 1, explicacion: "Las listas se definen con corchetes []." },
+            { pregunta: "¿Cómo obtienes la longitud de una lista 'L'?", opciones: ["L.length", "len(L)", "count(L)"], correcta: 1, explicacion: "La función len() devuelve el número de elementos." },
+            { pregunta: "¿Qué palabra clave importa librerías?", opciones: ["include", "import", "using"], correcta: 1, explicacion: "Se usa 'import' para traer módulos externos." },
+            { pregunta: "¿Python distingue mayúsculas de minúsculas?", opciones: ["Sí", "No", "Depende del sistema"], correcta: 0, explicacion: "Sí, 'Variable' y 'variable' serían dos cosas distintas (Case Sensitive)." }
+        ];
+        document.addEventListener('DOMContentLoaded', () => cargarQuiz(preguntasPython, 'python'));
+    </script>
+</body>
+</html>
