@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MundoCODE - Comunidad</title>
+    
+    <link rel="stylesheet" href="../Css/style.css">
+
+    <style>
+        /* Mantengo tus estilos de emergencia para coherencia visual */
+        * { margin: 0; padding: 0; box-sizing: border-box; font-family: sans-serif; }
+
+        body {
+            background-color: #0d0d1f; 
+            background: radial-gradient(circle at 50% 50%, #1a1a40 0%, #050510 100%);
+            color: white;
+            height: 100vh;
+            display: flex;
+            flex-direction: column;
+            overflow: hidden;
+        }
+
+        header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 20px 50px;
+            width: 100%;
+            z-index: 1000;
+        }
+
+        .logo { font-size: 24px; font-weight: 800; color: #fff; text-decoration: none; }
+        .logo span { color: #00aaff; }
+
+        nav { display: flex; align-items: center; gap: 20px; }
+        .nav-link { color: #ccc; text-decoration: none; font-weight: 500; font-size: 16px; }
+        .nav-link:hover { color: #fff; }
+        .nav-link.active { color: #00aaff; font-weight: 700; }
+
+        .divider { height: 20px; width: 1px; background-color: #444; margin: 0 10px; }
+
+        .btn { padding: 10px 25px; border-radius: 50px; text-decoration: none; font-weight: 600; font-size: 14px; transition: transform 0.2s; display: inline-block; }
+        .btn-outline { border: 1px solid #00aaff; color: #fff; }
+        .btn-primary { background: linear-gradient(90deg, #00c6ff 0%, #7b2ff7 100%); border: none; color: white; }
+
+        /* Contenido de Comunidad */
+        .comunidad-container {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            padding: 0 20px;
+        }
+
+        .card-comunidad {
+            background: rgba(255, 255, 255, 0.05);
+            border: 1px solid rgba(0, 210, 255, 0.2);
+            border-radius: 20px;
+            padding: 40px;
+            max-width: 800px;
+            backdrop-filter: blur(10px);
+        }
+
+        h1 { font-size: 3rem; margin-bottom: 20px; }
+        h1 span { color: #00aaff; }
+        
+        .stats {
+            display: flex;
+            gap: 30px;
+            margin-top: 30px;
+            justify-content: center;
+        }
+
+        .stat-item {
+            background: rgba(0, 210, 255, 0.1);
+            padding: 15px 25px;
+            border-radius: 12px;
+            border: 1px solid rgba(0, 210, 255, 0.3);
+        }
+
+        .stat-item span { display: block; font-size: 1.5rem; font-weight: 800; color: #00aaff; }
+    </style>
+</head>
+<body>
+
+    <header>
+        <a href="principal.html" class="logo">MundoCODE<span>.</span></a>
+        <nav>
+            <a href="contenidos.html" class="nav-link">Cursos</a>
+            <a href="comunidad.html" class="nav-link active">Comunidad</a>
+            <div class="divider"></div>
+            <a href="registro.html" class="btn btn-outline">Iniciar Sesión</a>
+            <a href="registro.html" class="btn btn-primary">Registrarse</a>
+        </nav>
+    </header>
+
+    <main class="comunidad-container">
+        <div class="card-comunidad">
+            <h1>Comunidad <span>MundoCODE</span></h1>
+            <p style="color: #a0a0b0; font-size: 1.2rem; margin-bottom: 30px;">
+                Únete a miles de desarrolladores, comparte tus proyectos y resuelve dudas en tiempo real.
+            </p>
+            
+            <div class="stats">
+                <div class="stat-item"><span>+5k</span> Miembros</div>
+                <div class="stat-item"><span>+120</span> Proyectos hoy</div>
+                <div class="stat-item"><span>24/7</span> Soporte</div>
+            </div>
+
+            <br><br>
+            <a href="https://discord.gg/invite/MundoCODE" target="_blank" class="btn btn-primary" style="padding: 15px 40px; font-size: 1.1rem;">UNIRSE AL DISCORD</a>
+        </div>
+    </main>
+
+</body>
+</html>
