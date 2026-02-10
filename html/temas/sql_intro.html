@@ -6,45 +6,152 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
     <link rel="stylesheet" href="../../Css/style.css">
     <link rel="stylesheet" href="../../Css/quiz_style.css">
+    <style>
+        /* ESTILOS SQL */
+        .concept-grid { 
+            display: grid; gap: 25px; margin-bottom: 40px; 
+            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+        }
+        @media (min-width: 1200px) { .concept-grid { grid-template-columns: repeat(5, 1fr); } }
+
+        .concept-card {
+            background: rgba(255, 255, 255, 0.05);
+            border: 1px solid rgba(144, 164, 174, 0.3);
+            padding: 30px 20px;
+            border-radius: 16px;
+            transition: all 0.3s ease;
+            backdrop-filter: blur(5px);
+            text-align: center;
+            min-height: 280px;
+            display: flex; flex-direction: column; align-items: center;
+        }
+        .concept-card:hover { 
+            transform: translateY(-8px); 
+            box-shadow: 0 15px 30px rgba(144, 164, 174, 0.25); 
+            border-color: #b0bec5; 
+        }
+        .concept-icon { font-size: 3rem; color: #b0bec5; margin-bottom: 20px; }
+        .concept-title { font-weight: bold; color: white; margin-bottom: 12px; font-size: 1.2rem; }
+        .concept-text { color: #ccc; font-size: 0.95rem; line-height: 1.6; }
+        
+        /* BOTÓN MEJORADO */
+        .start-btn {
+            background: linear-gradient(45deg, #546e7a, #78909c);
+            color: white; padding: 12px 40px; border: none; border-radius: 50px;
+            font-size: 1.1rem; font-weight: bold; cursor: pointer; 
+            display: block; margin: 40px auto; width: fit-content;
+            box-shadow: 0 4px 15px rgba(84, 110, 122, 0.4); transition: transform 0.2s;
+        }
+        .start-btn:hover { transform: scale(1.05); }
+
+        /* BARRA MEJORADA */
+        #progress-container { 
+            margin: 20px auto; max-width: 600px; 
+            background: rgba(255,255,255,0.05); padding: 15px; 
+            border-radius: 15px; border: 1px solid rgba(255,255,255,0.1); 
+        }
+        .progress-track { background: rgba(0,0,0,0.4); height: 10px; border-radius: 10px; overflow: hidden; margin-top: 10px;}
+        .progress-fill { height: 100%; width: 0%; background: linear-gradient(90deg, #546e7a, #78909c); transition: width 0.4s; }
+    </style>
 </head>
 <body style="background: #0b0b0e; color: white;">
-    
     <nav style="padding: 20px; background: rgba(11,11,14,0.95);">
-        <a href="../contenidos.html" style="color: white; text-decoration: none; font-weight: bold;">
-            <i class="fas fa-arrow-left"></i> Volver a Cursos
-        </a>
+        <a href="../contenidos.html" style="color: white; text-decoration: none; font-weight: bold;"><i class="fas fa-arrow-left"></i> Volver a Cursos</a>
     </nav>
 
-    <div class="quiz-page-container" style="max-width: 800px; margin: 50px auto; padding: 20px;">
-        
-        <div style="text-align: center; margin-bottom: 40px;">
-            <i class="fas fa-database" style="font-size: 4rem; color: #e67e22;"></i>
-            <h1 style="color: #e67e22; margin: 0;">SQL & Datos</h1>
-            <p>El lenguaje universal para hablar con bases de datos.</p>
+    <div class="quiz-page-container" style="max-width: 1400px; margin: 40px auto; padding: 20px;">
+        <div style="text-align: center; margin-bottom: 50px;">
+            <i class="fas fa-database" style="font-size: 5rem; color: #b0bec5;"></i>
+            <h1 style="font-size: 3rem; margin-top: 15px;">Experto SQL</h1>
+            <p style="color: #aaa; font-size: 1.1rem;">Bases de datos dominadas.</p>
         </div>
 
-        <div id="quiz-container"></div>
-        <div id="quiz-result" style="display: none; margin-top: 30px;"></div>
+        <div id="study-guide">
+            <div class="concept-grid">
+                <div class="concept-card">
+                    <div class="concept-icon"><i class="fas fa-book"></i></div>
+                    <div class="concept-title">1. Significado</div>
+                    <div class="concept-text">SQL (Structured Query Language) es el estándar para gestionar bases de datos relacionales, permitiendo guardar y leer datos.</div>
+                </div>
+                <div class="concept-card">
+                    <div class="concept-icon"><i class="fas fa-search"></i></div>
+                    <div class="concept-title">2. Consultar</div>
+                    <div class="concept-text"><code>SELECT * FROM tabla</code> trae todo, pero se recomienda especificar columnas (ej: SELECT nombre...) para mayor rapidez.</div>
+                </div>
+                <div class="concept-card">
+                    <div class="concept-icon"><i class="fas fa-star"></i></div>
+                    <div class="concept-title">3. Todo</div>
+                    <div class="concept-text">El asterisco <strong>*</strong> actúa como comodín para decir "todas las columnas". Úsalo solo cuando realmente necesites todo.</div>
+                </div>
+                <div class="concept-card">
+                    <div class="concept-icon"><i class="fas fa-filter"></i></div>
+                    <div class="concept-title">4. Filtrar</div>
+                    <div class="concept-text">Usa <strong>WHERE</strong> para condiciones. Ejemplo: <code>WHERE edad > 18</code>. Puedes combinar con AND/OR.</div>
+                </div>
+                <div class="concept-card">
+                    <div class="concept-icon"><i class="fas fa-sort-amount-down"></i></div>
+                    <div class="concept-title">5. Ordenar</div>
+                    <div class="concept-text"><strong>ORDER BY columna</strong> ordena los resultados. Añade <code>DESC</code> al final para orden descendente (Z-A).</div>
+                </div>
+                <div class="concept-card">
+                    <div class="concept-icon"><i class="fas fa-trash-alt"></i></div>
+                    <div class="concept-title">6. Borrar</div>
+                    <div class="concept-text"><code>DELETE FROM tabla WHERE id=1</code>. ¡Cuidado! Si olvidas el WHERE, borrarás todos los datos de la tabla.</div>
+                </div>
+                <div class="concept-card">
+                    <div class="concept-icon"><i class="fas fa-plus-circle"></i></div>
+                    <div class="concept-title">7. Insertar</div>
+                    <div class="concept-text"><code>INSERT INTO tabla VALUES (...)</code>. Asegúrate de que los valores sigan el orden exacto de las columnas.</div>
+                </div>
+                <div class="concept-card">
+                    <div class="concept-icon"><i class="fas fa-edit"></i></div>
+                    <div class="concept-title">8. Modificar</div>
+                    <div class="concept-text"><code>UPDATE tabla SET campo=valor</code> actualiza datos. Al igual que con Delete, ¡no olvides el WHERE!</div>
+                </div>
+                <div class="concept-card">
+                    <div class="concept-icon"><i class="fas fa-fingerprint"></i></div>
+                    <div class="concept-title">9. Únicos</div>
+                    <div class="concept-text"><code>SELECT DISTINCT columna</code> devuelve solo valores únicos, eliminando automáticamente los duplicados.</div>
+                </div>
+                <div class="concept-card">
+                    <div class="concept-icon"><i class="fas fa-search-plus"></i></div>
+                    <div class="concept-title">10. Patrones</div>
+                    <div class="concept-text"><strong>LIKE</strong> busca coincidencias parciales. Ej: <code>'a%'</code> busca todo lo que empiece por la letra 'a'.</div>
+                </div>
+            </div>
+            <button onclick="empezarQuiz()" class="start-btn"><i class="fas fa-play"></i> INICIAR DESAFÍO</button>
+        </div>
 
+        <div id="progress-container" style="display: none;">
+            <div style="display:flex; justify-content:space-between; color:#ccc;"><span>Tu Progreso</span><span id="progress-text">0/10</span></div>
+            <div class="progress-track"><div id="progress-bar" class="progress-fill"></div></div>
+        </div>
+
+        <div id="quiz-container" style="display: none;"></div>
     </div>
 
     <script src="../../js/sounds.js"></script>
     <script src="../../js/quiz.js"></script>
-
     <script>
+        function empezarQuiz() {
+            document.getElementById('study-guide').style.display = 'none';
+            document.getElementById('quiz-container').style.display = 'block';
+            document.getElementById('progress-container').style.display = 'block';
+            cargarQuiz(preguntasSQL, 'sql');
+        }
+
         const preguntasSQL = [
-            { pregunta: "¿Qué significa SQL?", opciones: ["Structured Query Language", "Strong Question List", "Simple Query Logic"], correcta: 0, explicacion: "SQL es el lenguaje estándar para gestionar bases de datos relacionales." },
-            { pregunta: "¿Qué comando extrae datos?", opciones: ["GET", "EXTRACT", "SELECT"], correcta: 2, explicacion: "SELECT se usa para consultar y recuperar datos de una tabla." },
-            { pregunta: "¿Cómo filtras resultados?", opciones: ["WHERE", "FILTER BY", "WHEN"], correcta: 0, explicacion: "La cláusula WHERE especifica condiciones que deben cumplir los registros." },
-            { pregunta: "¿Qué es una Primary Key?", opciones: ["La clave del wifi", "Identificador único de fila", "El primer dato insertado"], correcta: 1, explicacion: "Es un campo que identifica de forma única a cada registro en una tabla." },
-            { pregunta: "¿Comando para agregar datos?", opciones: ["ADD", "INSERT INTO", "PUSH"], correcta: 1, explicacion: "INSERT INTO se utiliza para agregar nuevas filas a una tabla." },
-            { pregunta: "¿Comando para borrar datos?", opciones: ["DELETE", "REMOVE", "ERASE"], correcta: 0, explicacion: "DELETE elimina registros existentes de una tabla." },
-            { pregunta: "¿Qué hace ORDER BY?", opciones: ["Ordena los resultados", "Pide comida", "Agrupa datos"], correcta: 0, explicacion: "Se usa para ordenar el conjunto de resultados de forma ascendente o descendente." },
-            { pregunta: "¿Qué es NULL?", opciones: ["Cero", "Vacio/Desconocido", "Error"], correcta: 1, explicacion: "NULL representa la ausencia de un valor en un campo." },
-            { pregunta: "¿Símbolo para seleccionar todo?", opciones: ["%", "ALL", "*"], correcta: 2, explicacion: "SELECT * FROM tabla selecciona todas las columnas disponibles." },
-            { pregunta: "¿Comando para modificar datos?", opciones: ["CHANGE", "MODIFY", "UPDATE"], correcta: 2, explicacion: "UPDATE se utiliza para modificar los registros existentes." }
+            { pregunta: "¿Qué significa SQL?", opciones: ["Strong Question Language", "Structured Query Language", "Structured Question List"], correcta: 1, explicacion: "SQL: Lenguaje de Consulta Estructurado." },
+            { pregunta: "¿Qué comando extrae datos de la base de datos?", opciones: ["GET", "OPEN", "SELECT"], correcta: 2, explicacion: "SELECT es el comando principal para consultas." },
+            { pregunta: "¿Cómo seleccionas TODOS los campos de la tabla 'Clientes'?", opciones: ["SELECT * FROM Clientes", "SELECT ALL FROM Clientes", "SELECT Clientes"], correcta: 0, explicacion: "El asterisco * significa 'todas las columnas'." },
+            { pregunta: "¿Qué cláusula se usa para filtrar registros?", opciones: ["WHERE", "FILTER", "LIKE"], correcta: 0, explicacion: "WHERE especifica la condición (ej: WHERE id=1)." },
+            { pregunta: "¿Cómo ordenas los resultados?", opciones: ["SORT BY", "ORDER BY", "GROUP BY"], correcta: 1, explicacion: "ORDER BY columna ASC/DESC ordena la salida." },
+            { pregunta: "¿Cuál es el comando para borrar registros?", opciones: ["REMOVE", "DELETE", "COLLAPSE"], correcta: 1, explicacion: "DELETE FROM tabla WHERE condición." },
+            { pregunta: "¿Cómo agregas un nuevo registro?", opciones: ["ADD RECORD", "INSERT INTO", "ADD NEW"], correcta: 1, explicacion: "INSERT INTO tabla VALUES (...)." },
+            { pregunta: "¿Qué comando cambia datos existentes?", opciones: ["UPDATE", "SAVE", "MODIFY"], correcta: 0, explicacion: "UPDATE tabla SET campo=valor." },
+            { pregunta: "¿Cómo seleccionas valores únicos (sin duplicados)?", opciones: ["SELECT UNIQUE", "SELECT DISTINCT", "SELECT DIFFERENT"], correcta: 1, explicacion: "DISTINCT elimina duplicados de la consulta." },
+            { pregunta: "¿Qué operador busca un patrón (ej: que empiece por 'a')?", opciones: ["LIKE", "GET", "SEARCH"], correcta: 0, explicacion: "LIKE 'a%' busca textos que inicien con 'a'." }
         ];
-        document.addEventListener('DOMContentLoaded', () => cargarQuiz(preguntasSQL, 'sql'));
     </script>
 </body>
 </html>

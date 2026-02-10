@@ -2,50 +2,176 @@
 <html lang="es">
 <head>
     <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>MundoCODE - HTML</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
     <link rel="stylesheet" href="../../Css/style.css">
     <link rel="stylesheet" href="../../Css/quiz_style.css">
+    <style>
+        /* ESTILOS ESPECÍFICOS HTML */
+        .concept-grid { 
+            display: grid; gap: 25px; margin-bottom: 40px; 
+            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+        }
+        @media (min-width: 1200px) { .concept-grid { grid-template-columns: repeat(5, 1fr); } }
+
+        .concept-card {
+            background: rgba(255, 255, 255, 0.05);
+            border: 1px solid rgba(255, 87, 34, 0.3);
+            padding: 30px 20px;
+            border-radius: 16px;
+            transition: all 0.3s ease;
+            backdrop-filter: blur(5px);
+            text-align: center;
+            min-height: 280px; /* Altura para navegación */
+            display: flex; flex-direction: column; align-items: center;
+        }
+        .concept-card:hover { 
+            transform: translateY(-8px); 
+            box-shadow: 0 15px 30px rgba(255, 87, 34, 0.25); 
+            border-color: #ff5722; 
+        }
+        .concept-icon { font-size: 3rem; color: #ff5722; margin-bottom: 20px; }
+        .concept-title { font-weight: bold; color: white; margin-bottom: 12px; font-size: 1.2rem; }
+        .concept-text { color: #ccc; font-size: 0.95rem; line-height: 1.6; }
+
+        /* BOTÓN MEJORADO */
+        .start-btn {
+            background: linear-gradient(45deg, #e64a19, #ff5722);
+            color: white; padding: 12px 40px; border: none; border-radius: 50px;
+            font-size: 1.1rem; font-weight: bold; cursor: pointer; 
+            display: block; margin: 40px auto; width: fit-content;
+            box-shadow: 0 4px 15px rgba(255, 87, 34, 0.4); transition: transform 0.2s;
+        }
+        .start-btn:hover { transform: scale(1.05); }
+
+        /* BARRA DE PROGRESO MEJORADA */
+        #progress-container { 
+            margin: 20px auto; max-width: 600px; 
+            background: rgba(255,255,255,0.05); padding: 15px; 
+            border-radius: 15px; border: 1px solid rgba(255,255,255,0.1); 
+        }
+        .progress-track { background: rgba(0,0,0,0.4); height: 10px; border-radius: 10px; overflow: hidden; margin-top: 10px;}
+        .progress-fill { height: 100%; width: 0%; background: linear-gradient(90deg, #e64a19, #ff5722); transition: width 0.4s; }
+
+        /* --- CORRECCIONES PARA CELULAR (Sobrescribe estilos inline) --- */
+        @media (max-width: 768px) {
+            .quiz-page-container {
+                padding: 10px !important;
+                margin: 10px auto !important;
+                width: 100% !important;
+            }
+            
+            h1 { font-size: 2rem !important; }
+            i.fab.fa-html5 { font-size: 3.5rem !important; }
+            
+            .concept-grid {
+                grid-template-columns: 1fr; /* Una columna */
+                gap: 15px;
+            }
+            
+            .start-btn { width: 100%; }
+        }
+    </style>
 </head>
-<body style="background: #0b0b0e; color: white;">
-    
+<body style="background: #0b0b0e; color: white; margin: 0;">
     <nav style="padding: 20px; background: rgba(11,11,14,0.95);">
-        <a href="../contenidos.html" style="color: white; text-decoration: none; font-weight: bold;">
-            <i class="fas fa-arrow-left"></i> Volver a Cursos
-        </a>
+        <a href="../contenidos.html" style="color: white; text-decoration: none; font-weight: bold;"><i class="fas fa-arrow-left"></i> Volver a Cursos</a>
     </nav>
 
-    <div class="quiz-page-container" style="max-width: 800px; margin: 50px auto; padding: 20px;">
-        
-        <div style="text-align: center; margin-bottom: 40px;">
-            <i class="fab fa-html5" style="font-size: 4rem; color: #e34c26;"></i>
-            <h1 style="color: #e34c26;">HTML5 Expert</h1>
-            <p>La estructura fundamental de toda página web.</p>
+    <div class="quiz-page-container" style="max-width: 1400px; margin: 40px auto; padding: 20px;">
+        <div style="text-align: center; margin-bottom: 50px;">
+            <i class="fab fa-html5" style="font-size: 5rem; color: #ff5722;"></i>
+            <h1 style="font-size: 3rem; margin-top: 15px;">HTML5 Expert</h1>
+            <p style="color: #aaa; font-size: 1.1rem;">Domina la estructura web.</p>
         </div>
 
-        <div id="quiz-container"></div>
-        <div id="quiz-result" style="display: none; margin-top: 30px;"></div>
+        <div id="study-guide">
+            <div class="concept-grid">
+                <div class="concept-card">
+                    <div class="concept-icon"><i class="fas fa-language"></i></div>
+                    <div class="concept-title">1. Significado</div>
+                    <div class="concept-text">HTML (HyperText Markup Language) es el esqueleto de la web. Define la estructura semántica, no el diseño visual.</div>
+                </div>
+                <div class="concept-card">
+                    <div class="concept-icon"><i class="fas fa-layer-group"></i></div>
+                    <div class="concept-title">2. Estructura</div>
+                    <div class="concept-text">Sigue un orden estricto: <code>&lt;html&gt;</code> envuelve todo, <code>&lt;head&gt;</code> configura metadatos y <code>&lt;body&gt;</code> muestra el contenido.</div>
+                </div>
+                <div class="concept-card">
+                    <div class="concept-icon"><i class="fas fa-heading"></i></div>
+                    <div class="concept-title">3. Títulos</div>
+                    <div class="concept-text">Van de <code>&lt;h1&gt;</code> a <code>&lt;h6&gt;</code>. El h1 es el título principal y único por página, vital para el SEO y la jerarquía.</div>
+                </div>
+                <div class="concept-card">
+                    <div class="concept-icon"><i class="fas fa-paragraph"></i></div>
+                    <div class="concept-title">4. Párrafos</div>
+                    <div class="concept-text">La etiqueta <code>&lt;p&gt;</code> agrupa bloques de texto. Los navegadores añaden márgenes automáticos para separarlos visualmente.</div>
+                </div>
+                <div class="concept-card">
+                    <div class="concept-icon"><i class="fas fa-image"></i></div>
+                    <div class="concept-title">5. Imágenes</div>
+                    <div class="concept-text">Etiqueta de cierre automático: <code>&lt;img src="..."&gt;</code>. El atributo 'alt' es obligatorio para accesibilidad.</div>
+                </div>
+                <div class="concept-card">
+                    <div class="concept-icon"><i class="fas fa-link"></i></div>
+                    <div class="concept-title">6. Enlaces</div>
+                    <div class="concept-text">La etiqueta <code>&lt;a href="..."&gt;</code> conecta páginas. Usa <code>target="_blank"</code> para abrir en una pestaña nueva.</div>
+                </div>
+                <div class="concept-card">
+                    <div class="concept-icon"><i class="fas fa-list-ul"></i></div>
+                    <div class="concept-title">7. Listas</div>
+                    <div class="concept-text"><code>&lt;ul&gt;</code> crea listas con puntos (bullets) y <code>&lt;ol&gt;</code> listas numéricas. Los ítems van en <code>&lt;li&gt;</code>.</div>
+                </div>
+                <div class="concept-card">
+                    <div class="concept-icon"><i class="fas fa-level-down-alt"></i></div>
+                    <div class="concept-title">8. Salto Línea</div>
+                    <div class="concept-text"><code>&lt;br&gt;</code> fuerza un salto de línea sin crear un nuevo párrafo. Es útil para direcciones o poemas.</div>
+                </div>
+                <div class="concept-card">
+                    <div class="concept-icon"><i class="fas fa-video"></i></div>
+                    <div class="concept-title">9. Video</div>
+                    <div class="concept-text"><code>&lt;video src="..." controls&gt;</code> inserta multimedia nativa con controles de play y pausa integrados.</div>
+                </div>
+                <div class="concept-card">
+                    <div class="concept-icon"><i class="fas fa-file-code"></i></div>
+                    <div class="concept-title">10. Doctype</div>
+                    <div class="concept-text"><code>&lt;!DOCTYPE html&gt;</code> es la primera línea obligatoria. Le dice al navegador que use el modo estándar de HTML5.</div>
+                </div>
+            </div>
+            <button onclick="empezarQuiz()" class="start-btn"><i class="fas fa-play"></i> INICIAR DESAFÍO</button>
+        </div>
 
+        <div id="progress-container" style="display: none;">
+            <div style="display:flex; justify-content:space-between; color:#ccc;"><span>Tu Progreso</span><span id="progress-text">0/10</span></div>
+            <div class="progress-track"><div id="progress-bar" class="progress-fill"></div></div>
+        </div>
+
+        <div id="quiz-container" style="display: none;"></div>
     </div>
 
     <script src="../../js/sounds.js"></script>
     <script src="../../js/quiz.js"></script>
-    
     <script>
+        function empezarQuiz() {
+            document.getElementById('study-guide').style.display = 'none';
+            document.getElementById('quiz-container').style.display = 'block';
+            document.getElementById('progress-container').style.display = 'block';
+            cargarQuiz(preguntasHTML, 'html');
+        }
+
         const preguntasHTML = [
-            { pregunta: "¿Qué significa HTML?", opciones: ["HyperText Markup Language", "Home Tool Markup Language", "Hyperlinks and Text Markup Language"], correcta: 0, explicacion: "HTML es el lenguaje de marcado estándar para documentos diseñados para ser mostrados en un navegador web." },
-            { pregunta: "¿Cuál es el elemento correcto para el encabezado más grande?", opciones: ["head", "h1", "header"], correcta: 1, explicacion: "<h1> define el encabezado más importante." },
-            { pregunta: "¿Qué etiqueta define un salto de línea?", opciones: ["br", "lb", "break"], correcta: 0, explicacion: "<br> inserta un salto de línea simple." },
-            { pregunta: "¿Cuál es el atributo para el texto alternativo en imágenes?", opciones: ["title", "alt", "src"], correcta: 1, explicacion: "El atributo 'alt' proporciona información alternativa si la imagen no se puede cargar." },
-            { pregunta: "¿Cómo se define una lista desordenada?", opciones: ["ol", "ul", "list"], correcta: 1, explicacion: "<ul> define una lista desordenada (con viñetas)." },
-            { pregunta: "¿Qué etiqueta se usa para definir un hipervínculo?", opciones: ["link", "a", "href"], correcta: 1, explicacion: "La etiqueta <a> se utiliza para definir hipervínculos." },
-            { pregunta: "¿Cuál es la estructura básica de un documento HTML5?", opciones: ["html > head > body", "head > body > html", "body > html > head"], correcta: 0, explicacion: "La estructura correcta es <html> conteniendo <head> y <body>." },
-            { pregunta: "¿Para qué sirve la etiqueta <p>?", opciones: ["Para poner negrita", "Para un párrafo", "Para pegar"], correcta: 1, explicacion: "<p> define un párrafo de texto." },
-            { pregunta: "¿Qué atributo abre un enlace en una nueva pestaña?", opciones: ["target='_blank'", "new='tab'", "window='new'"], correcta: 0, explicacion: "target='_blank' especifica que el enlace se abrirá en una nueva pestaña." },
-            { pregunta: "¿Qué etiqueta define el título de la pestaña del navegador?", opciones: ["meta", "title", "head"], correcta: 1, explicacion: "<title> establece el nombre que aparece en la pestaña del navegador." }
+            { pregunta: "¿Qué significa HTML?", opciones: ["Home Tool Markup Language", "HyperText Markup Language", "Hyperlinks and Text Markup Language"], correcta: 1, explicacion: "HTML son las siglas de HyperText Markup Language." },
+            { pregunta: "¿Cuál es el elemento correcto para el encabezado más grande?", opciones: ["&lt;head&gt;", "&lt;h6&gt;", "&lt;h1&gt;"], correcta: 2, explicacion: "&lt;h1&gt; representa el título principal de la página." },
+            { pregunta: "¿Cuál es el elemento para insertar un salto de línea?", opciones: ["&lt;break&gt;", "&lt;lb&gt;", "&lt;br&gt;"], correcta: 2, explicacion: "&lt;br&gt; (Break) crea un salto de línea." },
+            { pregunta: "¿Cuál es el elemento HTML para reproducir video?", opciones: ["&lt;media&gt;", "&lt;movie&gt;", "&lt;video&gt;"], correcta: 2, explicacion: "La etiqueta estándar de HTML5 es &lt;video&gt;." },
+            { pregunta: "¿Qué etiqueta define un párrafo?", opciones: ["&lt;text&gt;", "&lt;p&gt;", "&lt;par&gt;"], correcta: 1, explicacion: "&lt;p&gt; se utiliza para definir párrafos de texto." },
+            { pregunta: "¿Qué etiqueta se usa para crear un enlace?", opciones: ["&lt;a&gt;", "&lt;link&gt;", "&lt;href&gt;"], correcta: 0, explicacion: "La etiqueta &lt;a&gt; (anchor) define un hipervínculo." },
+            { pregunta: "¿Cómo se define una lista desordenada (puntos)?", opciones: ["&lt;ol&gt;", "&lt;ul&gt;", "&lt;list&gt;"], correcta: 1, explicacion: "&lt;ul&gt; significa Unordered List." },
+            { pregunta: "¿Qué atributo se usa en &lt;img&gt; para la ruta de la imagen?", opciones: ["href", "link", "src"], correcta: 2, explicacion: "src (source) indica dónde está el archivo de imagen." },
+            { pregunta: "¿Cuál es la estructura base correcta?", opciones: ["html > head > body", "head > body > html", "body > html > head"], correcta: 0, explicacion: "Primero &lt;html&gt;, dentro &lt;head&gt; y &lt;body&gt;." },
+            { pregunta: "¿Con qué debe empezar un documento HTML5?", opciones: ["&lt;html5&gt;", "&lt;!DOCTYPE html&gt;", "&lt;xml&gt;"], correcta: 1, explicacion: "La declaración del tipo de documento es &lt;!DOCTYPE html&gt;." }
         ];
-        // Cargar Quiz
-        document.addEventListener('DOMContentLoaded', () => cargarQuiz(preguntasHTML, 'html'));
     </script>
 </body>
-</html>
+</html

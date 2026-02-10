@@ -6,45 +6,152 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
     <link rel="stylesheet" href="../../Css/style.css">
     <link rel="stylesheet" href="../../Css/quiz_style.css">
+    <style>
+        /* ESTILOS ESPECÍFICOS CSS */
+        .concept-grid { 
+            display: grid; gap: 25px; margin-bottom: 40px; 
+            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+        }
+        @media (min-width: 1200px) { .concept-grid { grid-template-columns: repeat(5, 1fr); } }
+
+        .concept-card {
+            background: rgba(255, 255, 255, 0.05);
+            border: 1px solid rgba(41, 182, 246, 0.3);
+            padding: 30px 20px;
+            border-radius: 16px;
+            transition: all 0.3s ease;
+            backdrop-filter: blur(5px);
+            text-align: center;
+            min-height: 280px; 
+            display: flex; flex-direction: column; align-items: center;
+        }
+        .concept-card:hover { 
+            transform: translateY(-8px); 
+            box-shadow: 0 15px 30px rgba(41, 182, 246, 0.25); 
+            border-color: #29b6f6; 
+        }
+        .concept-icon { font-size: 3rem; color: #29b6f6; margin-bottom: 20px; }
+        .concept-title { font-weight: bold; color: white; margin-bottom: 12px; font-size: 1.2rem; }
+        .concept-text { color: #ccc; font-size: 0.95rem; line-height: 1.6; }
+        
+        /* BOTÓN MEJORADO */
+        .start-btn {
+            background: linear-gradient(45deg, #0288d1, #29b6f6);
+            color: white; padding: 12px 40px; border: none; border-radius: 50px;
+            font-size: 1.1rem; font-weight: bold; cursor: pointer; 
+            display: block; margin: 40px auto; width: fit-content;
+            box-shadow: 0 4px 15px rgba(41, 182, 246, 0.4); transition: transform 0.2s;
+        }
+        .start-btn:hover { transform: scale(1.05); }
+
+        /* BARRA MEJORADA */
+        #progress-container { 
+            margin: 20px auto; max-width: 600px; 
+            background: rgba(255,255,255,0.05); padding: 15px; 
+            border-radius: 15px; border: 1px solid rgba(255,255,255,0.1); 
+        }
+        .progress-track { background: rgba(0,0,0,0.4); height: 10px; border-radius: 10px; overflow: hidden; margin-top: 10px;}
+        .progress-fill { height: 100%; width: 0%; background: linear-gradient(90deg, #0288d1, #29b6f6); transition: width 0.4s; }
+    </style>
 </head>
 <body style="background: #0b0b0e; color: white;">
-    
     <nav style="padding: 20px; background: rgba(11,11,14,0.95);">
-        <a href="../contenidos.html" style="color: white; text-decoration: none; font-weight: bold;">
-            <i class="fas fa-arrow-left"></i> Volver a Cursos
-        </a>
+        <a href="../contenidos.html" style="color: white; text-decoration: none; font-weight: bold;"><i class="fas fa-arrow-left"></i> Volver a Cursos</a>
     </nav>
 
-    <div class="quiz-page-container" style="max-width: 800px; margin: 50px auto; padding: 20px;">
-        
-        <div style="text-align: center; margin-bottom: 40px;">
-            <i class="fab fa-css3-alt" style="font-size: 4rem; color: #2980b9;"></i>
-            <h1 style="color: #2980b9;">Maestría CSS3</h1>
-            <p>Estilos, diseño responsivo y animaciones.</p>
+    <div class="quiz-page-container" style="max-width: 1400px; margin: 40px auto; padding: 20px;">
+        <div style="text-align: center; margin-bottom: 50px;">
+            <i class="fab fa-css3-alt" style="font-size: 5rem; color: #29b6f6;"></i>
+            <h1 style="font-size: 3rem; margin-top: 15px;">Estilista CSS3</h1>
+            <p style="color: #aaa; font-size: 1.1rem;">Dale vida y color a la web.</p>
         </div>
 
-        <div id="quiz-container"></div>
-        <div id="quiz-result" style="display: none; margin-top: 30px;"></div>
+        <div id="study-guide">
+            <div class="concept-grid">
+                <div class="concept-card">
+                    <div class="concept-icon"><i class="fas fa-language"></i></div>
+                    <div class="concept-title">1. Significado</div>
+                    <div class="concept-text">CSS (Cascading Style Sheets) separa el diseño del contenido. Permite crear layouts y adaptar la web a móviles.</div>
+                </div>
+                <div class="concept-card">
+                    <div class="concept-icon"><i class="fas fa-link"></i></div>
+                    <div class="concept-title">2. Etiqueta Link</div>
+                    <div class="concept-text">Usa <code>&lt;link rel="stylesheet" href="..."&gt;</code>. Es el método estándar para conectar hojas de estilo externas.</div>
+                </div>
+                <div class="concept-card">
+                    <div class="concept-icon"><i class="fas fa-brain"></i></div>
+                    <div class="concept-title">3. Ubicación</div>
+                    <div class="concept-text">El enlace CSS siempre debe ir dentro del <code>&lt;head&gt;</code> para cargar los estilos antes de mostrar la página.</div>
+                </div>
+                <div class="concept-card">
+                    <div class="concept-icon"><i class="fas fa-fill-drip"></i></div>
+                    <div class="concept-title">4. Fondo</div>
+                    <div class="concept-text"><code>background-color</code> define colores planos, mientras que <code>background-image</code> permite usar fotos.</div>
+                </div>
+                <div class="concept-card">
+                    <div class="concept-icon"><i class="fas fa-fingerprint"></i></div>
+                    <div class="concept-title">5. Selector ID</div>
+                    <div class="concept-text">Se selecciona con <strong>#</strong> (ej: #menu). Debe ser único en toda la página y tiene alta prioridad.</div>
+                </div>
+                <div class="concept-card">
+                    <div class="concept-icon"><i class="fas fa-users"></i></div>
+                    <div class="concept-title">6. Selector Clase</div>
+                    <div class="concept-text">Se selecciona con punto <strong>.</strong> (ej: .boton). Son reutilizables para múltiples elementos.</div>
+                </div>
+                <div class="concept-card">
+                    <div class="concept-icon"><i class="fas fa-font"></i></div>
+                    <div class="concept-title">7. Color Texto</div>
+                    <div class="concept-text">La propiedad es <strong>color</strong> (no font-color). Acepta nombres, hexadecimales y RGB.</div>
+                </div>
+                <div class="concept-card">
+                    <div class="concept-icon"><i class="fas fa-comment-slash"></i></div>
+                    <div class="concept-title">8. Comentarios</div>
+                    <div class="concept-text">Se escriben así: <code>/* ... */</code>. El navegador los ignora, sirven para organizar tu código.</div>
+                </div>
+                <div class="concept-card">
+                    <div class="concept-icon"><i class="fas fa-text-height"></i></div>
+                    <div class="concept-title">9. Tamaño Fuente</div>
+                    <div class="concept-text">Controlado por <strong>font-size</strong>. Usa unidades como 'px' (fijo) o 'rem' (relativo y accesible).</div>
+                </div>
+                <div class="concept-card">
+                    <div class="concept-icon"><i class="fas fa-ghost"></i></div>
+                    <div class="concept-title">10. Visibilidad</div>
+                    <div class="concept-text"><strong>visibility: hidden</strong> oculta el objeto pero deja el hueco vacío. <strong>display: none</strong> lo elimina por completo.</div>
+                </div>
+            </div>
+            <button onclick="empezarQuiz()" class="start-btn"><i class="fas fa-play"></i> INICIAR DESAFÍO</button>
+        </div>
 
+        <div id="progress-container" style="display: none;">
+            <div style="display:flex; justify-content:space-between; color:#ccc;"><span>Tu Progreso</span><span id="progress-text">0/10</span></div>
+            <div class="progress-track"><div id="progress-bar" class="progress-fill"></div></div>
+        </div>
+
+        <div id="quiz-container" style="display: none;"></div>
     </div>
 
     <script src="../../js/sounds.js"></script>
     <script src="../../js/quiz.js"></script>
-
     <script>
+        function empezarQuiz() {
+            document.getElementById('study-guide').style.display = 'none';
+            document.getElementById('quiz-container').style.display = 'block';
+            document.getElementById('progress-container').style.display = 'block';
+            cargarQuiz(preguntasCSS, 'css');
+        }
+
         const preguntasCSS = [
-            { pregunta: "¿Qué significa CSS?", opciones: ["Computer Style Sheets", "Cascading Style Sheets", "Creative Style System"], correcta: 1, explicacion: "CSS (Hojas de Estilo en Cascada) describe cómo se mostrarán los elementos HTML." },
-            { pregunta: "¿Qué propiedad cambia el color de fondo?", opciones: ["color", "bgcolor", "background-color"], correcta: 2, explicacion: "background-color establece el color de fondo de un elemento." },
-            { pregunta: "¿Cómo seleccionas un elemento con id='demo'?", opciones: [".demo", "#demo", "demo"], correcta: 1, explicacion: "El símbolo # se utiliza para seleccionar elementos por su ID." },
-            { pregunta: "¿Cómo seleccionas elementos con clase='test'?", opciones: [".test", "#test", "*test"], correcta: 0, explicacion: "El punto (.) se utiliza para seleccionar elementos por su clase." },
-            { pregunta: "¿Qué propiedad controla el tamaño del texto?", opciones: ["text-style", "font-size", "text-size"], correcta: 1, explicacion: "font-size define el tamaño de la fuente." },
-            { pregunta: "¿Cuál es la propiedad para el margen interno?", opciones: ["margin", "padding", "spacing"], correcta: 1, explicacion: "padding es el espacio entre el contenido y el borde del elemento." },
-            { pregunta: "¿Cómo haces que un texto esté en negrita?", opciones: ["font-weight: bold", "style: bold", "font: bold"], correcta: 0, explicacion: "font-weight controla el grosor o peso de la fuente." },
-            { pregunta: "¿Qué propiedad se usa para Flexbox?", opciones: ["display: flex", "position: flex", "float: left"], correcta: 0, explicacion: "display: flex activa el modelo de caja flexible (Flexbox)." },
-            { pregunta: "¿Cómo centrar texto horizontalmente?", opciones: ["align: center", "text-align: center", "center: true"], correcta: 1, explicacion: "text-align: center alinea el texto al centro de su contenedor." },
-            { pregunta: "¿Qué unidad es relativa al tamaño de fuente del padre?", opciones: ["px", "em", "vh"], correcta: 1, explicacion: "em es una unidad relativa al tamaño de fuente del elemento padre." }
+            { pregunta: "¿Qué significa CSS?", opciones: ["Computer Style Sheets", "Creative Style System", "Cascading Style Sheets"], correcta: 2, explicacion: "CSS significa Hojas de Estilo en Cascada." },
+            { pregunta: "¿Cuál es la etiqueta HTML para enlazar un archivo CSS externo?", opciones: ["&lt;script&gt;", "&lt;style&gt;", "&lt;link&gt;"], correcta: 2, explicacion: "Se usa &lt;link rel='stylesheet' href='...'&gt; para archivos externos." },
+            { pregunta: "¿Dónde se recomienda colocar la referencia al CSS externo?", opciones: ["Al final del &lt;body&gt;", "En la sección &lt;head&gt;", "Dentro de &lt;footer&gt;"], correcta: 1, explicacion: "El CSS se carga mejor desde el &lt;head&gt;." },
+            { pregunta: "¿Qué propiedad cambia el color de fondo?", opciones: ["color", "bgcolor", "background-color"], correcta: 2, explicacion: "background-color define el fondo. 'color' es para el texto." },
+            { pregunta: "¿Cómo seleccionas un elemento con id='demo'?", opciones: ["#demo", ".demo", "demo"], correcta: 0, explicacion: "El símbolo # se usa para seleccionar IDs." },
+            { pregunta: "¿Cómo seleccionas elementos con class='ejemplo'?", opciones: ["#ejemplo", ".ejemplo", "*ejemplo"], correcta: 1, explicacion: "El punto (.) se usa para seleccionar Clases." },
+            { pregunta: "¿Cuál es la propiedad para cambiar el color del texto?", opciones: ["font-color", "text-color", "color"], correcta: 2, explicacion: "En CSS, la propiedad 'color' controla el color de la fuente." },
+            { pregunta: "¿Cómo se hacen comentarios en CSS?", opciones: ["// comentario", "&lt;!-- comentario --&gt;", "/* comentario */"], correcta: 2, explicacion: "Los comentarios en CSS van entre /* y */." },
+            { pregunta: "¿Qué propiedad controla el tamaño de la letra?", opciones: ["font-style", "text-size", "font-size"], correcta: 2, explicacion: "font-size define el tamaño (px, rem, em)." },
+            { pregunta: "¿Cómo ocultar un elemento pero mantener su espacio?", opciones: ["display: none", "visibility: hidden", "opacity: 0"], correcta: 1, explicacion: "visibility: hidden lo oculta pero deja el hueco vacío." }
         ];
-        document.addEventListener('DOMContentLoaded', () => cargarQuiz(preguntasCSS, 'css'));
     </script>
 </body>
 </html>

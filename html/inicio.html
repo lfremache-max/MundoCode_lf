@@ -4,42 +4,46 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>MundoCODE - Iniciar Sesión</title>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
     <link rel="stylesheet" href="../Css/style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
 </head>
 <body>
 
-    <div class="container-center">
-        <div class="split-card">
-            
-            <div class="half-section form-side">
-                <div class="content-wrapper">
-                    <i class="fas fa-user-astronaut astronaut-icon"></i>
-                    <h1>Bienvenido</h1>
-                    <p class="subtitle">Ingresa a tu cuenta MundoCODE</p>
-                    
-                    <form action="contenidos.html">
-                        <div class="input-wrapper">
-                            <i class="fas fa-envelope"></i>
-                            <input type="email" placeholder="Correo electrónico" required>
-                        </div>
-                        <div class="input-wrapper">
-                            <i class="fas fa-lock"></i>
-                            <input type="password" placeholder="Contraseña" required>
-                        </div>
+    <div class="contenedor-registro-centrado">
+        
+        <a href="principal.html" class="flecha-atras">
+            <i class="fas fa-arrow-left"></i> Volver al inicio
+        </a>
 
-                        <button class="btn-primary">INICIAR SESIÓN</button>
-                        <a href="#" class="forgot-pass">¿Olvidaste tu contraseña?</a>
-                    </form>
-                </div>
+        <div class="tarjeta-split">
+            
+            <div class="lado-inputs">
+                <i class="fas fa-user-astronaut" style="font-size: 3rem; color: #00d2ff; margin-bottom: 20px;"></i>
+                <h1 style="margin-bottom: 10px;">Bienvenido</h1>
+                <p style="color: #888; margin-bottom: 30px; font-size: 0.9rem;">Ingresa a tu cuenta MundoCODE</p>
+                
+                <form action="contenidos.html" style="width: 100%; max-width: 350px;">
+                    <div class="input-box">
+                        <input type="email" placeholder="Correo electrónico" required>
+                    </div>
+                    <div class="input-box">
+                        <input type="password" placeholder="Contraseña" required>
+                    </div>
+
+                    <button type="submit" class="btn-azul-full">INICIAR SESIÓN</button>
+                    
+                    <p style="margin-top: 15px; color: #666; font-size: 0.8rem;">
+                        ¿Olvidaste tu contraseña?
+                    </p>
+                </form>
             </div>
 
-            <div class="half-section overlay-side">
-                <div class="content-wrapper">
-                    <h1>¡Hola, Coder!</h1>
-                    <p>¿Aún no tienes cuenta? Regístrate gratis y únete a la comunidad.</p>
-                    <a href="registro.html" class="btn-ghost">REGISTRARSE</a>
-                </div>
+            <div class="lado-mensaje">
+                <h1>¡Hola, Coder!</h1>
+                <p style="margin-top: 10px; opacity: 0.9; max-width: 80%;">
+                    ¿Aún no tienes cuenta? Regístrate gratis y únete a la comunidad.
+                </p>
+                <a href="registro.html" class="btn-transparente">REGISTRARSE</a>
             </div>
 
         </div>

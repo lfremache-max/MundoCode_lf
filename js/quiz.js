@@ -1,19 +1,18 @@
-/* js/quiz.js - CÓDIGO COMPLETO (Sonidos matemáticos + Lógica 7.0) */
+/* js/quiz.js - CÓDIGO FINAL CORREGIDO */
 
 let score = 0;
 let preguntasContestadas = 0;
 let totalPreguntas = 0;
 let quizIdActual = '';
 
-// --- 1. GENERADOR DE SONIDOS (Sintetizador) ---
-// Esto crea el sonido desde cero, no necesita archivos mp3 ni sounds.js
+// --- 1. GENERADOR DE SONIDOS ---
 const audioCtx = new (window.AudioContext || window.webkitAudioContext)();
 
 function playTone(freq, type, duration, delay = 0) {
     const osc = audioCtx.createOscillator();
     const gain = audioCtx.createGain();
     
-    osc.type = type; // tipos de onda: sine, square, sawtooth, triangle
+    osc.type = type;
     osc.frequency.value = freq;
     
     osc.connect(gain);
@@ -22,7 +21,6 @@ function playTone(freq, type, duration, delay = 0) {
     const now = audioCtx.currentTime + delay;
     osc.start(now);
     
-    // Efecto de desvanecimiento para que no suene brusco
     gain.gain.setValueAtTime(0.1, now);
     gain.gain.exponentialRampToValueAtTime(0.0001, now + duration);
     
@@ -30,23 +28,17 @@ function playTone(freq, type, duration, delay = 0) {
 }
 
 function playSound(type) {
-    // Reactivar el audio si el navegador lo bloqueó (pasa a veces en Chrome)
-    if (audioCtx.state === 'suspended') {
-        audioCtx.resume();
-    }
+    if (audioCtx.state === 'suspended') { audioCtx.resume(); }
 
     if (type === 'correct') {
-        // ✨ Sonido "Ding" agudo
         playTone(600, 'sine', 0.1, 0);
         playTone(1200, 'sine', 0.4, 0.1); 
     } 
     else if (type === 'wrong') {
-        // ❌ Sonido "Error" grave
         playTone(150, 'sawtooth', 0.3, 0); 
         playTone(100, 'sawtooth', 0.3, 0.1); 
     } 
     else if (type === 'fanfare') {
-        // 🏆 Música de victoria
         playTone(400, 'triangle', 0.1, 0);
         playTone(500, 'triangle', 0.1, 0.15);
         playTone(600, 'triangle', 0.1, 0.30);
@@ -65,6 +57,8 @@ function cargarQuiz(preguntas, quizId) {
     totalPreguntas = preguntas.length;
     quizIdActual = quizId;
 
+    actualizarBarraVisual();
+
     preguntas.forEach((pregunta, index) => {
         // Crear Tarjeta
         const card = document.createElement('div');
@@ -82,10 +76,11 @@ function cargarQuiz(preguntas, quizId) {
         pregunta.opciones.forEach((opcion, opIndex) => {
             const btn = document.createElement('button');
             btn.className = 'option-btn';
-            btn.textContent = opcion;
+            // Usamos innerHTML para permitir renderizar &lt; como < visualmente en los botones
+            btn.innerHTML = opcion; 
             
             btn.onclick = () => {
-                // Bloquear botones tras click
+                // Bloquear botones
                 const btns = opcionesDiv.querySelectorAll('.option-btn');
                 btns.forEach(b => b.disabled = true);
 
@@ -97,7 +92,7 @@ function cargarQuiz(preguntas, quizId) {
                 if (opIndex === pregunta.correcta) {
                     // CORRECTO
                     score++;
-                    playSound('correct'); // <--- SONIDO GENERADO
+                    playSound('correct');
                     
                     btn.classList.add('correct');
                     btn.style.background = 'rgba(46, 213, 115, 0.2)';
@@ -106,11 +101,11 @@ function cargarQuiz(preguntas, quizId) {
                     feedbackDiv.style.borderLeft = "5px solid #2ed573";
                     feedbackDiv.innerHTML = `
                         <div style="color: #2ed573; font-weight: bold; margin-bottom: 5px;">✨ ¡Excelente!</div>
-                        <div style="color: #ddd;">${pregunta.explicacion}</div>
+                        <div style="color: #ddd; font-size: 0.95rem;">${pregunta.explicacion}</div>
                     `;
                 } else {
                     // INCORRECTO
-                    playSound('wrong'); // <--- SONIDO GENERADO
+                    playSound('wrong');
                     
                     btn.classList.add('incorrect');
                     btn.style.background = 'rgba(255, 71, 87, 0.2)';
@@ -119,10 +114,12 @@ function cargarQuiz(preguntas, quizId) {
                     feedbackDiv.style.borderLeft = "5px solid #ff4757";
                     feedbackDiv.innerHTML = `
                         <div style="color: #ff4757; font-weight: bold; margin-bottom: 5px;">✖ Respuesta Incorrecta</div>
-                        <div style="color: #ddd;">${pregunta.explicacion}</div>
+                        <div style="color: #ddd; font-size: 0.95rem;">${pregunta.explicacion}</div>
                     `;
                 }
+                
                 preguntasContestadas++;
+                actualizarBarraVisual();
             };
             opcionesDiv.appendChild(btn);
         });
@@ -151,9 +148,23 @@ function cargarQuiz(preguntas, quizId) {
     container.appendChild(btnFinal);
 }
 
+function actualizarBarraVisual() {
+    const progressBar = document.getElementById('progress-bar');
+    const progressText = document.getElementById('progress-text');
+    
+    if (progressBar && totalPreguntas > 0) {
+        const porcentaje = (preguntasContestadas / totalPreguntas) * 100;
+        progressBar.style.width = porcentaje + '%';
+        
+        if (progressText) {
+            progressText.innerText = `${preguntasContestadas} de ${totalPreguntas} completadas`;
+        }
+    }
+}
+
 function mostrarResultadoFinal() {
     if(preguntasContestadas < totalPreguntas) {
-        alert("Por favor responde todas las preguntas.");
+        alert("Por favor responde todas las preguntas antes de finalizar.");
         return;
     }
 
@@ -170,11 +181,9 @@ function mostrarResultadoFinal() {
     card.style.borderRadius = '20px';
     card.style.background = '#111';
 
-    // REGLA: Aprobado solo si nota >= 7.0
     if (porcentaje >= 7) {
-        playSound('fanfare'); // <--- MÚSICA VICTORIA
+        playSound('fanfare');
         
-        // Guardar progreso con ID normal e intro para asegurar compatibilidad
         localStorage.setItem('curso_completado_' + quizIdActual, 'true');
         if (!quizIdActual.includes('_intro')) {
              localStorage.setItem('curso_completado_' + quizIdActual + '_intro', 'true');

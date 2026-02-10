@@ -6,45 +6,152 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
     <link rel="stylesheet" href="../../Css/style.css">
     <link rel="stylesheet" href="../../Css/quiz_style.css">
+    <style>
+        /* ESTILOS ESPECÍFICOS JS */
+        .concept-grid { 
+            display: grid; gap: 25px; margin-bottom: 40px; 
+            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+        }
+        @media (min-width: 1200px) { .concept-grid { grid-template-columns: repeat(5, 1fr); } }
+
+        .concept-card {
+            background: rgba(255, 255, 255, 0.05);
+            border: 1px solid rgba(255, 213, 79, 0.3);
+            padding: 30px 20px;
+            border-radius: 16px;
+            transition: all 0.3s ease;
+            backdrop-filter: blur(5px);
+            text-align: center;
+            min-height: 280px; 
+            display: flex; flex-direction: column; align-items: center;
+        }
+        .concept-card:hover { 
+            transform: translateY(-8px); 
+            box-shadow: 0 15px 30px rgba(255, 213, 79, 0.25); 
+            border-color: #ffd54f; 
+        }
+        .concept-icon { font-size: 3rem; color: #ffd54f; margin-bottom: 20px; }
+        .concept-title { font-weight: bold; color: white; margin-bottom: 12px; font-size: 1.2rem; }
+        .concept-text { color: #ccc; font-size: 0.95rem; line-height: 1.6; }
+        
+        /* BOTÓN MEJORADO */
+        .start-btn {
+            background: linear-gradient(45deg, #ffca28, #ffd54f);
+            color: #333; padding: 12px 40px; border: none; border-radius: 50px;
+            font-size: 1.1rem; font-weight: bold; cursor: pointer; 
+            display: block; margin: 40px auto; width: fit-content;
+            box-shadow: 0 4px 15px rgba(255, 213, 79, 0.4); transition: transform 0.2s;
+        }
+        .start-btn:hover { transform: scale(1.05); }
+
+        /* BARRA MEJORADA */
+        #progress-container { 
+            margin: 20px auto; max-width: 600px; 
+            background: rgba(255,255,255,0.05); padding: 15px; 
+            border-radius: 15px; border: 1px solid rgba(255,255,255,0.1); 
+        }
+        .progress-track { background: rgba(0,0,0,0.4); height: 10px; border-radius: 10px; overflow: hidden; margin-top: 10px;}
+        .progress-fill { height: 100%; width: 0%; background: linear-gradient(90deg, #ffca28, #ffd54f); transition: width 0.4s; }
+    </style>
 </head>
 <body style="background: #0b0b0e; color: white;">
-    
     <nav style="padding: 20px; background: rgba(11,11,14,0.95);">
-        <a href="../contenidos.html" style="color: white; text-decoration: none; font-weight: bold;">
-            <i class="fas fa-arrow-left"></i> Volver a Cursos
-        </a>
+        <a href="../contenidos.html" style="color: white; text-decoration: none; font-weight: bold;"><i class="fas fa-arrow-left"></i> Volver a Cursos</a>
     </nav>
 
-    <div class="quiz-page-container" style="max-width: 800px; margin: 50px auto; padding: 20px;">
-        
-        <div style="text-align: center; margin-bottom: 40px;">
-            <i class="fab fa-js" style="font-size: 4rem; color: #f1c40f;"></i>
-            <h1 style="color: #f1c40f;">JavaScript</h1>
-            <p>Lógica de programación e interactividad web.</p>
+    <div class="quiz-page-container" style="max-width: 1400px; margin: 40px auto; padding: 20px;">
+        <div style="text-align: center; margin-bottom: 50px;">
+            <i class="fab fa-js" style="font-size: 5rem; color: #ffd54f;"></i>
+            <h1 style="font-size: 3rem; margin-top: 15px;">Lógica JavaScript</h1>
+            <p style="color: #aaa; font-size: 1.1rem;">Programación dinámica.</p>
         </div>
 
-        <div id="quiz-container"></div>
-        <div id="quiz-result" style="display: none; margin-top: 30px;"></div>
+        <div id="study-guide">
+            <div class="concept-grid">
+                <div class="concept-card">
+                    <div class="concept-icon"><i class="fas fa-code"></i></div>
+                    <div class="concept-title">1. Etiqueta</div>
+                    <div class="concept-text">Todo el código JavaScript debe ir dentro de las etiquetas <code>&lt;script&gt;</code> para ser ejecutado.</div>
+                </div>
+                <div class="concept-card">
+                    <div class="concept-icon"><i class="fas fa-file-code"></i></div>
+                    <div class="concept-title">2. Externo</div>
+                    <div class="concept-text">Para archivos separados, usa el atributo <strong>src</strong>: <code>&lt;script src="logica.js"&gt;</code>.</div>
+                </div>
+                <div class="concept-card">
+                    <div class="concept-icon"><i class="fas fa-exclamation-triangle"></i></div>
+                    <div class="concept-title">3. Alertas</div>
+                    <div class="concept-text"><code>alert("Texto");</code> crea una ventana emergente en el navegador que detiene la ejecución hasta que se cierra.</div>
+                </div>
+                <div class="concept-card">
+                    <div class="concept-icon"><i class="fas fa-tools"></i></div>
+                    <div class="concept-title">4. Crear Función</div>
+                    <div class="concept-text">Se definen con <code>function nombre() {}</code>. Son bloques de código reutilizables.</div>
+                </div>
+                <div class="concept-card">
+                    <div class="concept-icon"><i class="fas fa-play-circle"></i></div>
+                    <div class="concept-title">5. Ejecutar</div>
+                    <div class="concept-text">Para que una función actúe, debes "llamarla" usando su nombre y paréntesis: <code>nombre()</code>.</div>
+                </div>
+                <div class="concept-card">
+                    <div class="concept-icon"><i class="fas fa-question"></i></div>
+                    <div class="concept-title">6. Condicional IF</div>
+                    <div class="concept-text">La condición va entre paréntesis. Ejemplo: <code>if (edad > 18) { ... }</code>.</div>
+                </div>
+                <div class="concept-card">
+                    <div class="concept-icon"><i class="fas fa-sync"></i></div>
+                    <div class="concept-title">7. Bucle While</div>
+                    <div class="concept-text">Repite un bloque de código mientras una condición sea verdadera: <code>while (i &lt; 10)</code>.</div>
+                </div>
+                <div class="concept-card">
+                    <div class="concept-icon"><i class="fas fa-comment"></i></div>
+                    <div class="concept-title">8. Comentarios</div>
+                    <div class="concept-text"><code>//</code> para una sola línea y <code>/* ... */</code> para bloques de texto grandes.</div>
+                </div>
+                <div class="concept-card">
+                    <div class="concept-icon"><i class="fas fa-lock"></i></div>
+                    <div class="concept-title">9. Constantes</div>
+                    <div class="concept-text">Usa <code>const</code> para valores que no cambiarán y <code>let</code> para variables que sí cambiarán. Evita 'var'.</div>
+                </div>
+                <div class="concept-card">
+                    <div class="concept-icon"><i class="fas fa-equals"></i></div>
+                    <div class="concept-title">10. Asignación</div>
+                    <div class="concept-text">Un igual <strong>=</strong> asigna valor. Dos o tres iguales <strong>===</strong> comparan si dos valores son idénticos.</div>
+                </div>
+            </div>
+            <button onclick="empezarQuiz()" class="start-btn"><i class="fas fa-play"></i> INICIAR DESAFÍO</button>
+        </div>
 
+        <div id="progress-container" style="display: none;">
+            <div style="display:flex; justify-content:space-between; color:#ccc;"><span>Tu Progreso</span><span id="progress-text">0/10</span></div>
+            <div class="progress-track"><div id="progress-bar" class="progress-fill"></div></div>
+        </div>
+
+        <div id="quiz-container" style="display: none;"></div>
     </div>
 
     <script src="../../js/sounds.js"></script>
     <script src="../../js/quiz.js"></script>
-
     <script>
+        function empezarQuiz() {
+            document.getElementById('study-guide').style.display = 'none';
+            document.getElementById('quiz-container').style.display = 'block';
+            document.getElementById('progress-container').style.display = 'block';
+            cargarQuiz(preguntasJS, 'javascript');
+        }
+
         const preguntasJS = [
-            { pregunta: "¿Dónde es el lugar correcto para insertar un script?", opciones: ["<head>", "<body>", "Ambos son correctos"], correcta: 2, explicacion: "Se pueden colocar scripts tanto en el head como al final del body." },
-            { pregunta: "¿Cómo escribes 'Hola Mundo' en una alerta?", opciones: ["msg('Hola Mundo')", "alert('Hola Mundo')", "print('Hola Mundo')"], correcta: 1, explicacion: "La función alert() muestra una ventana emergente con un mensaje." },
-            { pregunta: "¿Cómo creas una función en JS?", opciones: ["function mifuncion()", "def mifuncion()", "create mifuncion()"], correcta: 0, explicacion: "La palabra clave 'function' se usa para definir funciones en JavaScript." },
-            { pregunta: "¿Cómo se llama una función llamada 'miFuncion'?", opciones: ["call miFuncion()", "miFuncion()", "run miFuncion()"], correcta: 1, explicacion: "Se llama a la función escribiendo su nombre seguido de paréntesis." },
-            { pregunta: "¿Cómo escribes una sentencia IF?", opciones: ["if i = 5 then", "if (i == 5)", "if i == 5"], correcta: 1, explicacion: "La sintaxis correcta es if (condición) { bloque de código }." },
-            { pregunta: "¿Cómo empieza un bucle FOR?", opciones: ["for (i = 0; i <= 5)", "for (i = 0; i <= 5; i++)", "for i = 1 to 5"], correcta: 1, explicacion: "Un bucle for requiere: inicialización, condición e incremento." },
-            { pregunta: "¿Cómo se añaden comentarios de una línea?", opciones: ["'Comentario", "// Comentario", ""], correcta: 1, explicacion: "// se usa para comentarios de una sola línea en JS." },
-            { pregunta: "¿Cuál es la forma correcta de declarar un array?", opciones: ["var colors = ['red', 'green']", "var colors = (1:'red', 2:'green')", "var colors = 'red', 'green'"], correcta: 0, explicacion: "Los arrays se definen con corchetes []." },
-            { pregunta: "¿Qué evento ocurre cuando el usuario hace clic en un elemento?", opciones: ["onchange", "onclick", "onmouseclick"], correcta: 1, explicacion: "El evento onclick se dispara cuando se hace clic en el elemento." },
-            { pregunta: "¿Qué operador se usa para asignar valor?", opciones: ["-", "*", "="], correcta: 2, explicacion: "El operador = se utiliza para asignar valores a variables." }
+            { pregunta: "¿Dentro de qué etiqueta HTML se pone JavaScript?", opciones: ["&lt;js&gt;", "&lt;script&gt;", "&lt;javascript&gt;"], correcta: 1, explicacion: "El código JS va siempre dentro de etiquetas &lt;script&gt;." },
+            { pregunta: "¿Cuál es la sintaxis correcta para referirse a un script externo?", opciones: ["&lt;script name='xxx.js'&gt;", "&lt;script href='xxx.js'&gt;", "&lt;script src='xxx.js'&gt;"], correcta: 2, explicacion: "Se usa el atributo 'src' (source) para archivos externos." },
+            { pregunta: "¿Cómo escribes 'Hola Mundo' en un cuadro de alerta?", opciones: ["msg('Hola Mundo');", "alertBox('Hola Mundo');", "alert('Hola Mundo');"], correcta: 2, explicacion: "La función alert() muestra una ventana emergente." },
+            { pregunta: "¿Cómo se crea una función en JavaScript?", opciones: ["function = myFunction()", "function myFunction()", "new Function()"], correcta: 1, explicacion: "Se usa la palabra clave 'function' seguida del nombre." },
+            { pregunta: "¿Cómo se llama a una función llamada 'miFuncion'?", opciones: ["call miFuncion()", "miFuncion()", "run miFuncion()"], correcta: 1, explicacion: "Simplemente escribiendo el nombre y paréntesis: miFuncion()." },
+            { pregunta: "¿Cómo se escribe una sentencia IF?", opciones: ["if i = 5 then", "if (i == 5)", "if i == 5 then"], correcta: 1, explicacion: "La condición va entre paréntesis: if (condición)." },
+            { pregunta: "¿Cómo inicia un bucle WHILE?", opciones: ["while (i <= 10)", "while i = 1 to 10", "while (i <= 10; i++)"], correcta: 0, explicacion: "while (condición) ejecuta el código mientras sea true." },
+            { pregunta: "¿Cómo se comenta una línea en JS?", opciones: ["&lt;!-- --&gt;", "// Comentario", "' Comentario"], correcta: 1, explicacion: "// se usa para una línea, /* */ para bloque." },
+            { pregunta: "¿Cómo declaras una variable que no va a cambiar?", opciones: ["var x", "let x", "const x"], correcta: 2, explicacion: "const define variables constantes (inmutables)." },
+            { pregunta: "¿Qué operador se usa para asignar valor?", opciones: ["*", "=", "-"], correcta: 1, explicacion: "El signo = asigna valor. El == compara valor." }
         ];
-        document.addEventListener('DOMContentLoaded', () => cargarQuiz(preguntasJS, 'js'));
     </script>
 </body>
 </html>

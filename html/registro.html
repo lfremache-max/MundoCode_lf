@@ -4,45 +4,43 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>MundoCODE - Registro</title>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
     <link rel="stylesheet" href="../Css/style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
 </head>
 <body>
 
-    <div class="container-center">
-        <div class="split-card">
+    <div class="contenedor-registro-centrado">
+        
+        <a href="principal.html" class="flecha-atras">
+            <i class="fas fa-arrow-left"></i> Volver al inicio
+        </a>
+
+        <div class="tarjeta-split">
             
-            <div class="half-section overlay-side overlay-flipped">
-                <div class="content-wrapper">
-                    <h1>¡Vuelve!</h1>
-                    <p>Si ya tienes cuenta, inicia sesión para continuar.</p>
-                    <a href="inicio.html" class="btn-ghost">INICIAR SESIÓN</a>
-                </div>
+            <div class="lado-mensaje">
+                <h1>¡Vuelve!</h1>
+                <p style="margin-top: 10px; opacity: 0.9;">Si ya tienes cuenta, inicia sesión para continuar.</p>
+                <a href="inicio.html" class="btn-transparente">INICIAR SESIÓN</a>
             </div>
 
-            <div class="half-section form-side">
-                <div class="content-wrapper">
-                    <i class="fas fa-rocket astronaut-icon"></i>
-                    <h1>Crear Cuenta</h1>
-                    <p class="subtitle">Únete a la mejor comunidad.</p>
-                    
-                    <form action="inicio.html">
-                        <div class="input-wrapper">
-                            <i class="fas fa-user"></i>
-                            <input type="text" placeholder="Nombre completo" required>
-                        </div>
-                        <div class="input-wrapper">
-                            <i class="fas fa-envelope"></i>
-                            <input type="email" placeholder="Correo electrónico" required>
-                        </div>
-                        <div class="input-wrapper">
-                            <i class="fas fa-lock"></i>
-                            <input type="password" placeholder="Contraseña" required>
-                        </div>
+            <div class="lado-inputs">
+                <i class="fas fa-rocket" style="font-size: 3rem; color: #00d2ff; margin-bottom: 20px;"></i>
+                <h1 style="margin-bottom: 10px;">Crear Cuenta</h1>
+                <p style="color: #888; margin-bottom: 30px; font-size: 0.9rem;">Únete a la mejor comunidad.</p>
+                
+                <form action="contenidos.html" style="width: 100%; max-width: 350px;">
+                    <div class="input-box">
+                        <input type="text" placeholder="Nombre completo" required>
+                    </div>
+                    <div class="input-box">
+                        <input type="email" placeholder="Correo electrónico" required>
+                    </div>
+                    <div class="input-box">
+                        <input type="password" placeholder="Contraseña" required>
+                    </div>
 
-                        <button class="btn-primary">REGISTRARSE</button>
-                    </form>
-                </div>
+                    <button type="submit" class="btn-azul-full">REGISTRARSE</button>
+                </form>
             </div>
 
         </div>

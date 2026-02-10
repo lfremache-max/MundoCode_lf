@@ -6,45 +6,152 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
     <link rel="stylesheet" href="../../Css/style.css">
     <link rel="stylesheet" href="../../Css/quiz_style.css">
+    <style>
+        /* ESTILOS PYTHON */
+        .concept-grid { 
+            display: grid; gap: 25px; margin-bottom: 40px; 
+            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+        }
+        @media (min-width: 1200px) { .concept-grid { grid-template-columns: repeat(5, 1fr); } }
+
+        .concept-card {
+            background: rgba(255, 255, 255, 0.05);
+            border: 1px solid rgba(79, 195, 247, 0.3);
+            padding: 30px 20px;
+            border-radius: 16px;
+            transition: all 0.3s ease;
+            backdrop-filter: blur(5px);
+            text-align: center;
+            min-height: 280px; 
+            display: flex; flex-direction: column; align-items: center;
+        }
+        .concept-card:hover { 
+            transform: translateY(-8px); 
+            box-shadow: 0 15px 30px rgba(79, 195, 247, 0.25); 
+            border-color: #4fc3f7; 
+        }
+        .concept-icon { font-size: 3rem; color: #4fc3f7; margin-bottom: 20px; }
+        .concept-title { font-weight: bold; color: white; margin-bottom: 12px; font-size: 1.2rem; }
+        .concept-text { color: #ccc; font-size: 0.95rem; line-height: 1.6; }
+        
+        /* BOTÓN MEJORADO */
+        .start-btn {
+            background: linear-gradient(45deg, #306998, #ffd43b);
+            color: white; padding: 12px 40px; border: none; border-radius: 50px;
+            font-size: 1.1rem; font-weight: bold; cursor: pointer; 
+            display: block; margin: 40px auto; width: fit-content;
+            box-shadow: 0 4px 15px rgba(48, 105, 152, 0.4); transition: transform 0.2s;
+        }
+        .start-btn:hover { transform: scale(1.05); }
+
+        /* BARRA MEJORADA */
+        #progress-container { 
+            margin: 20px auto; max-width: 600px; 
+            background: rgba(255,255,255,0.05); padding: 15px; 
+            border-radius: 15px; border: 1px solid rgba(255,255,255,0.1); 
+        }
+        .progress-track { background: rgba(0,0,0,0.4); height: 10px; border-radius: 10px; overflow: hidden; margin-top: 10px;}
+        .progress-fill { height: 100%; width: 0%; background: linear-gradient(90deg, #306998, #ffd43b); transition: width 0.4s; }
+    </style>
 </head>
 <body style="background: #0b0b0e; color: white;">
-    
     <nav style="padding: 20px; background: rgba(11,11,14,0.95);">
-        <a href="../contenidos.html" style="color: white; text-decoration: none; font-weight: bold;">
-            <i class="fas fa-arrow-left"></i> Volver a Cursos
-        </a>
+        <a href="../contenidos.html" style="color: white; text-decoration: none; font-weight: bold;"><i class="fas fa-arrow-left"></i> Volver a Cursos</a>
     </nav>
 
-    <div class="quiz-page-container" style="max-width: 800px; margin: 50px auto; padding: 20px;">
-        
-        <div style="text-align: center; margin-bottom: 40px;">
-            <i class="fab fa-python" style="font-size: 4rem; color: #3498db;"></i>
-            <h1 style="color: #3498db;">Python Backend</h1>
-            <p>Desarrollo robusto, IA y Ciencia de Datos.</p>
+    <div class="quiz-page-container" style="max-width: 1400px; margin: 40px auto; padding: 20px;">
+        <div style="text-align: center; margin-bottom: 50px;">
+            <i class="fab fa-python" style="font-size: 5rem; color: #306998; text-shadow: 0 0 10px #ffd43b;"></i>
+            <h1 style="font-size: 3rem; margin-top: 15px;">Maestro Python</h1>
+            <p style="color: #aaa; font-size: 1.1rem;">Sintaxis limpia y poderosa.</p>
         </div>
 
-        <div id="quiz-container"></div>
-        <div id="quiz-result" style="display: none; margin-top: 30px;"></div>
+        <div id="study-guide">
+            <div class="concept-grid">
+                <div class="concept-card">
+                    <div class="concept-icon"><i class="fas fa-print"></i></div>
+                    <div class="concept-title">1. Imprimir</div>
+                    <div class="concept-text">Usa la función <code>print('Texto')</code>. Es la forma más básica de mostrar información en la consola.</div>
+                </div>
+                <div class="concept-card">
+                    <div class="concept-icon"><i class="fas fa-hashtag"></i></div>
+                    <div class="concept-title">2. Comentarios</div>
+                    <div class="concept-text">Todo lo que escribas después de un símbolo <strong>#</strong> será ignorado por Python. Úsalo para notas.</div>
+                </div>
+                <div class="concept-card">
+                    <div class="concept-icon"><i class="fas fa-file-alt"></i></div>
+                    <div class="concept-title">3. Extensión</div>
+                    <div class="concept-text">Los archivos de código fuente Python deben guardarse con la extensión <strong>.py</strong> para ejecutarse.</div>
+                </div>
+                <div class="concept-card">
+                    <div class="concept-icon"><i class="fas fa-cube"></i></div>
+                    <div class="concept-title">4. Variables</div>
+                    <div class="concept-text">No necesitas declarar el tipo (int, string). Solo asigna el valor: <code>x = 5</code> y Python entiende qué es.</div>
+                </div>
+                <div class="concept-card">
+                    <div class="concept-icon"><i class="fas fa-indent"></i></div>
+                    <div class="concept-title">5. Indentación</div>
+                    <div class="concept-text">Vital en Python. Usa <strong>sangría</strong> (espacios) para definir qué código está dentro de un bucle o función.</div>
+                </div>
+                <div class="concept-card">
+                    <div class="concept-icon"><i class="fas fa-list"></i></div>
+                    <div class="concept-title">6. Listas</div>
+                    <div class="concept-text">Colecciones ordenadas y modificables. Se crean con corchetes cuadrados: <code>lista = [1, "texto", 3.5]</code>.</div>
+                </div>
+                <div class="concept-card">
+                    <div class="concept-icon"><i class="fas fa-equals"></i></div>
+                    <div class="concept-title">7. Comparación</div>
+                    <div class="concept-text">Un igual <code>=</code> asigna. Doble igual <code>==</code> compara igualdad. El operador <code>!=</code> es "diferente de".</div>
+                </div>
+                <div class="concept-card">
+                    <div class="concept-icon"><i class="fas fa-sync-alt"></i></div>
+                    <div class="concept-title">8. Bucle For</div>
+                    <div class="concept-text">Recorre listas fácilmente: <code>for item in lista:</code>. No usa contadores complejos como C o Java.</div>
+                </div>
+                <div class="concept-card">
+                    <div class="concept-icon"><i class="fas fa-code"></i></div>
+                    <div class="concept-title">9. Funciones</div>
+                    <div class="concept-text">Se definen con la palabra clave <strong>def</strong>. Ejemplo: <code>def saludar(): print("Hola")</code>.</div>
+                </div>
+                <div class="concept-card">
+                    <div class="concept-icon"><i class="fas fa-font"></i></div>
+                    <div class="concept-title">10. Mayúsculas</div>
+                    <div class="concept-text">Python es "Case Sensitive". La variable <code>Edad</code> es diferente de <code>edad</code>. Ten cuidado.</div>
+                </div>
+            </div>
+            <button onclick="empezarQuiz()" class="start-btn"><i class="fas fa-play"></i> INICIAR DESAFÍO</button>
+        </div>
 
+        <div id="progress-container" style="display: none;">
+            <div style="display:flex; justify-content:space-between; color:#ccc;"><span>Tu Progreso</span><span id="progress-text">0/10</span></div>
+            <div class="progress-track"><div id="progress-bar" class="progress-fill"></div></div>
+        </div>
+
+        <div id="quiz-container" style="display: none;"></div>
     </div>
 
     <script src="../../js/sounds.js"></script>
     <script src="../../js/quiz.js"></script>
-
     <script>
+        function empezarQuiz() {
+            document.getElementById('study-guide').style.display = 'none';
+            document.getElementById('quiz-container').style.display = 'block';
+            document.getElementById('progress-container').style.display = 'block';
+            cargarQuiz(preguntasPython, 'python');
+        }
+
         const preguntasPython = [
-            { pregunta: "¿Cómo imprimes texto en consola?", opciones: ["echo('Hola')", "print('Hola')", "console.log('Hola')"], correcta: 1, explicacion: "La función print() envía mensajes a la salida estándar." },
-            { pregunta: "¿Cómo se crean comentarios en Python?", opciones: ["// Comentario", "/* Comentario */", "# Comentario"], correcta: 2, explicacion: "El símbolo # inicia un comentario de una línea en Python." },
-            { pregunta: "¿Extensión correcta de archivos Python?", opciones: [".py", ".pt", ".python"], correcta: 0, explicacion: "Los scripts de Python tienen la extensión .py." },
-            { pregunta: "¿Cómo defines una función?", opciones: ["func miFuncion():", "def miFuncion():", "function miFuncion():"], correcta: 1, explicacion: "La palabra clave 'def' se usa para definir funciones." },
-            { pregunta: "¿Qué operador se usa para comparar igualdad?", opciones: ["=", "==", "<>"], correcta: 1, explicacion: "El operador == compara si dos valores son iguales." },
-            { pregunta: "¿Cómo inicias un bucle While?", opciones: ["while x < 5:", "while (x < 5)", "x < 5 while"], correcta: 0, explicacion: "La sintaxis es 'while condicion:', no olvides los dos puntos." },
-            { pregunta: "¿Qué es una lista en Python?", opciones: ["{1,2,3}", "[1,2,3]", "(1,2,3)"], correcta: 1, explicacion: "Las listas se definen con corchetes []." },
-            { pregunta: "¿Cómo obtienes la longitud de una lista 'L'?", opciones: ["L.length", "len(L)", "count(L)"], correcta: 1, explicacion: "La función len() devuelve el número de elementos." },
-            { pregunta: "¿Qué palabra clave importa librerías?", opciones: ["include", "import", "using"], correcta: 1, explicacion: "Se usa 'import' para traer módulos externos." },
-            { pregunta: "¿Python distingue mayúsculas de minúsculas?", opciones: ["Sí", "No", "Depende del sistema"], correcta: 0, explicacion: "Sí, 'Variable' y 'variable' serían dos cosas distintas (Case Sensitive)." }
+            { pregunta: "¿Cuál es la sintaxis correcta para imprimir en consola?", opciones: ["echo 'Hola'", "print('Hola')", "console.log('Hola')"], correcta: 1, explicacion: "En Python se utiliza la función print()." },
+            { pregunta: "¿Cómo se crean los comentarios en Python?", opciones: ["// comentario", "# comentario", "/* comentario */"], correcta: 1, explicacion: "Python usa el símbolo # para comentarios." },
+            { pregunta: "¿Qué extensión tienen los archivos Python?", opciones: [".pyt", ".pt", ".py"], correcta: 2, explicacion: "Los scripts de Python terminan en .py." },
+            { pregunta: "¿Cómo se crea una variable?", opciones: ["var x = 5", "x = 5", "int x = 5"], correcta: 1, explicacion: "Python no necesita declarar el tipo (var, int), solo asignas valor." },
+            { pregunta: "¿Qué se usa para definir un bloque de código (ej: dentro de if)?", opciones: ["Llaves {}", "Indentación (sangría)", "Paréntesis ()"], correcta: 1, explicacion: "Python es estricto con la indentación para definir bloques." },
+            { pregunta: "¿Cómo creas una lista?", opciones: ["lista = (1, 2, 3)", "lista = [1, 2, 3]", "lista = {1, 2, 3}"], correcta: 1, explicacion: "Las listas usan corchetes [ ]. Los paréntesis son tuplas." },
+            { pregunta: "¿Cuál es el operador para 'igual a'?", opciones: ["=", "==", "<>"], correcta: 1, explicacion: "== compara igualdad, = asigna valor." },
+            { pregunta: "¿Cómo inicias un bucle 'for'?", opciones: ["for x in lista:", "for (x=0; x<5; x++)", "foreach x in lista"], correcta: 0, explicacion: "La sintaxis es: for elemento in iterable:" },
+            { pregunta: "¿Qué palabra clave define una función?", opciones: ["func", "def", "function"], correcta: 1, explicacion: "Se usa 'def' seguido del nombre de la función." },
+            { pregunta: "¿Es Python sensible a mayúsculas y minúsculas?", opciones: ["Sí", "No", "Solo en Windows"], correcta: 0, explicacion: "Sí, 'Var' y 'var' serían variables diferentes." }
         ];
-        document.addEventListener('DOMContentLoaded', () => cargarQuiz(preguntasPython, 'python'));
     </script>
 </body>
 </html>

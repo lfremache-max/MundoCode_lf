@@ -6,19 +6,19 @@
     <title>MundoCODE - Comunidad</title>
     
     <link rel="stylesheet" href="../Css/style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
 
     <style>
-        /* Mantengo tus estilos de emergencia para coherencia visual */
         * { margin: 0; padding: 0; box-sizing: border-box; font-family: sans-serif; }
 
         body {
             background-color: #0d0d1f; 
             background: radial-gradient(circle at 50% 50%, #1a1a40 0%, #050510 100%);
             color: white;
-            height: 100vh;
+            min-height: 100vh; /* Cambiado a min-height para permitir scroll */
             display: flex;
             flex-direction: column;
-            overflow: hidden;
+            overflow-x: hidden; /* Solo ocultar horizontal */
         }
 
         header {
@@ -30,21 +30,56 @@
             z-index: 1000;
         }
 
-        .logo { font-size: 24px; font-weight: 800; color: #fff; text-decoration: none; }
+        /* --- Contenedor del Logo y Volver --- */
+        .nav-brand {
+            display: flex;
+            align-items: center;
+            position: relative;
+        }
+
+        .btn-volver {
+            display: flex;
+            align-items: center;
+            gap: 5px;
+            color: #00aaff;
+            text-decoration: none;
+            font-size: 0.85rem;
+            font-weight: 600;
+            padding: 4px 10px;
+            border: 1px solid rgba(0, 170, 255, 0.4);
+            border-radius: 15px;
+            background: rgba(0, 170, 255, 0.1);
+            transition: all 0.3s ease;
+            margin-right: 15px;
+        }
+
+        .btn-volver:hover {
+            background: #00aaff;
+            color: white;
+            box-shadow: 0 0 10px rgba(0, 170, 255, 0.5);
+        }
+
+        .logo { 
+            font-size: 24px; 
+            font-weight: 800; 
+            color: #fff; 
+            text-decoration: none;
+        }
         .logo span { color: #00aaff; }
 
+        /* --- Resto de la navegación --- */
         nav { display: flex; align-items: center; gap: 20px; }
         .nav-link { color: #ccc; text-decoration: none; font-weight: 500; font-size: 16px; }
         .nav-link:hover { color: #fff; }
         .nav-link.active { color: #00aaff; font-weight: 700; }
-
         .divider { height: 20px; width: 1px; background-color: #444; margin: 0 10px; }
 
+        /* --- Botones --- */
         .btn { padding: 10px 25px; border-radius: 50px; text-decoration: none; font-weight: 600; font-size: 14px; transition: transform 0.2s; display: inline-block; }
         .btn-outline { border: 1px solid #00aaff; color: #fff; }
         .btn-primary { background: linear-gradient(90deg, #00c6ff 0%, #7b2ff7 100%); border: none; color: white; }
 
-        /* Contenido de Comunidad */
+        /* --- Tarjeta de Comunidad --- */
         .comunidad-container {
             flex: 1;
             display: flex;
@@ -52,7 +87,8 @@
             justify-content: center;
             align-items: center;
             text-align: center;
-            padding: 0 20px;
+            padding: 20px;
+            width: 100%;
         }
 
         .card-comunidad {
@@ -61,6 +97,7 @@
             border-radius: 20px;
             padding: 40px;
             max-width: 800px;
+            width: 100%; /* Asegura que no se desborde */
             backdrop-filter: blur(10px);
         }
 
@@ -79,15 +116,59 @@
             padding: 15px 25px;
             border-radius: 12px;
             border: 1px solid rgba(0, 210, 255, 0.3);
+            min-width: 180px;
         }
 
         .stat-item span { display: block; font-size: 1.5rem; font-weight: 800; color: #00aaff; }
+
+        /* --- RESPONSIVE PARA CELULAR --- */
+        @media (max-width: 768px) {
+            header {
+                flex-direction: column;
+                padding: 15px;
+                gap: 15px;
+            }
+            
+            nav {
+                flex-wrap: wrap;
+                justify-content: center;
+                gap: 10px;
+            }
+
+            .nav-brand { margin-bottom: 10px; }
+            .divider { display: none; } /* Ocultar divisor en móvil */
+            
+            h1 { font-size: 2rem; }
+            
+            .card-comunidad {
+                padding: 20px;
+            }
+            
+            .stats {
+                flex-direction: column; /* Apilar estadísticas */
+                gap: 15px;
+                width: 100%;
+            }
+            
+            .stat-item {
+                width: 100%;
+                min-width: auto;
+            }
+            
+            .btn { width: 100%; text-align: center; margin-bottom: 5px; }
+        }
     </style>
 </head>
 <body>
 
     <header>
-        <a href="principal.html" class="logo">MundoCODE<span>.</span></a>
+        <div class="nav-brand">
+            <a href="principal.html" class="btn-volver">
+                <i class="fas fa-arrow-left"></i> Volver
+            </a>
+            <a href="principal.html" class="logo">MundoCODE<span>.</span></a>
+        </div>
+        
         <nav>
             <a href="contenidos.html" class="nav-link">Cursos</a>
             <a href="comunidad.html" class="nav-link active">Comunidad</a>
@@ -101,19 +182,26 @@
         <div class="card-comunidad">
             <h1>Comunidad <span>MundoCODE</span></h1>
             <p style="color: #a0a0b0; font-size: 1.2rem; margin-bottom: 30px;">
-                Únete a miles de desarrolladores, comparte tus proyectos y resuelve dudas en tiempo real.
+                Únete a la red de estudiantes de programación, comparte conocimientos y domina el futuro.
             </p>
             
             <div class="stats">
-                <div class="stat-item"><span>+5k</span> Miembros</div>
-                <div class="stat-item"><span>+120</span> Proyectos hoy</div>
-                <div class="stat-item"><span>24/7</span> Soporte</div>
+                <div class="stat-item"><span id="count-miembros">12</span> Personas registradas</div>
+                <div class="stat-item"><span>+10k</span> Líneas de Código</div>
+                <div class="stat-item"><span>100%</span> Gratuito</div>
             </div>
 
             <br><br>
-            <a href="https://discord.gg/invite/MundoCODE" target="_blank" class="btn btn-primary" style="padding: 15px 40px; font-size: 1.1rem;">UNIRSE AL DISCORD</a>
+            <a href="https://discord.gg/RuTCWzJK" target="_blank" class="btn btn-primary" style="padding: 15px 40px; font-size: 1.1rem; width: 100%; display:block;">UNIRSE AL DISCORD</a>
         </div>
     </main>
+
+    <script>
+        window.onload = function() {
+            let totalRegistrados = localStorage.getItem('miembrosMundoCODE') || 12;
+            document.getElementById('count-miembros').innerText = "+" + totalRegistrados;
+        };
+    </script>
 
 </body>
 </html>
