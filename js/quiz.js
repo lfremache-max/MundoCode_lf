@@ -83,7 +83,7 @@ function verificarLogros() {
             setTimeout(() => {
                 window.parent.postMessage({ tipo: 'LOGRO_DESBLOQUEADO', mensaje: txt }, '*');
             }, delay);
-            delay += 600; // Espaciado entre envíos
+            delay += 600; 
         }
     };
 
@@ -96,10 +96,21 @@ function mostrarResultadoFinal() {
     if(preguntasContestadas < totalPreguntas) return alert("Responde todo");
     const container = document.getElementById('quiz-container');
     const nota = (score / totalPreguntas) * 10;
+    
     container.innerHTML = `<div class="result-card" style="text-align:center; padding:40px; background:#111; border-radius:20px; border:2px solid ${nota >= 7 ? '#2ed573' : '#ff4757'}">
         <h2 style="color:${nota >= 7 ? '#2ed573' : '#ff4757'}">${nota >= 7 ? '¡Aprobado!' : 'Sigue Intentando'}</h2>
         <p style="font-size:2rem; color:white;">Nota: ${nota.toFixed(1)}/10</p>
         <br><button onclick="${nota >= 7 ? "location.href='../contenidos.html'" : "location.reload()"}" class="btn-final">${nota >= 7 ? 'Volver al Menú' : 'Reintentar'}</button>
     </div>`;
-    if (nota >= 7) { playSound('fanfare'); verificarLogros(); localStorage.setItem('curso_completado_' + quizIdActual, 'true'); }
+
+    if (nota >= 7) { 
+        playSound('fanfare'); 
+        verificarLogros(); 
+        
+        // CORRECCIÓN CLAVE: Nos aseguramos de que si el ID es 'javascript', se guarde como 'js'
+        let idFinal = quizIdActual;
+        if(idFinal === 'javascript') idFinal = 'js';
+        
+        localStorage.setItem('curso_completado_' + idFinal, 'true'); 
+    }
 }

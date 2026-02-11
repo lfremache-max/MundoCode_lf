@@ -16,13 +16,28 @@
             box-shadow: 0 4px 15px rgba(46, 213, 115, 0.4);
         }
         
+        /* --- ESTILOS DEL PANEL DE CERTIFICADO (BLOQUEADO/DESBLOQUEADO) --- */
         #cert-panel {
-            display: none;
             margin-top: 40px;
             padding: 30px;
-            background: linear-gradient(45deg, #ffd700, #ffa500);
             border-radius: 15px;
             text-align: center;
+            transition: all 0.5s ease;
+        }
+
+        /* Estado Bloqueado: Gris y opaco */
+        .cert-locked {
+            background: rgba(255, 255, 255, 0.05);
+            border: 2px dashed #444;
+            color: #666;
+            cursor: not-allowed;
+            filter: grayscale(1);
+        }
+
+        /* Estado Desbloqueado: Dorado y brillante */
+        .cert-unlocked {
+            background: linear-gradient(45deg, #ffd700, #ffa500);
+            border: 2px solid #fff;
             color: black;
             box-shadow: 0 0 30px rgba(255, 215, 0, 0.3);
         }
@@ -47,7 +62,7 @@
             display: flex;
             flex-direction: column;
             align-items: center;
-            width: 110px; /* Tamaño original */
+            width: 110px;
             padding: 15px;
             background: #111;
             border: 1px solid #222;
@@ -56,24 +71,11 @@
             transition: all 0.6s cubic-bezier(0.175, 0.885, 0.32, 1.275);
         }
 
-        .badge i {
-            font-size: 2rem; /* Tamaño de icono original */
-            margin-bottom: 8px;
-        }
+        .badge i { font-size: 2rem; margin-bottom: 8px; }
+        .badge span { font-size: 0.7rem; font-weight: bold; color: #eee; }
+        .badge.unlocked { filter: grayscale(0) opacity(1); transform: scale(1.05); border-color: rgba(255, 255, 255, 0.2); }
 
-        .badge span {
-            font-size: 0.7rem; /* Tamaño de letra original */
-            font-weight: bold;
-            color: #eee;
-        }
-
-        .badge.unlocked {
-            filter: grayscale(0) opacity(1);
-            transform: scale(1.05);
-            border-color: rgba(255, 255, 255, 0.2);
-        }
-
-        /* Colores Neón */
+        /* Colores Neón Logros */
         #badge-velocista.unlocked i { color: #00d2d3; text-shadow: 0 0 15px #00d2d3; }
         #badge-cerebro.unlocked i { color: #f1c40f; text-shadow: 0 0 15px #f1c40f; }
         #badge-noctambulo.unlocked i { color: #a29bfe; text-shadow: 0 0 15px #a29bfe; } 
@@ -164,10 +166,11 @@
             </div>
         </div>
 
-        <div id="cert-panel">
-            <i class="fas fa-trophy" style="font-size: 3rem; margin-bottom: 10px;"></i>
-            <h2>¡Felicidades! Eres Full Stack Developer</h2>
-            <a href="certificado.html" style="background:black; color:white; padding:10px 30px; border-radius:20px; text-decoration:none; font-weight:bold; display:inline-block; margin-top:15px;">DESCARGAR CERTIFICADO</a>
+        <div id="cert-panel" class="cert-locked">
+            <i id="cert-icon" class="fas fa-lock" style="font-size: 3rem; margin-bottom: 10px;"></i>
+            <h2 id="cert-title">Certificado Bloqueado</h2>
+            <p id="cert-msg">Debes completar los 6 cursos para obtener tu diploma.</p>
+            <a href="certificado.html" id="btn-cert-link" style="background:black; color:white; padding:10px 30px; border-radius:20px; text-decoration:none; font-weight:bold; display:none; margin-top:15px;">DESCARGAR CERTIFICADO</a>
         </div>
     </div>
 
@@ -192,7 +195,6 @@
             toast.style.animation = 'none';
             toast.offsetHeight;
             toast.style.animation = 'slideIn 0.5s ease forwards';
-
             setTimeout(() => {
                 toast.style.display = 'none';
                 mostrandoToast = false;
@@ -200,7 +202,6 @@
             }, 3500);
         }
 
-        // Esta función vigila el localStorage y lanza los mensajes que faltan
         function verificarLogros() {
             const lista = [
                 { id: 'velocista', txt: "¡Logro Desbloqueado: Velocista! ⚡" },
@@ -208,7 +209,6 @@
                 { id: 'noctambulo', txt: "¡Logro Desbloqueado: Noctámbulo! 🌙" },
                 { id: 'explorador', txt: "¡Logro Desbloqueado: Explorador! 🧭" }
             ];
-
             lista.forEach(logro => {
                 const el = document.getElementById('badge-' + logro.id);
                 if (localStorage.getItem('badge_' + logro.id) === 'true' && !el.classList.contains('unlocked')) {
@@ -224,9 +224,9 @@
 
         document.addEventListener('DOMContentLoaded', () => {
             setInterval(verificarLogros, 1000);
-
             const cursos = ['html', 'css', 'js', 'python', 'sql', 'git'];
             let aprobados = 0;
+            
             cursos.forEach(id => {
                 if (localStorage.getItem('curso_completado_' + id) === 'true') {
                     aprobados++;
@@ -240,7 +240,27 @@
                     if(btn) btn.addEventListener('click', () => localStorage.setItem('visto_' + id, 'true'));
                 }
             });
-            if (aprobados === 6) document.getElementById('cert-panel').style.display = 'block';
+
+            // LOGICA DEL CERTIFICADO SIEMPRE VISIBLE
+            const panel = document.getElementById('cert-panel');
+            const icon = document.getElementById('cert-icon');
+            const title = document.getElementById('cert-title');
+            const msg = document.getElementById('cert-msg');
+            const btnLink = document.getElementById('btn-cert-link');
+
+            if (aprobados === 6) {
+                panel.className = "cert-unlocked";
+                icon.className = "fas fa-trophy";
+                title.innerText = "¡Felicidades! Eres Full Stack Developer";
+                msg.innerText = "Has demostrado gran maestría. Tu diploma está listo.";
+                btnLink.style.display = "inline-block";
+            } else {
+                panel.addEventListener('click', () => {
+                    if(panel.classList.contains('cert-locked')) {
+                        mostrarToast("¡Sigue esforzándote! Te faltan cursos por completar 📚");
+                    }
+                });
+            }
         });
     </script>
 </body>
