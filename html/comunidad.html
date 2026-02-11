@@ -9,16 +9,17 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
 
     <style>
+        /* ESTILOS BASE */
         * { margin: 0; padding: 0; box-sizing: border-box; font-family: sans-serif; }
 
         body {
             background-color: #0d0d1f; 
             background: radial-gradient(circle at 50% 50%, #1a1a40 0%, #050510 100%);
             color: white;
-            min-height: 100vh; /* Cambiado a min-height para permitir scroll */
+            min-height: 100vh;
             display: flex;
             flex-direction: column;
-            overflow-x: hidden; /* Solo ocultar horizontal */
+            overflow-x: hidden;
         }
 
         header {
@@ -28,13 +29,13 @@
             padding: 20px 50px;
             width: 100%;
             z-index: 1000;
+            animation: fadeInDown 0.8s ease forwards;
         }
 
         /* --- Contenedor del Logo y Volver --- */
         .nav-brand {
             display: flex;
             align-items: center;
-            position: relative;
         }
 
         .btn-volver {
@@ -45,12 +46,12 @@
             text-decoration: none;
             font-size: 0.85rem;
             font-weight: 600;
-            padding: 4px 10px;
+            padding: 4px 12px;
             border: 1px solid rgba(0, 170, 255, 0.4);
             border-radius: 15px;
             background: rgba(0, 170, 255, 0.1);
             transition: all 0.3s ease;
-            margin-right: 15px;
+            margin-right: 20px;
         }
 
         .btn-volver:hover {
@@ -67,17 +68,38 @@
         }
         .logo span { color: #00aaff; }
 
-        /* --- Resto de la navegación --- */
-        nav { display: flex; align-items: center; gap: 20px; }
-        .nav-link { color: #ccc; text-decoration: none; font-weight: 500; font-size: 16px; }
-        .nav-link:hover { color: #fff; }
+        /* --- Navegación Limpia --- */
+        nav { display: flex; align-items: center; gap: 30px; }
+        
+        .nav-link { 
+            color: #ccc; 
+            text-decoration: none; 
+            font-weight: 500; 
+            font-size: 16px; 
+            transition: 0.3s;
+        }
+        
         .nav-link.active { color: #00aaff; font-weight: 700; }
-        .divider { height: 20px; width: 1px; background-color: #444; margin: 0 10px; }
 
-        /* --- Botones --- */
-        .btn { padding: 10px 25px; border-radius: 50px; text-decoration: none; font-weight: 600; font-size: 14px; transition: transform 0.2s; display: inline-block; }
-        .btn-outline { border: 1px solid #00aaff; color: #fff; }
-        .btn-primary { background: linear-gradient(90deg, #00c6ff 0%, #7b2ff7 100%); border: none; color: white; }
+        /* BOTÓN ACCESO UNIFICADO */
+        .btn-acceso {
+            background: transparent;
+            border: 1px solid #7b2ff7; 
+            color: white;
+            padding: 8px 25px;
+            border-radius: 50px;
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 14px;
+            letter-spacing: 1px;
+            transition: all 0.3s ease;
+        }
+
+        .btn-acceso:hover {
+            background: #7b2ff7;
+            box-shadow: 0 0 15px rgba(123, 47, 247, 0.4);
+            transform: translateY(-2px);
+        }
 
         /* --- Tarjeta de Comunidad --- */
         .comunidad-container {
@@ -88,7 +110,7 @@
             align-items: center;
             text-align: center;
             padding: 20px;
-            width: 100%;
+            animation: fadeInUp 1s ease 0.2s both;
         }
 
         .card-comunidad {
@@ -97,7 +119,7 @@
             border-radius: 20px;
             padding: 40px;
             max-width: 800px;
-            width: 100%; /* Asegura que no se desborde */
+            width: 100%;
             backdrop-filter: blur(10px);
         }
 
@@ -106,56 +128,53 @@
         
         .stats {
             display: flex;
-            gap: 30px;
+            gap: 20px;
             margin-top: 30px;
             justify-content: center;
         }
 
         .stat-item {
             background: rgba(0, 210, 255, 0.1);
-            padding: 15px 25px;
+            padding: 15px;
             border-radius: 12px;
             border: 1px solid rgba(0, 210, 255, 0.3);
-            min-width: 180px;
+            flex: 1;
         }
 
         .stat-item span { display: block; font-size: 1.5rem; font-weight: 800; color: #00aaff; }
 
-        /* --- RESPONSIVE PARA CELULAR --- */
-        @media (max-width: 768px) {
-            header {
-                flex-direction: column;
-                padding: 15px;
-                gap: 15px;
-            }
-            
-            nav {
-                flex-wrap: wrap;
-                justify-content: center;
-                gap: 10px;
-            }
+        .btn-discord {
+            background: linear-gradient(90deg, #00c6ff 0%, #7b2ff7 100%);
+            border: none;
+            color: white;
+            padding: 15px;
+            border-radius: 50px;
+            text-decoration: none;
+            font-weight: 700;
+            font-size: 1.1rem;
+            display: block;
+            margin-top: 40px;
+            transition: 0.3s;
+        }
 
-            .nav-brand { margin-bottom: 10px; }
-            .divider { display: none; } /* Ocultar divisor en móvil */
-            
-            h1 { font-size: 2rem; }
-            
-            .card-comunidad {
-                padding: 20px;
-            }
-            
-            .stats {
-                flex-direction: column; /* Apilar estadísticas */
-                gap: 15px;
-                width: 100%;
-            }
-            
-            .stat-item {
-                width: 100%;
-                min-width: auto;
-            }
-            
-            .btn { width: 100%; text-align: center; margin-bottom: 5px; }
+        .btn-discord:hover { transform: scale(1.02); box-shadow: 0 5px 20px rgba(123, 47, 247, 0.5); }
+
+        /* ANIMACIONES */
+        @keyframes fadeInDown {
+            from { opacity: 0; transform: translateY(-20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        @keyframes fadeInUp {
+            from { opacity: 0; transform: translateY(30px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        @media (max-width: 768px) {
+            header { flex-direction: column; padding: 20px; gap: 15px; }
+            nav { gap: 15px; }
+            h1 { font-size: 2.2rem; }
+            .stats { flex-direction: column; }
         }
     </style>
 </head>
@@ -170,29 +189,25 @@
         </div>
         
         <nav>
-            <a href="contenidos.html" class="nav-link">Cursos</a>
             <a href="comunidad.html" class="nav-link active">Comunidad</a>
-            <div class="divider"></div>
-            <a href="registro.html" class="btn btn-outline">Iniciar Sesión</a>
-            <a href="registro.html" class="btn btn-primary">Registrarse</a>
+            <a href="registro.html" class="btn-acceso">ACCESO</a>
         </nav>
     </header>
 
     <main class="comunidad-container">
         <div class="card-comunidad">
             <h1>Comunidad <span>MundoCODE</span></h1>
-            <p style="color: #a0a0b0; font-size: 1.2rem; margin-bottom: 30px;">
+            <p style="color: #a0a0b0; font-size: 1.1rem; margin-bottom: 20px;">
                 Únete a la red de estudiantes de programación, comparte conocimientos y domina el futuro.
             </p>
             
             <div class="stats">
-                <div class="stat-item"><span id="count-miembros">12</span> Personas registradas</div>
+                <div class="stat-item"><span id="count-miembros">+12</span> Personas registradas</div>
                 <div class="stat-item"><span>+10k</span> Líneas de Código</div>
                 <div class="stat-item"><span>100%</span> Gratuito</div>
             </div>
 
-            <br><br>
-            <a href="https://discord.gg/RuTCWzJK" target="_blank" class="btn btn-primary" style="padding: 15px 40px; font-size: 1.1rem; width: 100%; display:block;">UNIRSE AL DISCORD</a>
+            <a href="https://discord.gg/RuTCWzJK" target="_blank" class="btn-discord">UNIRSE AL DISCORD</a>
         </div>
     </main>
 

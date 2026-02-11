@@ -443,3 +443,48 @@ input { background: transparent; border: none; outline: none; color: var(--text-
     margin-left: 10px;
     cursor: pointer;
 }
+
+/* Animación para que la tarjeta aparezca suavemente desde abajo */
+.card-comunidad {
+    animation: fadeInUp 0.8s ease-out forwards;
+}
+
+/* Animación escalonada para las estadísticas (aparecen una por una) */
+.stat-item {
+    opacity: 0;
+    animation: fadeInUp 0.6s ease-out forwards;
+}
+
+.stat-item:nth-child(1) { animation-delay: 0.3s; }
+.stat-item:nth-child(2) { animation-delay: 0.5s; }
+.stat-item:nth-child(3) { animation-delay: 0.7s; }
+
+/* Resplandor animado para el botón de Discord */
+.btn-discord {
+    position: relative;
+    overflow: hidden;
+}
+
+.btn-discord::after {
+    content: '';
+    position: absolute;
+    top: -50%;
+    left: -60%;
+    width: 20%;
+    height: 200%;
+    background: rgba(255, 255, 255, 0.2);
+    transform: rotate(30deg);
+    transition: none;
+    animation: shine 3s infinite;
+}
+
+@keyframes fadeInUp {
+    from { opacity: 0; transform: translateY(30px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes shine {
+    0% { left: -60%; }
+    20% { left: 120%; }
+    100% { left: 120%; }
+}
