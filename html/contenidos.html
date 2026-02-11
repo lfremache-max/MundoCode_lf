@@ -7,7 +7,7 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
     <link rel="stylesheet" href="../Css/style.css">
     <style>
-        /* Estilos específicos para el estado COMPLETADO */
+        /* Estilos de botones de estado */
         .btn-completado {
             background-color: #2ed573 !important;
             color: #fff !important;
@@ -25,25 +25,15 @@
             text-align: center;
             color: black;
             box-shadow: 0 0 30px rgba(255, 215, 0, 0.3);
-            animation: slideUp 0.5s ease;
         }
 
-        /* --- ESTILOS DE LOS LOGROS ACTUALIZADOS --- */
+        /* DISEÑO DE LOGROS (Restaurado a tamaño original) */
         .badges-wrapper {
             text-align: center;
             margin-bottom: 40px;
             padding: 20px;
             background: rgba(255, 255, 255, 0.03);
             border-radius: 15px;
-            border: 1px solid rgba(255, 255, 255, 0.05);
-        }
-
-        .badges-title {
-            font-size: 0.9rem;
-            color: #888;
-            text-transform: uppercase;
-            letter-spacing: 2px;
-            margin-bottom: 20px;
         }
 
         .badges-container {
@@ -57,7 +47,7 @@
             display: flex;
             flex-direction: column;
             align-items: center;
-            width: 110px;
+            width: 110px; /* Tamaño original */
             padding: 15px;
             background: #111;
             border: 1px solid #222;
@@ -66,33 +56,30 @@
             transition: all 0.6s cubic-bezier(0.175, 0.885, 0.32, 1.275);
         }
 
+        .badge i {
+            font-size: 2rem; /* Tamaño de icono original */
+            margin-bottom: 8px;
+        }
+
+        .badge span {
+            font-size: 0.7rem; /* Tamaño de letra original */
+            font-weight: bold;
+            color: #eee;
+        }
+
         .badge.unlocked {
             filter: grayscale(0) opacity(1);
             transform: scale(1.05);
             border-color: rgba(255, 255, 255, 0.2);
-            box-shadow: 0 10px 20px rgba(0,0,0,0.4);
         }
 
-        .badge i {
-            font-size: 2rem;
-            margin-bottom: 8px;
-            color: #555;
-        }
-
-        .badge span {
-            font-size: 0.65rem;
-            font-weight: bold;
-            color: #eee;
-            text-align: center;
-        }
-
-        /* Colores Neón para los 4 logros */
+        /* Colores Neón */
         #badge-velocista.unlocked i { color: #00d2d3; text-shadow: 0 0 15px #00d2d3; }
         #badge-cerebro.unlocked i { color: #f1c40f; text-shadow: 0 0 15px #f1c40f; }
-        #badge-perfeccionista.unlocked i { color: #ff9f43; text-shadow: 0 0 15px #ff9f43; } 
+        #badge-noctambulo.unlocked i { color: #a29bfe; text-shadow: 0 0 15px #a29bfe; } 
         #badge-explorador.unlocked i { color: #54a0ff; text-shadow: 0 0 15px #54a0ff; }
 
-        /* ESTILO PARA EL MENSAJE FLOTANTE */
+        /* Notificaciones Toast */
         #toast {
             position: fixed;
             bottom: 20px;
@@ -105,11 +92,9 @@
             box-shadow: 0 10px 20px rgba(0,0,0,0.5);
             display: none;
             z-index: 1000;
-            animation: slideIn 0.5s ease forwards;
         }
 
-        @keyframes slideIn { from { transform: translateX(100%); } to { transform: translateX(0); } }
-        @keyframes slideUp { from { transform: translateY(20px); opacity: 0; } to { transform: translateY(0); opacity: 1; } }
+        @keyframes slideIn { from { transform: translateX(100%); opacity: 0; } to { transform: translateX(0); opacity: 1; } }
     </style>
 </head>
 <body>
@@ -120,7 +105,7 @@
             <button onclick="borrarProgreso()" style="background:red; color:white; border:none; padding:5px 10px; cursor:pointer; font-size:0.8rem;">
                 <i class="fas fa-trash"></i> REINICIAR PROGRESO
             </button>
-            <a href="inicio.html" class="btn-logout"><i class="fas fa-sign-out-alt"></i> Cerrar Sesión</a>
+            <a href="inicio.html" class="btn-logout">Cerrar Sesión</a>
         </div>
     </nav>
 
@@ -131,61 +116,49 @@
         </header>
 
         <div class="badges-wrapper">
-            <h3 class="badges-title">Tus Logros de Programador</h3>
+            <h3 class="badges-title" style="font-size: 0.9rem; color: #888; text-transform: uppercase; letter-spacing: 2px; margin-bottom: 20px;">Tus Logros de Programador</h3>
             <div class="badges-container">
-                <div id="badge-velocista" class="badge">
-                    <i class="fas fa-bolt"></i>
-                    <span>Velocista</span>
-                </div>
-                <div id="badge-cerebro" class="badge">
-                    <i class="fas fa-crown"></i>
-                    <span>Cerebro Oro</span>
-                </div>
-                <div id="badge-perfeccionista" class="badge">
-                    <i class="fas fa-star"></i>
-                    <span>Perfeccionista</span>
-                </div>
-                <div id="badge-explorador" class="badge">
-                    <i class="fas fa-compass"></i>
-                    <span>Explorador</span>
-                </div>
+                <div id="badge-velocista" class="badge"><i class="fas fa-bolt"></i><span>Velocista</span></div>
+                <div id="badge-cerebro" class="badge"><i class="fas fa-crown"></i><span>Cerebro Oro</span></div>
+                <div id="badge-noctambulo" class="badge"><i class="fas fa-moon"></i><span>Noctámbulo</span></div>
+                <div id="badge-explorador" class="badge"><i class="fas fa-compass"></i><span>Explorador</span></div>
             </div>
         </div>
 
         <div class="courses-grid">
             <div class="course-card">
                 <i class="fab fa-html5 course-icon"></i>
-                <h3 id="title-html">HTML5 Expert</h3>
+                <h3>HTML5 Expert</h3>
                 <p>Domina la estructura de la web y SEO.</p>
                 <a href="temas/html_intro.html" class="btn-card" id="btn-html">EMPEZAR</a>
             </div>
             <div class="course-card">
                 <i class="fab fa-css3-alt course-icon"></i>
-                <h3 id="title-css">Maestría CSS3</h3>
+                <h3>Maestría CSS3</h3>
                 <p>Diseño visual, Flexbox y Grid.</p>
                 <a href="temas/css_intro.html" class="btn-card" id="btn-css">EMPEZAR</a>
             </div>
             <div class="course-card">
                 <i class="fab fa-js course-icon"></i>
-                <h3 id="title-js">JavaScript</h3>
+                <h3>JavaScript</h3>
                 <p>Programación dinámica e interactividad.</p>
                 <a href="temas/js_intro.html" class="btn-card" id="btn-js">EMPEZAR</a>
             </div>
             <div class="course-card">
                 <i class="fab fa-python course-icon"></i>
-                <h3 id="title-python">Python Backend</h3>
+                <h3>Python Backend</h3>
                 <p>Desarrollo servidor y análisis de datos.</p>
                 <a href="temas/python_intro.html" class="btn-card" id="btn-python">EMPEZAR</a>
             </div>
             <div class="course-card">
                 <i class="fas fa-database course-icon"></i>
-                <h3 id="title-sql">SQL Data</h3>
+                <h3>SQL Data</h3>
                 <p>Gestión y consulta de Bases de Datos.</p>
                 <a href="temas/sql_intro.html" class="btn-card" id="btn-sql">EMPEZAR</a>
             </div>
             <div class="course-card">
                 <i class="fab fa-git-alt course-icon"></i>
-                <h3 id="title-git">Git Control</h3>
+                <h3>Git Control</h3>
                 <p>Repositorios, versiones y trabajo en equipo.</p>
                 <a href="temas/git_intro.html" class="btn-card" id="btn-git">EMPEZAR</a>
             </div>
@@ -194,113 +167,81 @@
         <div id="cert-panel">
             <i class="fas fa-trophy" style="font-size: 3rem; margin-bottom: 10px;"></i>
             <h2>¡Felicidades! Eres Full Stack Developer</h2>
-            <p>Has aprobado todos los módulos satisfactoriamente.</p>
-            <a href="certificado.html" style="background:black; color:white; padding:10px 30px; border-radius:20px; text-decoration:none; font-weight:bold; display:inline-block; margin-top:15px;">
-                DESCARGAR CERTIFICADO
-            </a>
+            <a href="certificado.html" style="background:black; color:white; padding:10px 30px; border-radius:20px; text-decoration:none; font-weight:bold; display:inline-block; margin-top:15px;">DESCARGAR CERTIFICADO</a>
         </div>
     </div>
 
     <div id="toast"></div>
 
     <script>
+        let colaMensajes = [];
+        let mostrandoToast = false;
+
         function mostrarToast(mensaje) {
+            colaMensajes.push(mensaje);
+            procesarCola();
+        }
+
+        function procesarCola() {
+            if (mostrandoToast || colaMensajes.length === 0) return;
+            mostrandoToast = true;
+            const mensaje = colaMensajes.shift();
             const toast = document.getElementById('toast');
             toast.innerText = mensaje;
             toast.style.display = 'block';
-            setTimeout(() => { toast.style.display = 'none'; }, 4000);
+            toast.style.animation = 'none';
+            toast.offsetHeight;
+            toast.style.animation = 'slideIn 0.5s ease forwards';
+
+            setTimeout(() => {
+                toast.style.display = 'none';
+                mostrandoToast = false;
+                procesarCola();
+            }, 3500);
+        }
+
+        // Esta función vigila el localStorage y lanza los mensajes que faltan
+        function verificarLogros() {
+            const lista = [
+                { id: 'velocista', txt: "¡Logro Desbloqueado: Velocista! ⚡" },
+                { id: 'cerebro', txt: "¡Logro Desbloqueado: Cerebro de Oro! 👑" },
+                { id: 'noctambulo', txt: "¡Logro Desbloqueado: Noctámbulo! 🌙" },
+                { id: 'explorador', txt: "¡Logro Desbloqueado: Explorador! 🧭" }
+            ];
+
+            lista.forEach(logro => {
+                const el = document.getElementById('badge-' + logro.id);
+                if (localStorage.getItem('badge_' + logro.id) === 'true' && !el.classList.contains('unlocked')) {
+                    el.classList.add('unlocked');
+                    mostrarToast(logro.txt);
+                }
+            });
         }
 
         function borrarProgreso() {
-            if(confirm("¿Seguro? Esto borrará tus aprobados y logros.")) {
-                localStorage.clear();
-                location.reload();
-            }
-        }
-
-        function actualizarLogros() {
-            if (localStorage.getItem('badge_velocista') === 'true') document.getElementById('badge-velocista').classList.add('unlocked');
-            if (localStorage.getItem('badge_cerebro') === 'true') document.getElementById('badge-cerebro').classList.add('unlocked');
-            if (localStorage.getItem('badge_perfeccionista') === 'true') document.getElementById('badge-perfeccionista').classList.add('unlocked');
-            if (localStorage.getItem('badge_explorador') === 'true') document.getElementById('badge-explorador').classList.add('unlocked');
-            
-            // Mensaje de felicitación total si tienes los 4
-            verificarTodosLosLogros();
-        }
-
-        function verificarTodosLosLogros() {
-            const l1 = localStorage.getItem('badge_velocista') === 'true';
-            const l2 = localStorage.getItem('badge_cerebro') === 'true';
-            const l3 = localStorage.getItem('badge_perfeccionista') === 'true';
-            const l4 = localStorage.getItem('badge_explorador') === 'true';
-            
-            if(l1 && l2 && l3 && l4 && localStorage.getItem('msg_final') !== 'true') {
-                localStorage.setItem('msg_final', 'true');
-                setTimeout(() => {
-                    alert("¡INCREÍBLE! Has desbloqueado TODOS los logros de MundoCODE. Eres un programador de élite. 🏆");
-                }, 1000);
-            }
+            if(confirm("¿Seguro?")) { localStorage.clear(); location.reload(); }
         }
 
         document.addEventListener('DOMContentLoaded', () => {
-            actualizarLogros();
+            setInterval(verificarLogros, 1000);
+
             const cursos = ['html', 'css', 'js', 'python', 'sql', 'git'];
-            let cursosAprobados = 0;
-            let excelentes = 0; // Notas >= 9
-
-            cursos.forEach(idCurso => {
-                let status = localStorage.getItem('curso_completado_' + idCurso + '_intro');
-                if(!status) status = localStorage.getItem('curso_completado_' + idCurso);
-
-                // Recuperar la nota
-                let nota = parseFloat(localStorage.getItem('nota_' + idCurso)) || 0;
-
-                if (status === 'true') {
-                    cursosAprobados++;
-                    
-                    // Condición para Perfeccionista
-                    if (nota >= 9) {
-                        excelentes++; 
-                    }
-
-                    const btn = document.getElementById('btn-' + idCurso);
-                    if (btn) {
+            let aprobados = 0;
+            cursos.forEach(id => {
+                if (localStorage.getItem('curso_completado_' + id) === 'true') {
+                    aprobados++;
+                    const btn = document.getElementById('btn-' + id);
+                    if(btn) {
                         btn.classList.add('btn-completado');
                         btn.innerHTML = '<i class="fas fa-check-circle"></i> COMPLETADO';
-                        btn.href = "#"; 
                     }
-                }
-
-                const btnOriginal = document.getElementById('btn-' + idCurso);
-                if (btnOriginal && !btnOriginal.classList.contains('btn-completado')) {
-                    btnOriginal.addEventListener('click', () => {
-                        localStorage.setItem('visto_' + idCurso, 'true');
-                        verificarExplorador();
-                    });
+                } else {
+                    const btn = document.getElementById('btn-' + id);
+                    if(btn) btn.addEventListener('click', () => localStorage.setItem('visto_' + id, 'true'));
                 }
             });
-
-            // LOGRO PERFECCIONISTA: Se activa solo con los 6 cursos con 9 o más
-            if (excelentes === 6 && localStorage.getItem('badge_perfeccionista') !== 'true') {
-                localStorage.setItem('badge_perfeccionista', 'true');
-                mostrarToast("¡Logro Desbloqueado: Perfeccionista! ⭐");
-                actualizarLogros();
-            }
-
-            if (cursosAprobados === 6) {
-                document.getElementById('cert-panel').style.display = 'block';
-            }
+            if (aprobados === 6) document.getElementById('cert-panel').style.display = 'block';
         });
-
-        function verificarExplorador() {
-            const cursos = ['html', 'css', 'js', 'python', 'sql', 'git'];
-            const todosVistos = cursos.every(c => localStorage.getItem('visto_' + c) === 'true' || localStorage.getItem('curso_completado_' + c) === 'true');
-            if (todosVistos && localStorage.getItem('badge_explorador') !== 'true') {
-                localStorage.setItem('badge_explorador', 'true');
-                mostrarToast("¡Logro Desbloqueado: Explorador! 🧭");
-                actualizarLogros();
-            }
-        }
     </script>
-</body> 
+</body>
 </html>
