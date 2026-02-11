@@ -355,3 +355,91 @@ input { background: transparent; border: none; outline: none; color: var(--text-
     .lado-mensaje { display: none; }
     .tarjeta-split { height: auto; padding: 20px; }
 }
+
+/* =========================================
+   NAVBAR UNIFICADO (Agrega esto al final)
+   ========================================= */
+
+/* Header Fijo y Transparente */
+.header-unificado {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 15px 40px;
+    z-index: 9999; /* Siempre encima de todo */
+    background: rgba(13, 13, 31, 0.9); /* Tu color de fondo con transparencia */
+    backdrop-filter: blur(10px); /* Efecto vidrio */
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+    height: 70px;
+}
+
+/* Espaciador para que el contenido no quede oculto bajo el header */
+.navbar-spacer {
+    height: 70px;
+    width: 100%;
+}
+
+/* Enlaces del menú */
+.nav-links {
+    display: flex;
+    gap: 20px;
+    align-items: center;
+}
+
+.nav-link-unified {
+    color: #ccc;
+    text-decoration: none;
+    font-weight: 500;
+    transition: color 0.3s;
+}
+
+.nav-link-unified:hover { color: #fff; }
+
+/* ESTILOS DEL BOTÓN CERTIFICADO */
+.btn-certificado {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    padding: 8px 15px;
+    border-radius: 50px;
+    text-decoration: none;
+    font-weight: bold;
+    font-size: 0.9rem;
+    transition: all 0.3s ease;
+}
+
+/* Estado: BLOQUEADO */
+.btn-locked {
+    background: rgba(255, 255, 255, 0.1);
+    color: #888;
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    cursor: not-allowed;
+}
+
+/* Estado: DESBLOQUEADO (Dorado) */
+.btn-unlocked {
+    background: linear-gradient(90deg, #ffd700, #ffaa00);
+    color: #000;
+    border: none;
+    box-shadow: 0 0 15px rgba(255, 215, 0, 0.5);
+    animation: pulse 2s infinite;
+}
+
+@keyframes pulse {
+    0% { box-shadow: 0 0 0 0 rgba(255, 215, 0, 0.4); }
+    70% { box-shadow: 0 0 0 10px rgba(255, 215, 0, 0); }
+    100% { box-shadow: 0 0 0 0 rgba(255, 215, 0, 0); }
+}
+
+/* Botón Salir */
+.btn-logout-nav {
+    color: #ff4757;
+    text-decoration: none;
+    font-size: 0.9rem;
+    margin-left: 10px;
+    cursor: pointer;
+}

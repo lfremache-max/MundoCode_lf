@@ -2,13 +2,12 @@
 <html lang="es">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>MundoCODE - HTML</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
     <link rel="stylesheet" href="../../Css/style.css">
     <link rel="stylesheet" href="../../Css/quiz_style.css">
     <style>
-        /* ESTILOS ESPECÍFICOS HTML */
+        /* ESTILOS ESPECÍFICOS HTML - TEMA NARANJA */
         .concept-grid { 
             display: grid; gap: 25px; margin-bottom: 40px; 
             grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
@@ -17,27 +16,29 @@
 
         .concept-card {
             background: rgba(255, 255, 255, 0.05);
+            /* Borde Naranja */
             border: 1px solid rgba(255, 87, 34, 0.3);
             padding: 30px 20px;
             border-radius: 16px;
             transition: all 0.3s ease;
             backdrop-filter: blur(5px);
             text-align: center;
-            min-height: 280px; /* Altura para navegación */
+            min-height: 280px; 
             display: flex; flex-direction: column; align-items: center;
         }
         .concept-card:hover { 
             transform: translateY(-8px); 
+            /* Sombra Naranja */
             box-shadow: 0 15px 30px rgba(255, 87, 34, 0.25); 
             border-color: #ff5722; 
         }
         .concept-icon { font-size: 3rem; color: #ff5722; margin-bottom: 20px; }
         .concept-title { font-weight: bold; color: white; margin-bottom: 12px; font-size: 1.2rem; }
         .concept-text { color: #ccc; font-size: 0.95rem; line-height: 1.6; }
-
-        /* BOTÓN MEJORADO */
+        
+        /* BOTÓN MEJORADO - GRADIENTE NARANJA */
         .start-btn {
-            background: linear-gradient(45deg, #e64a19, #ff5722);
+            background: linear-gradient(45deg, #d84315, #ff5722);
             color: white; padding: 12px 40px; border: none; border-radius: 50px;
             font-size: 1.1rem; font-weight: bold; cursor: pointer; 
             display: block; margin: 40px auto; width: fit-content;
@@ -45,36 +46,17 @@
         }
         .start-btn:hover { transform: scale(1.05); }
 
-        /* BARRA DE PROGRESO MEJORADA */
+        /* BARRA MEJORADA */
         #progress-container { 
             margin: 20px auto; max-width: 600px; 
             background: rgba(255,255,255,0.05); padding: 15px; 
             border-radius: 15px; border: 1px solid rgba(255,255,255,0.1); 
         }
         .progress-track { background: rgba(0,0,0,0.4); height: 10px; border-radius: 10px; overflow: hidden; margin-top: 10px;}
-        .progress-fill { height: 100%; width: 0%; background: linear-gradient(90deg, #e64a19, #ff5722); transition: width 0.4s; }
-
-        /* --- CORRECCIONES PARA CELULAR (Sobrescribe estilos inline) --- */
-        @media (max-width: 768px) {
-            .quiz-page-container {
-                padding: 10px !important;
-                margin: 10px auto !important;
-                width: 100% !important;
-            }
-            
-            h1 { font-size: 2rem !important; }
-            i.fab.fa-html5 { font-size: 3.5rem !important; }
-            
-            .concept-grid {
-                grid-template-columns: 1fr; /* Una columna */
-                gap: 15px;
-            }
-            
-            .start-btn { width: 100%; }
-        }
+        .progress-fill { height: 100%; width: 0%; background: linear-gradient(90deg, #d84315, #ff5722); transition: width 0.4s; }
     </style>
 </head>
-<body style="background: #0b0b0e; color: white; margin: 0;">
+<body style="background: #0b0b0e; color: white;">
     <nav style="padding: 20px; background: rgba(11,11,14,0.95);">
         <a href="../contenidos.html" style="color: white; text-decoration: none; font-weight: bold;"><i class="fas fa-arrow-left"></i> Volver a Cursos</a>
     </nav>
@@ -82,61 +64,63 @@
     <div class="quiz-page-container" style="max-width: 1400px; margin: 40px auto; padding: 20px;">
         <div style="text-align: center; margin-bottom: 50px;">
             <i class="fab fa-html5" style="font-size: 5rem; color: #ff5722;"></i>
-            <h1 style="font-size: 3rem; margin-top: 15px;">HTML5 Expert</h1>
-            <p style="color: #aaa; font-size: 1.1rem;">Domina la estructura web.</p>
+            <h1 style="font-size: 3rem; margin-top: 15px;">Arquitecto HTML5</h1>
+            <p style="color: #aaa; font-size: 1.1rem;">La estructura fundamental de la web.</p>
         </div>
 
         <div id="study-guide">
             <div class="concept-grid">
                 <div class="concept-card">
-                    <div class="concept-icon"><i class="fas fa-language"></i></div>
-                    <div class="concept-title">1. Significado</div>
-                    <div class="concept-text">HTML (HyperText Markup Language) es el esqueleto de la web. Define la estructura semántica, no el diseño visual.</div>
+                    <div class="concept-icon"><i class="fas fa-code"></i></div>
+                    <div class="concept-title">1. Etiquetas</div>
+                    
+                    <div class="concept-text">HTML usa "tags" o etiquetas rodeadas por corchetes angulares. La mayoría tienen apertura <code>&lt;p&gt;</code> y cierre <code>&lt;/p&gt;</code>.</div>
                 </div>
                 <div class="concept-card">
-                    <div class="concept-icon"><i class="fas fa-layer-group"></i></div>
+                    <div class="concept-icon"><i class="fas fa-sitemap"></i></div>
                     <div class="concept-title">2. Estructura</div>
-                    <div class="concept-text">Sigue un orden estricto: <code>&lt;html&gt;</code> envuelve todo, <code>&lt;head&gt;</code> configura metadatos y <code>&lt;body&gt;</code> muestra el contenido.</div>
+                    
+                    <div class="concept-text">Todo documento requiere: <code>&lt;html&gt;</code>, <code>&lt;head&gt;</code> (metadatos) y <code>&lt;body&gt;</code> (contenido visible).</div>
                 </div>
                 <div class="concept-card">
                     <div class="concept-icon"><i class="fas fa-heading"></i></div>
                     <div class="concept-title">3. Títulos</div>
-                    <div class="concept-text">Van de <code>&lt;h1&gt;</code> a <code>&lt;h6&gt;</code>. El h1 es el título principal y único por página, vital para el SEO y la jerarquía.</div>
-                </div>
-                <div class="concept-card">
-                    <div class="concept-icon"><i class="fas fa-paragraph"></i></div>
-                    <div class="concept-title">4. Párrafos</div>
-                    <div class="concept-text">La etiqueta <code>&lt;p&gt;</code> agrupa bloques de texto. Los navegadores añaden márgenes automáticos para separarlos visualmente.</div>
+                    <div class="concept-text">Van desde <code>&lt;h1&gt;</code> (el más importante) hasta <code>&lt;h6&gt;</code>. Los buscadores los usan para entender tu página.</div>
                 </div>
                 <div class="concept-card">
                     <div class="concept-icon"><i class="fas fa-image"></i></div>
-                    <div class="concept-title">5. Imágenes</div>
-                    <div class="concept-text">Etiqueta de cierre automático: <code>&lt;img src="..."&gt;</code>. El atributo 'alt' es obligatorio para accesibilidad.</div>
+                    <div class="concept-title">4. Imágenes</div>
+                    <div class="concept-text">La etiqueta <code>&lt;img&gt;</code> no tiene cierre. Usa el atributo <strong>src</strong> para la ruta y <strong>alt</strong> para la descripción.</div>
                 </div>
                 <div class="concept-card">
                     <div class="concept-icon"><i class="fas fa-link"></i></div>
-                    <div class="concept-title">6. Enlaces</div>
-                    <div class="concept-text">La etiqueta <code>&lt;a href="..."&gt;</code> conecta páginas. Usa <code>target="_blank"</code> para abrir en una pestaña nueva.</div>
+                    <div class="concept-title">5. Enlaces</div>
+                    <div class="concept-text">Se crean con la etiqueta <code>&lt;a&gt;</code>. El atributo vital es <strong>href="..."</strong> que indica el destino.</div>
                 </div>
                 <div class="concept-card">
                     <div class="concept-icon"><i class="fas fa-list-ul"></i></div>
-                    <div class="concept-title">7. Listas</div>
-                    <div class="concept-text"><code>&lt;ul&gt;</code> crea listas con puntos (bullets) y <code>&lt;ol&gt;</code> listas numéricas. Los ítems van en <code>&lt;li&gt;</code>.</div>
+                    <div class="concept-title">6. Listas</div>
+                    <div class="concept-text">Usa <code>&lt;ul&gt;</code> para listas con viñetas (desordenadas) y <code>&lt;ol&gt;</code> para numeradas. Los ítems son <code>&lt;li&gt;</code>.</div>
                 </div>
                 <div class="concept-card">
-                    <div class="concept-icon"><i class="fas fa-level-down-alt"></i></div>
-                    <div class="concept-title">8. Salto Línea</div>
-                    <div class="concept-text"><code>&lt;br&gt;</code> fuerza un salto de línea sin crear un nuevo párrafo. Es útil para direcciones o poemas.</div>
+                    <div class="concept-icon"><i class="fas fa-paragraph"></i></div>
+                    <div class="concept-title">7. Párrafos</div>
+                    <div class="concept-text">La etiqueta <code>&lt;p&gt;</code> define bloques de texto. Los navegadores añaden márgenes automáticos entre ellos.</div>
                 </div>
                 <div class="concept-card">
-                    <div class="concept-icon"><i class="fas fa-video"></i></div>
-                    <div class="concept-title">9. Video</div>
-                    <div class="concept-text"><code>&lt;video src="..." controls&gt;</code> inserta multimedia nativa con controles de play y pausa integrados.</div>
+                    <div class="concept-icon"><i class="fas fa-info-circle"></i></div>
+                    <div class="concept-title">8. Atributos</div>
+                    <div class="concept-text">Proporcionan info extra. Van en la etiqueta de apertura. Ejemplo: <code>class="texto-rojo"</code> o <code>id="menu"</code>.</div>
                 </div>
                 <div class="concept-card">
-                    <div class="concept-icon"><i class="fas fa-file-code"></i></div>
-                    <div class="concept-title">10. Doctype</div>
-                    <div class="concept-text"><code>&lt;!DOCTYPE html&gt;</code> es la primera línea obligatoria. Le dice al navegador que use el modo estándar de HTML5.</div>
+                    <div class="concept-icon"><i class="fas fa-globe"></i></div>
+                    <div class="concept-title">9. Doctype</div>
+                    <div class="concept-text"><code>&lt;!DOCTYPE html&gt;</code> debe ser la primera línea. Le dice al navegador que usas HTML5 moderno.</div>
+                </div>
+                <div class="concept-card">
+                    <div class="concept-icon"><i class="fas fa-comment"></i></div>
+                    <div class="concept-title">10. Comentarios</div>
+                    <div class="concept-text">Se escriben así: <code>&lt;!-- Texto --&gt;</code>. Sirven para dejar notas que no se ven en la página web.</div>
                 </div>
             </div>
             <button onclick="empezarQuiz()" class="start-btn"><i class="fas fa-play"></i> INICIAR DESAFÍO</button>
@@ -161,17 +145,17 @@
         }
 
         const preguntasHTML = [
-            { pregunta: "¿Qué significa HTML?", opciones: ["Home Tool Markup Language", "HyperText Markup Language", "Hyperlinks and Text Markup Language"], correcta: 1, explicacion: "HTML son las siglas de HyperText Markup Language." },
-            { pregunta: "¿Cuál es el elemento correcto para el encabezado más grande?", opciones: ["&lt;head&gt;", "&lt;h6&gt;", "&lt;h1&gt;"], correcta: 2, explicacion: "&lt;h1&gt; representa el título principal de la página." },
-            { pregunta: "¿Cuál es el elemento para insertar un salto de línea?", opciones: ["&lt;break&gt;", "&lt;lb&gt;", "&lt;br&gt;"], correcta: 2, explicacion: "&lt;br&gt; (Break) crea un salto de línea." },
-            { pregunta: "¿Cuál es el elemento HTML para reproducir video?", opciones: ["&lt;media&gt;", "&lt;movie&gt;", "&lt;video&gt;"], correcta: 2, explicacion: "La etiqueta estándar de HTML5 es &lt;video&gt;." },
-            { pregunta: "¿Qué etiqueta define un párrafo?", opciones: ["&lt;text&gt;", "&lt;p&gt;", "&lt;par&gt;"], correcta: 1, explicacion: "&lt;p&gt; se utiliza para definir párrafos de texto." },
-            { pregunta: "¿Qué etiqueta se usa para crear un enlace?", opciones: ["&lt;a&gt;", "&lt;link&gt;", "&lt;href&gt;"], correcta: 0, explicacion: "La etiqueta &lt;a&gt; (anchor) define un hipervínculo." },
-            { pregunta: "¿Cómo se define una lista desordenada (puntos)?", opciones: ["&lt;ol&gt;", "&lt;ul&gt;", "&lt;list&gt;"], correcta: 1, explicacion: "&lt;ul&gt; significa Unordered List." },
-            { pregunta: "¿Qué atributo se usa en &lt;img&gt; para la ruta de la imagen?", opciones: ["href", "link", "src"], correcta: 2, explicacion: "src (source) indica dónde está el archivo de imagen." },
-            { pregunta: "¿Cuál es la estructura base correcta?", opciones: ["html > head > body", "head > body > html", "body > html > head"], correcta: 0, explicacion: "Primero &lt;html&gt;, dentro &lt;head&gt; y &lt;body&gt;." },
-            { pregunta: "¿Con qué debe empezar un documento HTML5?", opciones: ["&lt;html5&gt;", "&lt;!DOCTYPE html&gt;", "&lt;xml&gt;"], correcta: 1, explicacion: "La declaración del tipo de documento es &lt;!DOCTYPE html&gt;." }
+            { pregunta: "¿Qué significa HTML?", opciones: ["Home Tool Markup Language", "Hyperlinks and Text Markup Language", "Hyper Text Markup Language"], correcta: 2, explicacion: "HTML significa Lenguaje de Marcado de Hipertexto." },
+            { pregunta: "¿Quién hace los estándares de la Web?", opciones: ["Google", "Microsoft", "The World Wide Web Consortium (W3C)"], correcta: 2, explicacion: "El W3C es la organización internacional que desarrolla los estándares web." },
+            { pregunta: "¿Cuál es la etiqueta correcta para el título más grande?", opciones: ["&lt;head&gt;", "&lt;heading&gt;", "&lt;h1&gt;"], correcta: 2, explicacion: "&lt;h1&gt; define el encabezado de mayor nivel." },
+            { pregunta: "¿Cuál es la etiqueta para un salto de línea?", opciones: ["&lt;br&gt;", "&lt;lb&gt;", "&lt;break&gt;"], correcta: 0, explicacion: "&lt;br&gt; (Break Row) inserta un salto de línea simple." },
+            { pregunta: "¿Cuál es la forma correcta de añadir un color de fondo?", opciones: ["&lt;body bg='yellow'&gt;", "&lt;background&gt;yellow&lt;/background&gt;", "&lt;body style='background-color:yellow;'&gt;"], correcta: 2, explicacion: "En HTML5 se prefiere usar estilos CSS inline o externos." },
+            { pregunta: "¿Qué etiqueta define un enlace (hipervínculo)?", opciones: ["&lt;link&gt;", "&lt;a&gt;", "&lt;href&gt;"], correcta: 1, explicacion: "La etiqueta &lt;a&gt; (anchor) se usa para enlaces junto con el atributo href." },
+            { pregunta: "¿Cuál es el caracter para cerrar una etiqueta?", opciones: ["^", "/", "*"], correcta: 1, explicacion: "Las etiquetas de cierre siempre llevan barra diagonal, ej: &lt;/p&gt;." },
+            { pregunta: "¿Qué elemento define una lista desordenada (puntos)?", opciones: ["&lt;ul&gt;", "&lt;ol&gt;", "&lt;list&gt;"], correcta: 0, explicacion: "&lt;ul&gt; significa Unordered List." },
+            { pregunta: "¿Cómo se inserta una imagen correctamente?", opciones: ["&lt;image src='foto.jpg' alt='boda'&gt;", "&lt;img src='foto.jpg' alt='boda'&gt;", "&lt;img href='foto.jpg' alt='boda'&gt;"], correcta: 1, explicacion: "Se usa &lt;img&gt; con el atributo src (source)." },
+            { pregunta: "¿Dónde se define el título de la pestaña del navegador?", opciones: ["&lt;head&gt;", "&lt;meta&gt;", "&lt;title&gt;"], correcta: 2, explicacion: "La etiqueta &lt;title&gt; dentro del head define el nombre de la pestaña." }
         ];
     </script>
 </body>
-</html
+</html>
